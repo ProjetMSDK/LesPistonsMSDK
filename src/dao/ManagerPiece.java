@@ -30,7 +30,7 @@ public class ManagerPiece {
             cs.registerOutParameter(7, java.sql.Types.VARCHAR); // catégorie
             cs.registerOutParameter(8, java.sql.Types.INTEGER); // numéro de la pièce
             cs.registerOutParameter(10, java.sql.Types.VARCHAR); // message
-            
+    
             //configuration des paramètres en entrée
             cs.setInt(2, pieceCourante.getNumLot());
             cs.setFloat(3, pieceCourante.getDiamHL());

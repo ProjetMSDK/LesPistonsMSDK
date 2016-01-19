@@ -74,7 +74,7 @@ public class Controle extends javax.swing.JFrame {
         bSuspendre = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         labelNumLot = new javax.swing.JLabel();
-        comboLotControle = new javax.swing.JComboBox();
+        comboLots = new javax.swing.JComboBox();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +84,11 @@ public class Controle extends javax.swing.JFrame {
         labelTitre.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         bQuitter.setText("Quitter");
+        bQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bQuitterActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -304,16 +309,16 @@ public class Controle extends javax.swing.JFrame {
 
         labelNumLot.setText("Numéro du lot");
 
-        comboLotControle.setModel(new ModelComboLotControle());
-        comboLotControle.setRenderer(new RenduComboLotControle());
-        comboLotControle.addItemListener(new java.awt.event.ItemListener() {
+        comboLots.setModel(new modeles.ModelComboLots());
+        comboLots.setRenderer(new rendus.RenduComboLots());
+        comboLots.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboLotControleItemStateChanged(evt);
+                comboLotsItemStateChanged(evt);
             }
         });
-        comboLotControle.addActionListener(new java.awt.event.ActionListener() {
+        comboLots.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLotControleActionPerformed(evt);
+                comboLotsActionPerformed(evt);
             }
         });
 
@@ -325,7 +330,7 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelNumLot)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comboLotControle, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -334,7 +339,7 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumLot)
-                    .addComponent(comboLotControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -406,7 +411,7 @@ public class Controle extends javax.swing.JFrame {
     }//GEN-LAST:event_bSuspendreActionPerformed
 
     private void bValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bValiderActionPerformed
-        pieceCourante = new Piece(((Lot)comboLotControle.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
+        pieceCourante = new Piece(((Lot)comboLots.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
                                 Float.parseFloat(texteDiametreHT.getText()), Float.parseFloat(texteDiametreBL.getText()), 
                                 Float.parseFloat(texteDiametreBT.getText()), texteCommRebut.getText());
         ManagerPiece.enregistrerPiece(pieceCourante);
@@ -431,17 +436,21 @@ public class Controle extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_texteDiametreHLActionPerformed
 
-    private void comboLotControleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotControleItemStateChanged
+    private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
         
-    }//GEN-LAST:event_comboLotControleItemStateChanged
+    }//GEN-LAST:event_comboLotsItemStateChanged
 
-    private void comboLotControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotControleActionPerformed
+    private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
         //((JComboBox) evt.getSource()).
-    }//GEN-LAST:event_comboLotControleActionPerformed
+    }//GEN-LAST:event_comboLotsActionPerformed
 
     private void texteDiametreHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texteDiametreHTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_texteDiametreHTActionPerformed
+
+    private void bQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bQuitterActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_bQuitterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -450,7 +459,7 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JButton bQuitter;
     private javax.swing.JButton bSuspendre;
     private javax.swing.JButton bValider;
-    private javax.swing.JComboBox comboLotControle;
+    private javax.swing.JComboBox comboLots;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

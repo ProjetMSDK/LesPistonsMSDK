@@ -23,7 +23,7 @@ public class ManagerLot {
      * Cette fonction donne la liste des pilotes de la table PILOTE
      * @return Cette fonction retourne un ArrayList contenant tous les pilotes
      */
-    public static ArrayList<Lot> listeLotControle()
+    public static ArrayList<Lot> listeLots()
     {
         try
         {
@@ -59,28 +59,6 @@ public class ManagerLot {
         catch (Exception e)
         {
             e.printStackTrace();
-        }
-    }
-    
-    public static ArrayList<String> listeColonnesPilotes()
-    {
-        try
-        {
-            Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM PILOTE");
-            ArrayList<String> liste = new ArrayList<>();
-            ResultSetMetaData md = rs.getMetaData();
-            int i = 1;
-            while(i <= md.getColumnCount())
-            {
-                liste.add(md.getColumnName(i));
-                i++;
-            }
-            return liste;
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
         }
     }
 }

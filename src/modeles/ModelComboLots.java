@@ -15,14 +15,14 @@ import javax.swing.ComboBoxModel;
  *
  * @author mayer
  */
-public class ModelComboLotControle extends AbstractListModel<Lot> implements ComboBoxModel<Lot>
+public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxModel<Lot>
 {
     private final ArrayList<Lot> liste;
     private Lot selection = null;
     
-    public ModelComboLotControle()
+    public ModelComboLots()
     {
-        liste = ManagerLot.listeLotControle();
+        liste = ManagerLot.listeLots();
     }
     
     @Override

@@ -16,7 +16,7 @@ import javax.swing.ListCellRenderer;
  *
  * @author mayer
  */
-public class RenduComboLotControle implements ListCellRenderer<Lot> {
+public class RenduComboLots implements ListCellRenderer<Lot> {
     
     
     @Override
