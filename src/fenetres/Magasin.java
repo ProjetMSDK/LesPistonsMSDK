@@ -5,13 +5,10 @@
  */
 package fenetres;
 
-import java.beans.Statement;
-import java.sql.CallableStatement;
-import javax.swing.ComboBoxModel;
+import entite.Modele;
 import javax.swing.JFrame;
 import modeles.ModelComboModeleMagasin;
 import rendus.RenduComboModeleMagasin;
-import outils.Connexion;
 
 /**
  *
@@ -57,7 +54,7 @@ public class Magasin extends javax.swing.JFrame {
         bouttonGrand = new javax.swing.JButton();
         Combo_modele = new javax.swing.JComboBox();
         bouttonStock = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        barStatusMagasin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -226,14 +223,14 @@ public class Magasin extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Status Bar");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        barStatusMagasin.setText("Status Bar");
+        barStatusMagasin.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(barStatusMagasin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,7 +256,7 @@ public class Magasin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bouttonQuiter)
                 .addGap(10, 10, 10)
-                .addComponent(jLabel5))
+                .addComponent(barStatusMagasin))
         );
 
         pack();
@@ -311,15 +308,16 @@ public class Magasin extends javax.swing.JFrame {
 
     private void bouttonEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonEntreeActionPerformed
         
-       String modele= Combo_modele.getSelectedItem().toString();
+       String modele= ((Modele)Combo_modele.getSelectedItem()).getModele();
        int quantite = (int) Integer.parseInt(saisieQuantite.getText());
        dao.ManagerMagasin.entreecaisse(modele, tailleModele, quantite);
        saisieQuantite.setText("");
+       barStatusMagasin.setText(tailleModele+", "+modele+" , "+quantite);
         
     }//GEN-LAST:event_bouttonEntreeActionPerformed
 
     private void bouttonSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonSortieActionPerformed
-        String modele= Combo_modele.getSelectedItem().toString();
+        String modele= (String)Combo_modele.getSelectedItem().toString();
        int quantite = (int) Integer.parseInt(saisieQuantite.getText());
        dao.ManagerMagasin.sortieCaisse(modele, tailleModele, quantite);
        saisieQuantite.setText("");
@@ -363,6 +361,7 @@ public class Magasin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Combo_modele;
+    private javax.swing.JLabel barStatusMagasin;
     private javax.swing.JButton boutonPetit;
     private javax.swing.JButton bouttonEntree;
     private javax.swing.JButton bouttonGrand;
@@ -373,7 +372,6 @@ public class Magasin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField saisieQuantite;
