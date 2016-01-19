@@ -24,6 +24,7 @@ public class Magasin extends javax.swing.JFrame {
     public Magasin() {
         initComponents();
         
+        
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -57,6 +58,8 @@ public class Magasin extends javax.swing.JFrame {
         barStatusMagasin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(202, 217, 230));
+        setUndecorated(true);
 
         bouttonQuiter.setText("Quitter");
         bouttonQuiter.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +73,8 @@ public class Magasin extends javax.swing.JFrame {
         jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 30));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBackground(new java.awt.Color(202, 217, 230));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Modèle");
 
@@ -86,6 +90,8 @@ public class Magasin extends javax.swing.JFrame {
                 saisieQuantiteActionPerformed(evt);
             }
         });
+
+        jPanel2.setBackground(new java.awt.Color(202, 217, 230));
 
         bouttonEntree.setText("Entrée");
         bouttonEntree.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +196,7 @@ public class Magasin extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(Combo_modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {boutonPetit, bouttonGrand});
@@ -241,7 +247,7 @@ public class Magasin extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bouttonStock, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 14, Short.MAX_VALUE)))
+                        .addGap(0, 20, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -307,20 +313,22 @@ public class Magasin extends javax.swing.JFrame {
     }//GEN-LAST:event_bouttonEntreeMouseClicked
 
     private void bouttonEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonEntreeActionPerformed
-       String message="";
        String modele= ((Modele)Combo_modele.getSelectedItem()).getModele();
        int quantite = (int) Integer.parseInt(saisieQuantite.getText());
-       dao.ManagerMagasin.entreecaisse(modele, tailleModele, quantite, message);
+       String mess = dao.ManagerMagasin.entreecaisse(modele, tailleModele, quantite);
        saisieQuantite.setText("");
-       barStatusMagasin.setText(message);
+       barStatusMagasin.setText(mess);
         
     }//GEN-LAST:event_bouttonEntreeActionPerformed
 
     private void bouttonSortieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonSortieActionPerformed
-        String modele= (String)Combo_modele.getSelectedItem().toString();
+        
+        String modele= ((Modele)Combo_modele.getSelectedItem()).getModele();
        int quantite = (int) Integer.parseInt(saisieQuantite.getText());
-       dao.ManagerMagasin.sortieCaisse(modele, tailleModele, quantite);
+       String mess = dao.ManagerMagasin.sortieCaisse(modele, tailleModele, quantite);
        saisieQuantite.setText("");
+       barStatusMagasin.setText(mess);
+       
     }//GEN-LAST:event_bouttonSortieActionPerformed
 
     /**
