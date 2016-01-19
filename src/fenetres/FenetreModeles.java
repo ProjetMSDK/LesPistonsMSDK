@@ -243,18 +243,20 @@ public class FenetreModeles extends javax.swing.JFrame  {
 
     private void boutonActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserActionPerformed
         jTable1.setModel(new ModelTableModele());
-        //jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
+        jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
     }//GEN-LAST:event_boutonActualiserActionPerformed
 
     private void boutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerActionPerformed
-        // TODO add your handling code here:
+       String nom= texte1.getText(); 
+       String message =ManagerModele.supprimerModele(nom);
+       
+       System.out.println(message);
+       statusBar.setText(message);
     }//GEN-LAST:event_boutonSupprimerActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
         String nom= texte1.getText(); 
-        float diametre= Float.parseFloat(text2.getText());
-        String message = "";
-        ManagerModele.ajouterModele(nom,diametre,message);
+        String message =  ManagerModele.ajouterModele(nom);
         System.out.println(message);
         statusBar.setText(message);
         
