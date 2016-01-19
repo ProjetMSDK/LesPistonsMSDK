@@ -5,7 +5,7 @@
  */
 package modeles;
 
-import dao.ManagerModeles;
+import dao.ManagerModele;
 import entite.Modele;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -22,8 +22,8 @@ public class ModelTableModele extends AbstractTableModel{
 
     public ModelTableModele()
     {
-        listeModeles = ManagerModeles.listeModeles();
-        listeColonne = ManagerModeles.columnModeles();       
+        listeModeles = ManagerModele.listeModeles();
+        listeColonne = ManagerModele.columnModeles();       
     }
     
     @Override

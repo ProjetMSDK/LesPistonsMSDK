@@ -6,7 +6,7 @@ package fenetres;
  * and open the template in the editor.
  */
 
-import dao.ManagerModeles;
+import dao.ManagerModele;
 import dao.*;
 import javax.swing.JFrame;
 import modeles.*;
