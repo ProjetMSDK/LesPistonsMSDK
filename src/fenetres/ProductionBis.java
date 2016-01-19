@@ -5,6 +5,13 @@
  */
 package fenetres;
 
+import javax.swing.JFrame;
+import modeles.ModeleTablePresse;
+import dao.*;
+import modeles.*;
+import rendus.*;
+
+
 /**
  *
  * @author bouyadel
@@ -16,6 +23,9 @@ public class ProductionBis extends javax.swing.JFrame {
      */
     public ProductionBis() {
         initComponents();
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -31,7 +41,7 @@ public class ProductionBis extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        BactualiserPresse = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
@@ -54,11 +64,13 @@ public class ProductionBis extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jScrollPane1.setViewportView(jTable1);
+        jTable1.setModel(new ModeleTablePresse());
+        jTable1.setDefaultRenderer(Object.class, new RenduTablePresse());
 
-        jButton3.setText("Actualiser");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BactualiserPresse.setText("Actualiser");
+        BactualiserPresse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BactualiserPresseActionPerformed(evt);
             }
         });
 
@@ -76,7 +88,7 @@ public class ProductionBis extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(BactualiserPresse)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -87,7 +99,7 @@ public class ProductionBis extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(BactualiserPresse)
                 .addContainerGap())
         );
 
@@ -199,9 +211,9 @@ public class ProductionBis extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void BactualiserPresseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BactualiserPresseActionPerformed
+       jTable1.setModel(new ModeleTablePresse());
+    }//GEN-LAST:event_BactualiserPresseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,9 +251,9 @@ public class ProductionBis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BactualiserPresse;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;

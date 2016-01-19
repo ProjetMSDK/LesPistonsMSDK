@@ -6,7 +6,6 @@
 package dao;
 
 import entite.Machine;
-import entite.Stock;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -28,7 +27,7 @@ public class ManagerMachine {
              
             while ( rs.next())
             {
-                    liste.add(new Machine(rs.getInt(1),rs.getString(2)));
+                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(3)));
                    
             }
             return liste;
