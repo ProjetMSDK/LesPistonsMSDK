@@ -307,12 +307,12 @@ public class Magasin extends javax.swing.JFrame {
     }//GEN-LAST:event_bouttonEntreeMouseClicked
 
     private void bouttonEntreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonEntreeActionPerformed
-        
+       String message="";
        String modele= ((Modele)Combo_modele.getSelectedItem()).getModele();
        int quantite = (int) Integer.parseInt(saisieQuantite.getText());
-       dao.ManagerMagasin.entreecaisse(modele, tailleModele, quantite);
+       dao.ManagerMagasin.entreecaisse(modele, tailleModele, quantite, message);
        saisieQuantite.setText("");
-       barStatusMagasin.setText(tailleModele+", "+modele+" , "+quantite);
+       barStatusMagasin.setText(message);
         
     }//GEN-LAST:event_bouttonEntreeActionPerformed
 
