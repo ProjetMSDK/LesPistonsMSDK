@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import outils.Connexion;
+import outils.DateFR;
 
 /**
  *
@@ -64,12 +65,12 @@ public class ManagerPlanification {
     {
        try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from LOT");
+            ResultSet rs = st.executeQuery("select numLot, modele, nbPiecesDemandees, dateDePlanification, numPresse,dateDeProduction, etatDuLot from Lot ");
             ArrayList<Lot> liste = new ArrayList<>();
              
             while ( rs.next())
             {
-                    liste.add(new Lot(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4)));
+                    liste.add(new Lot(rs.getInt(1),rs.getInt(2), (DateFR)rs.getDate(3), (DateFR)rs.getDate(4),rs.getString(5),rs.getInt(6),rs.getString(7)));
                    
             }
             return liste;
@@ -83,7 +84,7 @@ public class ManagerPlanification {
     {
          try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from LOT");
+            ResultSet rs = st.executeQuery("select numLot, modele, nbPiecesDemandees, dateDePlanification, numPresse,dateDeProduction, etatDuLot from Lot ");
             ArrayList<String> liste = new ArrayList<>();
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
@@ -99,12 +100,15 @@ public class ManagerPlanification {
         }
     }
     
-    public static void planifierLot(String modele, int quantite, String message)
+    public static String planifierLot(String modele, int quantite)
     {
+        int codeRetour;
+        String message = null;
+        
         try
         {
+           
             
-            int codeRetour;
             CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{? = call planifierLot (?, ?,?)}");
             
             //configuration des paramètres en sortie
@@ -135,9 +139,6 @@ public class ManagerPlanification {
             
         }
         
-        
-    }
-    
-    
-    
+        return message;
+    }    
 }

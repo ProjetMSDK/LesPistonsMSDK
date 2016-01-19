@@ -28,7 +28,7 @@ public class ManagerLot {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM LOT WHERE etatDuLot = 'Démarré' OR etatDuLot = 'Libéré' OR etatDuLot = 'Suspendu' OR etatDuLot = 'Arrêté'");
+            ResultSet rs = st.executeQuery("SELECT * FROM LOT WHERE etatDuLot = 'Démarré' OR etatDuLot = 'Libéré' OR etatDuLot = 'Suspendu' OR etatDuLot = 'Arrêté'" );
             ArrayList<Lot> liste = new ArrayList();
             while (rs.next())
             {
@@ -83,4 +83,6 @@ public class ManagerLot {
             return null;
         }
     }
+    
+   
 }

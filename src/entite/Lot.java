@@ -44,6 +44,17 @@ public class Lot {
         this.modele = modele;
     }
 
+    public Lot(int numLot, int nbPiecesDemandees, DateFR dateDePlanification, DateFR dateDeFabric, String etatDuLot, int TypeNumPresse, String modele) {
+        this.numLot = numLot;
+        this.nbPiecesDemandees = nbPiecesDemandees;
+        this.dateDePlanification = dateDePlanification;
+        this.dateDeFabric = dateDeFabric;
+        this.etatDuLot = etatDuLot;
+        this.TypeNumPresse = TypeNumPresse;
+        this.modele = modele;
+    }
+
+    
     
     
     
