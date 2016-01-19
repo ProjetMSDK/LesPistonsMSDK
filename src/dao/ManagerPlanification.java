@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entite.Lot;
 import entite.Stock;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -57,6 +58,43 @@ public class ManagerPlanification {
         }
     }
     
-    
+    public static ArrayList<Lot> listeProdPlanif()
+    {
+       try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from LOT");
+            ArrayList<Lot> liste = new ArrayList<>();
+             
+            while ( rs.next())
+            {
+                    liste.add(new Lot(rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4)));
+                   
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
+    public static ArrayList<String> ListeColonnesProdPlanif()
+    {
+         try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from LOT");
+            ArrayList<String> liste = new ArrayList<>();
+             ResultSetMetaData md = rs.getMetaData();
+             int i = 1;
+            while ( i <= md.getColumnCount())
+            {
+                    liste.add(md.getColumnName(i));
+                    i++;
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+    }
     
 }

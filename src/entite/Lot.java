@@ -15,6 +15,7 @@ public class Lot {
     
     private int numLot;
     private int nbPiecesDemandees;
+    private DateFR dateDePlanification;
     private DateFR dateDeFabric;
     private String etatDuLot; 
     private int TypeNumPresse; 
@@ -205,8 +206,18 @@ public class Lot {
      */
     public double getEcartTypeBT() {
         return ecartTypeBT;
+        
     }
 
+    public DateFR getDateDePlanification() {
+        return dateDePlanification;
+    }
+
+    public void setDateDePlanification(DateFR dateDePlanification) {
+        this.dateDePlanification = dateDePlanification;
+    }
+
+    
     @Override
     public String toString() {
         return "Lot{" + "numLot=" + numLot + '}';

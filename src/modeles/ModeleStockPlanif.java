@@ -21,10 +21,11 @@ public class ModeleStockPlanif extends AbstractTableModel{
     ArrayList<Stock> liste = ManagerPlanification.listeStockPlanif();
     ArrayList<String> listeColonne = ManagerPlanification.ListeColonnesStockPlanif();
     
+    
 
     @Override
     public int getRowCount() {
-        return liste.size();
+        return liste.size();        
     }
 
     @Override
