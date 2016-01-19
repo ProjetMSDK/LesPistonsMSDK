@@ -32,7 +32,7 @@
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bquitter" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -51,7 +51,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="bquitter" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -80,12 +80,12 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="BactualiserPlanif" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="BactualiserProd" linkSize="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="Bajouter" linkSize="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bajouter" linkSize="1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="Bvalider" linkSize="1" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <Component id="bvalider" linkSize="1" min="-2" pref="79" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -102,11 +102,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="126" max="-2" attributes="0"/>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
-                  <Component id="BactualiserPlanif" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="BactualiserProd" linkSize="2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Bvalider" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Bajouter" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bvalider" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bajouter" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -121,80 +121,38 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablePlanif">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="4">
-                    <Column editable="true" title="Num&#xe9;ro de Lot" type="java.lang.Object">
-                      <Data value="1"/>
-                      <Data value="2"/>
-                      <Data value="3"/>
-                      <Data value="4"/>
-                    </Column>
-                    <Column editable="true" title="Mod&#xe8;le" type="java.lang.Object">
-                      <Data value="R4"/>
-                      <Data value="R8"/>
-                      <Data value="R4"/>
-                      <Data value="M&#xe9;gane"/>
-                    </Column>
-                    <Column editable="true" title="Quantit&#xe9;" type="java.lang.Object">
-                      <Data value="120"/>
-                      <Data value="40"/>
-                      <Data value="200"/>
-                      <Data value="800"/>
-                    </Column>
-                    <Column editable="true" title="Presse" type="java.lang.Object">
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="Asterix"/>
-                      <Data value="Obleix"/>
-                    </Column>
-                    <Column editable="true" title="Date Plannification" type="java.lang.Object">
-                      <Data value="08/01/2016"/>
-                      <Data value="08/01/2016"/>
-                      <Data value="05/01/2016"/>
-                      <Data value="07/01/2016"/>
-                    </Column>
-                    <Column editable="true" title="Date Fabrication" type="java.lang.Object">
-                      <Data value="null"/>
-                      <Data value="null"/>
-                      <Data value="08/01/2016"/>
-                      <Data value="null"/>
-                    </Column>
-                    <Column editable="true" title="Etat" type="java.lang.Object">
-                      <Data value="Lanc&#xe9;"/>
-                      <Data value="Lanc&#xe9;"/>
-                      <Data value="Arret&#xe9;"/>
-                      <Data value="D&#xe9;marr&#xe9;"/>
-                    </Column>
-                  </Table>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JTable" name="tableProdPlanif">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tableProdPlanif.setModel(new ModeleTableProdPlanif());&#xa;//tableProdPlanif.setDefaultRenderer(Object.class, new RenduTableProdPlanif());"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="BactualiserPlanif">
+        <Component class="javax.swing.JButton" name="BactualiserProd">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualiser"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[80, 25]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BactualiserProdActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Bvalider">
+        <Component class="javax.swing.JButton" name="bvalider">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valider"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BvaliderActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bvaliderActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Bajouter">
+        <Component class="javax.swing.JButton" name="bajouter">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BajouterActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bajouterActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -219,7 +177,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="bquitter">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -227,7 +185,7 @@
         <Property name="text" type="java.lang.String" value="Quitter"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bquitterActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -259,7 +217,7 @@
                       <Component id="jScrollPane2" alignment="0" pref="612" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="Bactualiser" min="-2" max="-2" attributes="0"/>
+                          <Component id="BactualiserStock" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -274,7 +232,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Bactualiser" min="-2" max="-2" attributes="0"/>
+                  <Component id="BactualiserStock" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -288,9 +246,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tableStock">
+            <Component class="javax.swing.JTable" name="tableStockPlanif">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tableStock.setModel(new ModeleStockPlanif());&#xa;tableStock.setDefaultRenderer(Object.class, new RenduStockPlanif());"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tableStockPlanif.setModel(new ModeleStockPlanif());&#xa;tableStockPlanif.setDefaultRenderer(Object.class, new RenduStockPlanif());"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -301,12 +259,12 @@
             <Property name="text" type="java.lang.String" value="STOCK"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Bactualiser">
+        <Component class="javax.swing.JButton" name="BactualiserStock">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualiser"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BactualiserActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BactualiserStockActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

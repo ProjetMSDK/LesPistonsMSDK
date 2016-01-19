@@ -6,7 +6,9 @@
 package dao;
 
 import entite.Lot;
+import entite.Piece;
 import entite.Stock;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -96,5 +98,46 @@ public class ManagerPlanification {
            return null;
         }
     }
+    
+    public static void planifierLot(String modele, int quantite, String message)
+    {
+        try
+        {
+            
+            int codeRetour;
+            CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{? = call planifierLot (?, ?,?)}");
+            
+            //configuration des paramètres en sortie
+            cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour            
+            cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+            
+            //configuration des paramètres en entrée
+            cs.setString(2,modele); //modele
+            cs.setDouble(3,quantite); //quantite
+            
+            
+            //exécution de la requête
+            cs.execute();
+            
+            //récupération du code Retour
+            
+            codeRetour = cs.getInt(1);
+            message=cs.getString(4);
+            
+            cs.close();
+            Connexion.getInstance().close();
+            
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            
+        }
+        
+        
+    }
+    
+    
     
 }
