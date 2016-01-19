@@ -87,5 +87,34 @@ public class ManagerModele {
             return null;
         }
    }
-     
+         /* public static void supprimerModele(String modeles)
+    {       
+        try
+        {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("Delete modele FROM MODELES where modele = "+ modeles );
+            ArrayList<Modele> liste = new ArrayList();
+            return ;
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+        
+    }
+      /*---------------------------------------------------------------------------------------------------------------*/
+     public static void ajouterModele( String nouveau, int taille)
+     {
+         try
+         {
+             Statement st= Connexion.getInstance().getConn().createStatement();
+             ResultSet rs = st.executeUpdate("call ajoutModele('nouveau'+'mess' output");
+             return ;
+         }
+         catch(Exception e)
+                 {
+                     e.printStacktrace();
+                     return null;
+                 }
+     }
 }

@@ -234,11 +234,11 @@ public class FenetreModeles extends javax.swing.JFrame  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void texte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texte1ActionPerformed
-     //  String nom=   // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_texte1ActionPerformed
 
     private void text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text2ActionPerformed
-     // Int diametre= newdiametre   // TODO add your handling code here:
+     // TODO add your handling code here:
     }//GEN-LAST:event_text2ActionPerformed
 
     private void boutonActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserActionPerformed
@@ -250,7 +250,9 @@ public class FenetreModeles extends javax.swing.JFrame  {
     }//GEN-LAST:event_boutonSupprimerActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
-          // TODO add your handling code here:
+        String nom= texte1.getText(); 
+        int diametre= parsinteger.text2.getText();
+        ManagerModele.ajouterModele(texte1,text2);
         
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
