@@ -88,18 +88,40 @@ public class ManagerModele {
             return null;
         }
    }
-         /* public static void supprimerModele(String modeles)
+    /* ----------------------------------------------------------------------------------------------------------------------*/
+          public static void supprimerModele(String modele, String messa)
     {       
+        int code;
+        
         try
         {
-            Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("Delete modele FROM MODELES where modele = "+ modeles );
-            ArrayList<Modele> liste = new ArrayList();
-            return ;
-        }
+            CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call supprModele(?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, modele); //nom du modele
+            
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             messa = cs.getString(3);
+             //fermeture de la connection
+             cs.close();
+             Connexion.getInstance().close();
+           
+       }
         catch(Exception e)
         {
-            return null;
+            e.printStackTrace();
         }
         
     }
