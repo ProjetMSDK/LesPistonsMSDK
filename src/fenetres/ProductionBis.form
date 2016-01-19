@@ -132,27 +132,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="javax.swing.JTable" name="jTable1">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="3">
-                    <Column editable="true" title="Nom de Presse" type="java.lang.Object">
-                      <Data value="Asterix"/>
-                      <Data value="Obelix"/>
-                      <Data value="Jumbo"/>
-                    </Column>
-                    <Column editable="true" title="Etat" type="java.lang.Object">
-                      <Data value="Libre"/>
-                      <Data value="Ocuup&#xe9;"/>
-                      <Data value="Libre"/>
-                    </Column>
-                    <Column editable="true" title="Production Prec&#xe9;dante" type="java.lang.Object">
-                      <Data value="R4"/>
-                      <Data value="M&#xe9;gane"/>
-                      <Data value="null"/>
-                    </Column>
-                  </Table>
-                </Property>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

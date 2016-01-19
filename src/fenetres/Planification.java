@@ -5,8 +5,10 @@
  */
 package fenetres;
 
-import dao.ManagerLot;
+import dao.*;
 import javax.swing.JFrame;
+import modeles.*;
+import rendus.*;
 
 /**
  *
@@ -35,26 +37,26 @@ public class Planification extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        tablePlanif = new javax.swing.JTable();
+        BactualiserPlanif = new javax.swing.JButton();
+        Bvalider = new javax.swing.JButton();
+        Bajouter = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableStock = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        Bactualiser = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablePlanif.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "R4", "120", null, "08/01/2016", null, "Lancé"},
                 {"2", "R8", "40", null, "08/01/2016", null, "Lancé"},
@@ -65,22 +67,22 @@ public class Planification extends javax.swing.JFrame {
                 "Numéro de Lot", "Modèle", "Quantité", "Presse", "Date Plannification", "Date Fabrication", "Etat"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablePlanif);
 
-        jButton1.setText("Actualiser");
-        jButton1.setPreferredSize(new java.awt.Dimension(80, 25));
+        BactualiserPlanif.setText("Actualiser");
+        BactualiserPlanif.setPreferredSize(new java.awt.Dimension(80, 25));
 
-        jButton4.setText("Valider");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Bvalider.setText("Valider");
+        Bvalider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BvaliderActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Ajouter");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Bajouter.setText("Ajouter");
+        Bajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BajouterActionPerformed(evt);
             }
         });
 
@@ -100,15 +102,15 @@ public class Planification extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(BactualiserPlanif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(Bajouter)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(Bvalider, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BactualiserPlanif, Bajouter, Bvalider});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,15 +120,15 @@ public class Planification extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BactualiserPlanif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2))
+                    .addComponent(Bvalider)
+                    .addComponent(Bajouter))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton4});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BactualiserPlanif, Bvalider});
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PLANIFICATION");
@@ -146,23 +148,19 @@ public class Planification extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"R4", "250", "200"},
-                {"R8", "800", "200"},
-                {"R12", "40", "10"},
-                {"Mégane", "1200", "500"}
-            },
-            new String [] {
-                "Modèle", "Quantité", "Seuil"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tableStock);
+        tableStock.setModel(new ModeleStockPlanif());
+        tableStock.setDefaultRenderer(Object.class, new RenduStockPlanif());
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("STOCK");
 
-        jButton5.setText("Actualiser");
+        Bactualiser.setText("Actualiser");
+        Bactualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BactualiserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -175,7 +173,7 @@ public class Planification extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton5)))
+                        .addComponent(Bactualiser)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -186,7 +184,7 @@ public class Planification extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(Bactualiser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -230,13 +228,17 @@ public class Planification extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajouterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BajouterActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void BvaliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BvaliderActionPerformed
         ManagerLot.changerEtatLot();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_BvaliderActionPerformed
+
+    private void BactualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BactualiserActionPerformed
+      tablePlanif.setModel(new ModeleStockPlanif());
+    }//GEN-LAST:event_BactualiserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,11 +279,11 @@ public class Planification extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Bactualiser;
+    private javax.swing.JButton BactualiserPlanif;
+    private javax.swing.JButton Bajouter;
+    private javax.swing.JButton Bvalider;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -291,7 +293,7 @@ public class Planification extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tablePlanif;
+    private javax.swing.JTable tableStock;
     // End of variables declaration//GEN-END:variables
 }

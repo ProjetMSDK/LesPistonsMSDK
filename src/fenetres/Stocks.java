@@ -5,6 +5,11 @@
  */
 package fenetres;
 
+import javax.swing.JFrame;
+import modeles.*;
+import rendus.*;
+import dao.*;
+
 /**
  *
  * @author benosmane
@@ -16,6 +21,9 @@ public class Stocks extends javax.swing.JFrame {
      */
     public Stocks() {
         initComponents();
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,22 +52,18 @@ public class Stocks extends javax.swing.JFrame {
 
         jButton4.setText("Quitter");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButton1.setText("Actualiser");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Modèle", "Quantité Petite", "Quantité Moyenne", "Quantité Grande", "Seuil"
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        ));
+        });
+
         jScrollPane1.setViewportView(jTable1);
+        jTable1.setModel(new ModeleTableStock());
+        jTable1.setDefaultRenderer(Object.class, new RenduTableStock());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,6 +122,10 @@ public class Stocks extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jTable1.setModel(new ModeleTableStock());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

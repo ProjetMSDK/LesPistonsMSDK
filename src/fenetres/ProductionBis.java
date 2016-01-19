@@ -53,16 +53,6 @@ public class ProductionBis extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Asterix", "Libre", "R4"},
-                {"Obelix", "Ocuupé", "Mégane"},
-                {"Jumbo", "Libre", null}
-            },
-            new String [] {
-                "Nom de Presse", "Etat", "Production Precédante"
-            }
-        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton3.setText("Actualiser");
@@ -113,8 +103,8 @@ public class ProductionBis extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "R4", "120", "null", "08/01/2016", null, "Lancé"},
-                {"2", "R8", "40", "null", "08/01/2016", null, "Lancé"},
+                {"1", "R4", "120", null, "08/01/2016", null, "Lancé"},
+                {"2", "R8", "40", null, "08/01/2016", null, "Lancé"},
                 {"3", "R4", "200", "Asterix", "05/01/2016", "08/01/2016", "Arreté"},
                 {"4", "Mégane", "800", "Obleix", "07/01/2016", null, "Démarré"}
             },
