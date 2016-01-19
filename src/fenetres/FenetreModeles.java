@@ -243,6 +243,7 @@ public class FenetreModeles extends javax.swing.JFrame  {
 
     private void boutonActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserActionPerformed
         jTable1.setModel(new ModelTableModele());
+        //jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
     }//GEN-LAST:event_boutonActualiserActionPerformed
 
     private void boutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerActionPerformed
@@ -251,8 +252,11 @@ public class FenetreModeles extends javax.swing.JFrame  {
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
         String nom= texte1.getText(); 
-        int diametre= parsinteger.text2.getText();
-        ManagerModele.ajouterModele(texte1,text2);
+        float diametre= Float.parseFloat(text2.getText());
+        String message = "";
+        ManagerModele.ajouterModele(nom,diametre,message);
+        System.out.println(message);
+        statusBar.setText(message);
         
     }//GEN-LAST:event_boutonAjouterActionPerformed
 

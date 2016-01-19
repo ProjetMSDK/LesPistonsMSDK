@@ -7,6 +7,7 @@ package dao;
 
 
 import entite.Modele;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -103,18 +104,39 @@ public class ManagerModele {
         
     }
       /*---------------------------------------------------------------------------------------------------------------*/
-     public static void ajouterModele( String nouveau, int taille)
+     public static void ajouterModele( String nouveau, float taille, String mess)
      {
+         int code;
          try
          {
-             Statement st= Connexion.getInstance().getConn().createStatement();
-             ResultSet rs = st.executeUpdate("call ajoutModele('nouveau'+'mess' output");
-             return ;
+             CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call ajoutModele(?,?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, nouveau); //nom du modele
+             cs.setFloat(3,taille);// taille du modele
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             mess= cs.getString(4);
+             //fermeture de la connection
+             cs.close();
+             Connexion.getInstance().close();
+           
          }
          catch(Exception e)
                  {
-                     e.printStacktrace();
-                     return null;
-                 }
+                     e.printStackTrace();
+   
+                  }
      }
 }
