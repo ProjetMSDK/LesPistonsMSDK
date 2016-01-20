@@ -256,7 +256,8 @@ public class FenetreModeles extends javax.swing.JFrame  {
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
         String nom= texte1.getText(); 
-        String message =  ManagerModele.ajouterModele(nom);
+        float taille = Float.parseFloat(text2.getText());
+        String message =  ManagerModele.ajouterModele(nom,taille);
         System.out.println(message);
         statusBar.setText(message);
         
