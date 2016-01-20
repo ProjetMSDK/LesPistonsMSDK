@@ -409,6 +409,14 @@ public class Controle extends javax.swing.JFrame {
     }//GEN-LAST:event_bSuspendreActionPerformed
 
     private void bValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bValiderActionPerformed
+        if (comboLots.getSelectedItem() == null)
+            
+        {
+            labelSBar.setText("Numéro de Lot absent !");
+        }
+        else
+        {
+        
         pieceCourante = new Piece(((Lot)comboLots.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
                                 Float.parseFloat(texteDiametreHT.getText()), Float.parseFloat(texteDiametreBL.getText()), 
                                 Float.parseFloat(texteDiametreBT.getText()), texteCommRebut.getText());
@@ -420,6 +428,7 @@ public class Controle extends javax.swing.JFrame {
         labelDiametreBL.setText(""+pieceCourante.getDiamBL());
         labelDiametreBT.setText(""+pieceCourante.getDiamBT());
         labelNomCategorie.setText("" + pieceCourante.getNomCategorie());
+        }
         
     }//GEN-LAST:event_bValiderActionPerformed
 
