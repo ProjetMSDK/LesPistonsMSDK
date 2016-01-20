@@ -6,8 +6,9 @@
 package fenetres;
 
 import javax.swing.JFrame;
-import modeles.ModelComboLots;
-import rendus.RenduComboLots;
+import modeles.ModelTableStatsReduites;
+import rendus.RenduTableStatsReduites;
+
 
 /**
  *
@@ -70,17 +71,8 @@ public class StatistiquesReduites extends javax.swing.JFrame {
         comboLots.setModel(new modeles.ModelComboLots());
         comboLots.setRenderer(new rendus.RenduComboLots());
 
-        tableStatsReduites.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"moyenne", null, null, null, null},
-                {"max", null, null, null, null},
-                {"min", null, null, null, null},
-                {"ecart type", null, null, null, null}
-            },
-            new String [] {
-                "Calcul", "HL", "HT", "BL", "BT"
-            }
-        ));
+        tableStatsReduites.setModel(new ModelTableStatsReduites());
+        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
         jScrollPane1.setViewportView(tableStatsReduites);
 
         tableCumuls.setModel(new javax.swing.table.DefaultTableModel(

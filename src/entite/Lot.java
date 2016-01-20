@@ -35,12 +35,32 @@ public class Lot {
     private double ecartTypeHT;
     private double ecartTypeBL;
     private double ecartTypeBT;
-
-    public Lot(int numLot, int nbPiecesDemandees, String etatDuLot, String modele) {
+    
+    private String message;
+    
+    public Lot(int numLot, int nbPiecesDemandees, String etatDuLot, String modele) 
+    {
         this.numLot = numLot;
         this.nbPiecesDemandees = nbPiecesDemandees;
         this.etatDuLot = etatDuLot;
         this.modele = modele;
+        message = null;
+    }
+    /**
+     * Constructeur pour gestion des statistiques
+     */
+    public Lot(int numeroLot)
+    {
+        numLot = numeroLot;
+        
+    }
+    
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     

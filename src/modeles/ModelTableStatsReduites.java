@@ -5,6 +5,10 @@
  */
 package modeles;
 
+import dao.ManagerStats;
+import entite.Lot;
+import entite.Statistique;
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -13,13 +17,13 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTableStatsReduites extends AbstractTableModel{
     
-    private final ArrayList<Modele> listeModeles;
-    private final ArrayList<String> listeColonne;
+    private ArrayList<Statistique> listeModeles;
+    private ArrayList<String> listeColonne;
 
-    public ModelTableModele()
+    public ModelTableStatsReduites()
     {
-        listeModeles = ManagerModele.listeModeles();
-        listeColonne = ManagerModele.columnModeles();       
+        listeModeles = ManagerStats.ListeStatsReduites(new Lot(1));
+        listeColonne = ManagerStats.ListeColonnesStatsReduites();
     }
     
     @Override
@@ -36,11 +40,13 @@ public class ModelTableStatsReduites extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Modele mod = listeModeles.get(rowIndex);
+        Statistique stat = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return mod.getModele();       
-            
+            case 0 : return stat.getDiametreHL();
+            case 1 : return stat.getDiametreHT();
+            case 2 : return stat.getDiametreBL();
+            case 3 : return stat.getDiametreBT();
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return "";
         }

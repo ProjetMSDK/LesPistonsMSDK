@@ -5,6 +5,9 @@
  */
 package dao;
 
+import entite.Lot;
+import entite.Statistique;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -20,20 +23,77 @@ public class ManagerStats {
     
     
     
+    public static ArrayList<Statistique> ListeStatsReduites(Lot lotStat)
+    {
+        try
+        {
+            ArrayList<Statistique> liste = new ArrayList<>();
+            //statReduites @numLot typeNumLot, @message varchar(255) OUTPUT
+            CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{call statReduites (?, ?)}");
+            
+            //passage du paramètre en entrée numéro du lot
+            cs.setInt(1, lotStat.getNumLot()); // numéro du lot
+            
+            //passage du paramètre en sortie message
+            cs.registerOutParameter(1, java.sql.Types.VARCHAR );
+            
+            //execution de la requête
+            
+            ResultSet rs = cs.executeQuery();
+            
+            while(rs.next())
+            {
+                liste.add(new Statistique(
+                            rs.getFloat(1),
+                            rs.getFloat(2),
+                            rs.getFloat(3),
+                            rs.getFloat(4)));
+            }
+            //récupération du message d'erreur
+            lotStat.setMessage(cs.getString(2));
+            rs.close();
+            cs.close();
+            Connexion.getInstance().getConn().close();
+            return liste;
+        }
+        catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
+    
     public static ArrayList<String> ListeColonnesStatsReduites()
     {
          try {
-            Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from stockPlanif");
-            ArrayList<String> liste = new ArrayList<>();
+            
+             ArrayList<String> liste = new ArrayList<>();
+             CallableStatement cs = Connexion.getInstance().getConn().prepareCall
+                                                    ("{call statReduites (1, '')}");
+            
+            //passage du paramètre en sortie message
+            //cs.registerOutParameter(1, java.sql.Types.INTEGER);
+            //cs.registerOutParameter(2, java.sql.Types.VARCHAR );
+            
+            ResultSet rs = cs.executeQuery();
             ResultSetMetaData md = rs.getMetaData();
-             int i = 1;
+            while (rs.next())
+            {
+                
+            }
+
+            int i = 0;
             while ( i <= md.getColumnCount())
             {
                     liste.add(md.getColumnName(i));
                     i++;
             }
+            
+            rs.close();
+            cs.close();
+            Connexion.getInstance().getConn().close();
             return liste;
+            
         } catch (Exception ex) {
            ex.printStackTrace();
            return null;

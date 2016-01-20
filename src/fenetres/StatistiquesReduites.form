@@ -172,19 +172,14 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tableStatsReduites">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
-                    <Column editable="true" title="Calcul" type="java.lang.Object">
-                      <Data value="moyenne"/>
-                      <Data value="max"/>
-                      <Data value="min"/>
-                      <Data value="ecart type"/>
-                    </Column>
-                    <Column editable="true" title="HL" type="java.lang.Object"/>
-                    <Column editable="true" title="HT" type="java.lang.Object"/>
-                    <Column editable="true" title="BL" type="java.lang.Object"/>
-                    <Column editable="true" title="BT" type="java.lang.Object"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());">
+                  <Connection code="new ModelTableStatsReduites()" type="code"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
             </Component>
