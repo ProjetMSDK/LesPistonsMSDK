@@ -8,7 +8,9 @@ package fenetres;
 import entite.Lot;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import modeles.ModelTableStatsCumul;
 import modeles.ModelTableStatsReduites;
+import rendus.RenduTableStatsCumul;
 import rendus.RenduTableStatsReduites;
 
 
@@ -87,19 +89,18 @@ public class StatistiquesReduites extends javax.swing.JFrame {
         tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
         jScrollPane1.setViewportView(tableStatsReduites);
 
-        tableCumuls.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Rebut", "Petit", "Moyen", "Gros", "Total"
-            }
-        ));
         jScrollPane2.setViewportView(tableCumuls);
+        tableStatsReduites.setModel(new ModelTableStatsCumul(1));
+        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsCumul());
 
         labelNumeroLot.setText("Numéro de Lot:");
 
         bActualiser.setText("Actualiser");
+        bActualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualiserActionPerformed(evt);
+            }
+        });
 
         bImpression.setText("Impression");
 
@@ -110,19 +111,17 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNumeroLot)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bImpression)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bActualiser))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelNumeroLot)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(bActualiser)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,16 +134,12 @@ public class StatistiquesReduites extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bActualiser)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(bImpression)
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bImpression)
+                    .addComponent(bActualiser))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,8 +163,8 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSBar))
@@ -189,7 +184,15 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
         int numLot = ((Lot)(evt.getItem())).getNumLot();
         tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
+        tableCumuls.setModel(new ModelTableStatsCumul(numLot));
     }//GEN-LAST:event_comboLotsItemStateChanged
+
+    private void bActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualiserActionPerformed
+        
+        int numLot = ((Lot)comboLots.getSelectedItem()).getNumLot();
+        tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
+        tableCumuls.setModel(new ModelTableStatsCumul(numLot));
+    }//GEN-LAST:event_bActualiserActionPerformed
 
     /**
      * @param args the command line arguments

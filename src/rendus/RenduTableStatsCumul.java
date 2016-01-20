@@ -15,14 +15,17 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author mayer
  */
-public class RenduTableStatsReduites implements TableCellRenderer{
-
+public class RenduTableStatsCumul implements TableCellRenderer{
+    
+    
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
-    {
-        JLabel lab = new JLabel(value.toString());
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+         
+        
+        
+        JLabel lab = new JLabel(value.toString());//value.toString()
         lab.setOpaque(true);
-        if ( (row % 2) == 0)
+        if ((row) % 2 == 0)
         {
             lab.setBackground(Color.LIGHT_GRAY);
         }
@@ -32,5 +35,4 @@ public class RenduTableStatsReduites implements TableCellRenderer{
         }
         return lab;
     }
-    
 }

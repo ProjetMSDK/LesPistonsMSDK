@@ -99,4 +99,42 @@ public class ManagerStats {
            return null;
         }
     }
+    
+    public static ArrayList<Statistique> ListeStatsCumul(Lot lotStat)
+    {
+        try
+        {
+            ArrayList<Statistique> liste = new ArrayList<>();
+            //PROCEDURE statCat @numLot typeNumLot, @message varchar(255) OUTPUT
+            CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{call statCat (?, ?)}");
+            
+            //passage du paramètre en entrée numéro du lot
+            cs.setInt(1, lotStat.getNumLot()); // numéro du lot
+            
+            //passage du paramètre en sortie message
+            cs.registerOutParameter(2, java.sql.Types.VARCHAR );
+            
+            //execution de la requête
+            
+            ResultSet rs = cs.executeQuery();
+            
+            while(rs.next())
+            {
+                liste.add(new Statistique(
+                            rs.getString(1),
+                            rs.getInt(2)));
+            }
+            //récupération du message d'erreur
+            lotStat.setMessage(cs.getString(2));
+            rs.close();
+            cs.close();
+            Connexion.getInstance().getConn().close();
+            return liste;
+        }
+        catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
 }
