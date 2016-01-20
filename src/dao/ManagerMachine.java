@@ -57,6 +57,45 @@ public class ManagerMachine {
         }
     }
     
+    public static ArrayList<Machine> listePresse()
+    {
+       try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from presse");
+            ArrayList<Machine> liste = new ArrayList<>();
+             
+            while ( rs.next())
+            {
+                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(4), rs.getString(4)));
+                   
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
+    public static ArrayList<String> ListeColonnesPresse()
+    {
+         try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from presse");
+            ArrayList<String> liste = new ArrayList<>();
+             ResultSetMetaData md = rs.getMetaData();
+             int i = 1;
+            while ( i <= md.getColumnCount())
+            {
+                    liste.add(md.getColumnName(i));
+                    i++;
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+    }
+    
     
     
 }

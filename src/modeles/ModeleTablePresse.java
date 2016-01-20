@@ -17,8 +17,8 @@ import javax.swing.table.AbstractTableModel;
 public class ModeleTablePresse extends AbstractTableModel{
     
     
-    ArrayList<Machine> liste = ManagerMachine.listeMachine();
-    ArrayList<String> listeColonne = ManagerMachine.ListeColonnesMachine();
+    ArrayList<Machine> liste = ManagerMachine.listePresse();
+    ArrayList<String> listeColonne = ManagerMachine.ListeColonnesPresse();
 
     @Override
     public int getRowCount() {
@@ -36,7 +36,8 @@ public class ModeleTablePresse extends AbstractTableModel{
         {
             case 0: return liste.get(rowIndex).getNumPresse();
             case 1: return liste.get(rowIndex).getLibelle(); 
-            default: return liste.get(rowIndex).getEtatPresse();    
+            case 2: return liste.get(rowIndex).getEtatPresse();
+            default: return liste.get(rowIndex).getProdPrec();    
         }
     }
     

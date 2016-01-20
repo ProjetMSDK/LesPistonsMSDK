@@ -44,65 +44,6 @@ public class ManagerLot {
         
     }
     
-    public static void changerEtatLot()
-    {
-        try
-        {
-            CallableStatement st = Connexion.getInstance().getConn().prepareCall("{call changerEtatLot (?)}");
-            
-            st.setInt(1, 1);
-            st.registerOutParameter(1, java.sql.Types.VARCHAR);
-            
-            st.close();
-            
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    public static ArrayList<String> listeColonnesPilotes()
-    {
-        try
-        {
-            Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM PILOTE");
-            ArrayList<String> liste = new ArrayList<>();
-            ResultSetMetaData md = rs.getMetaData();
-            int i = 1;
-            while(i <= md.getColumnCount())
-            {
-                liste.add(md.getColumnName(i));
-                i++;
-            }
-            return liste;
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public static ArrayList<Lot> listeProdPlanif()
-    {
-        try
-        {
-            Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt " );
-            ArrayList<Lot> liste = new ArrayList();
-            while (rs.next())
-            {
-                liste.add(new Lot(rs.getInt(1), rs.getInt(2),rs.getDate(3) ,rs.getDate(4),rs.getString(5),rs.getInt(6), rs.getString(7)));
-            }
-            return liste;
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-        
-    }
     public static ArrayList<String> ListeColonnesProdPlanif()
     {
         try
@@ -124,6 +65,70 @@ public class ManagerLot {
             return null;
         }
     }
+    
+    public static ArrayList<Lot> listeProdPlanif()
+    {
+        try
+        {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt " );
+            ArrayList<Lot> liste = new ArrayList();
+            while (rs.next())
+            {
+                liste.add(new Lot(rs.getInt(1), rs.getInt(2),rs.getDate(3) ,rs.getDate(4),rs.getString(5),rs.getInt(6), rs.getString(7)));
+            }
+            return liste;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    
+    public static ArrayList<Lot> listeLotProd()
+    {
+        try
+        {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM LOT WHERE etatDuLot <> 'Libéré' OR etatDuLot <> 'Arrêté'" );
+            ArrayList<Lot> liste = new ArrayList();
+            while (rs.next())
+            {
+                liste.add(new Lot(rs.getInt(1), rs.getInt(2), rs.getString(5), rs.getString(7)));
+            }
+            return liste;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    
+    public static void changerEtatLot()
+    {
+        try
+        {
+            CallableStatement st = Connexion.getInstance().getConn().prepareCall("{call changerEtatLot (?)}");
+            
+            st.setInt(1, 1);
+            st.registerOutParameter(1, java.sql.Types.VARCHAR);
+            
+            st.close();
+            
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
     
     public static String planifierLot( String modele , int quantite)
     {
@@ -164,6 +169,75 @@ public class ManagerLot {
     return mess;
     }
     
+    public static String demarrerLot( int numLot, String presse)
+    {
+        String mess=null;
     
+        try
+    {
+        //PreparedStatement ps = Connexion.getInstance().getConn().prepareCall("{?=call entreeCaisse(?,?,?)}");
+    CallableStatement cs =Connexion.getInstance().getConn().prepareCall ("{?=call demarrerLot(?,?,?)}");
+     
+    
+    cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+    cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+    
+    cs.setInt(2,numLot);//@numLot numero lot
+    cs.setString(3,presse);//@presse presse choisie
+    
+        
+    cs.execute();
+    
+    
+    int code = cs.getInt(1);
+        
+        
+    mess = cs.getString(4);
+        
+        cs.close();
+        Connexion.getInstance().close();        
+        
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+    return mess;
+    }
    
+    public static String suspendreLot( int numLot)
+    {
+        String mess=null;
+    
+        try
+    {
+        //PreparedStatement ps = Connexion.getInstance().getConn().prepareCall("{?=call entreeCaisse(?,?,?)}");
+    CallableStatement cs =Connexion.getInstance().getConn().prepareCall ("{?=call suspendreLot(?,?)}");
+     
+    
+    cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+    cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
+    
+    cs.setInt(2,numLot);//@numLot numero lot
+    
+    
+        
+    cs.execute();
+    
+    
+    int code = cs.getInt(1);
+        
+        
+    mess = cs.getString(3);
+        
+        cs.close();
+        Connexion.getInstance().close();        
+        
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+    return mess;
+    }
 }

@@ -13,6 +13,7 @@ public class Machine {
     private int numPresse;
     private String libelle;
     private String etatPresse;
+    private String prodPrec;
 
     
    
@@ -29,6 +30,25 @@ public class Machine {
         this.libelle = libelle;
         this.etatPresse = etatPresse;
     }
+
+    public Machine(int numPresse, String libelle, String etatPresse, String prodPrec) {
+        this.numPresse = numPresse;
+        this.libelle = libelle;
+        this.etatPresse = etatPresse;
+        this.prodPrec = prodPrec;
+    }
+
+    public String getProdPrec() {
+        return prodPrec;
+    }
+
+    public void setProdPrec(String prodPrec) {
+        this.prodPrec = prodPrec;
+    }
+    
+    
+    
+    
     
     
 
