@@ -5,6 +5,8 @@
  */
 package fenetres;
 
+import entite.Lot;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import modeles.ModelTableStatsReduites;
 import rendus.RenduTableStatsReduites;
@@ -70,8 +72,18 @@ public class StatistiquesReduites extends javax.swing.JFrame {
 
         comboLots.setModel(new modeles.ModelComboLots());
         comboLots.setRenderer(new rendus.RenduComboLots());
+        comboLots.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLotsItemStateChanged(evt);
+            }
+        });
+        comboLots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLotsActionPerformed(evt);
+            }
+        });
 
-        tableStatsReduites.setModel(new ModelTableStatsReduites());
+        tableStatsReduites.setModel(new ModelTableStatsReduites(1));
         tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
         jScrollPane1.setViewportView(tableStatsReduites);
 
@@ -108,7 +120,7 @@ public class StatistiquesReduites extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(labelNumeroLot)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -169,6 +181,15 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
+        
+    }//GEN-LAST:event_comboLotsActionPerformed
+
+    private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
+        int numLot = ((Lot)(evt.getItem())).getNumLot();
+        tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
+    }//GEN-LAST:event_comboLotsItemStateChanged
 
     /**
      * @param args the command line arguments

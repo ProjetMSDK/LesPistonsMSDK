@@ -113,7 +113,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="labelNumeroLot" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="comboLots" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="comboLots" min="-2" pref="103" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" alignment="0" min="-2" pref="466" max="-2" attributes="0"/>
                           </Group>
@@ -159,6 +159,10 @@
               <Connection code="new modeles.ModelComboLots()" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboLotsItemStateChanged"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboLotsActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboLots.setRenderer(new rendus.RenduComboLots());"/>
           </AuxValues>
@@ -173,7 +177,7 @@
             <Component class="javax.swing.JTable" name="tableStatsReduites">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());">
-                  <Connection code="new ModelTableStatsReduites()" type="code"/>
+                  <Connection code="new ModelTableStatsReduites(1)" type="code"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0"/>

@@ -19,10 +19,11 @@ public class ModelTableStatsReduites extends AbstractTableModel{
     
     private ArrayList<Statistique> listeModeles;
     private ArrayList<String> listeColonne;
+    //private int numLot;
 
-    public ModelTableStatsReduites()
+    public ModelTableStatsReduites(int numeroLot)
     {
-        listeModeles = ManagerStats.ListeStatsReduites(new Lot(1));
+        listeModeles = ManagerStats.ListeStatsReduites(new Lot(numeroLot));
         listeColonne = ManagerStats.ListeColonnesStatsReduites();
     }
     
@@ -43,10 +44,11 @@ public class ModelTableStatsReduites extends AbstractTableModel{
         Statistique stat = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return stat.getDiametreHL();
-            case 1 : return stat.getDiametreHT();
-            case 2 : return stat.getDiametreBL();
-            case 3 : return stat.getDiametreBT();
+            case 0 : return stat.getTypeStat();
+            case 1 : return stat.getDiametreHL();
+            case 2 : return stat.getDiametreHT();
+            case 3 : return stat.getDiametreBL();
+            case 4 : return stat.getDiametreBT();
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return "";
         }

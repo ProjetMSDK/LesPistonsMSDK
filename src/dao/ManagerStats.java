@@ -35,7 +35,7 @@ public class ManagerStats {
             cs.setInt(1, lotStat.getNumLot()); // numéro du lot
             
             //passage du paramètre en sortie message
-            cs.registerOutParameter(1, java.sql.Types.VARCHAR );
+            cs.registerOutParameter(2, java.sql.Types.VARCHAR );
             
             //execution de la requête
             
@@ -44,10 +44,11 @@ public class ManagerStats {
             while(rs.next())
             {
                 liste.add(new Statistique(
-                            rs.getFloat(1),
+                            rs.getString(1),
                             rs.getFloat(2),
                             rs.getFloat(3),
-                            rs.getFloat(4)));
+                            rs.getFloat(4),
+                            rs.getFloat(5)));
             }
             //récupération du message d'erreur
             lotStat.setMessage(cs.getString(2));
@@ -81,8 +82,7 @@ public class ManagerStats {
             {
                 
             }
-
-            int i = 0;
+            int i = 1;
             while ( i <= md.getColumnCount())
             {
                     liste.add(md.getColumnName(i));

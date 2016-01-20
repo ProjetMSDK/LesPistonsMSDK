@@ -18,17 +18,27 @@ public class Statistique {
     private float diametreBL;
     private float diametreBT;
     
+    private String typeStat;
     private String message;
 
   
     
-    public Statistique(float diametreHL, float diametreHT, float diametreBL, float diametreBT) {
+    public Statistique(String typeS, float diametreHL, float diametreHT, float diametreBL, float diametreBT) {
+        typeStat = typeS;
         this.diametreHL = diametreHL;
         this.diametreHT = diametreHT;
         this.diametreBL = diametreBL;
         this.diametreBT = diametreBT;
         
         message = null;
+    }
+
+    public String getTypeStat() {
+        return typeStat;
+    }
+
+    public void setTypeStat(String typeStat) {
+        this.typeStat = typeStat;
     }
     
     public String getMessage() {
