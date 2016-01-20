@@ -18,6 +18,11 @@ public class Statistique {
     private float diametreBL;
     private float diametreBT;
     
+    private String categorie;
+    private int quantite;
+
+
+    
     private String typeStat;
     private String message;
 
@@ -31,6 +36,28 @@ public class Statistique {
         this.diametreBT = diametreBT;
         
         message = null;
+    }
+
+    public Statistique(String cat, int qte) {
+        categorie = cat;
+        quantite = qte;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public String getTypeStat() {
