@@ -5,7 +5,9 @@
  */
 package entite;
 
-import outils.DateFR;
+import java.util.Date;
+
+
 
 /**
  *
@@ -15,8 +17,8 @@ public class Lot {
     
     private int numLot;
     private int nbPiecesDemandees;
-    private DateFR dateDePlanification;
-    private DateFR dateDeFabric;
+    private Date dateDePlanification;
+    private Date dateDeFabric;
     private String etatDuLot; 
     private int TypeNumPresse; 
     private String modele;
@@ -44,7 +46,7 @@ public class Lot {
         this.modele = modele;
     }
 
-    public Lot(int numLot, int nbPiecesDemandees, DateFR dateDePlanification, DateFR dateDeFabric, String etatDuLot, int TypeNumPresse, String modele) {
+    public Lot(int numLot, int nbPiecesDemandees, Date dateDePlanification, Date dateDeFabric, String etatDuLot, int TypeNumPresse, String modele) {
         this.numLot = numLot;
         this.nbPiecesDemandees = nbPiecesDemandees;
         this.dateDePlanification = dateDePlanification;
@@ -82,7 +84,7 @@ public class Lot {
     /**
      * @return the dateDeFabric
      */
-    public DateFR getDateDeFabric() {
+    public Date getDateDeFabric() {
         return dateDeFabric;
     }
 
@@ -107,6 +109,10 @@ public class Lot {
         return modele;
     }
 
+    
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
     /**
      * @return the moyenneHL
      */
@@ -220,11 +226,11 @@ public class Lot {
         
     }
 
-    public DateFR getDateDePlanification() {
+    public Date getDateDePlanification() {
         return dateDePlanification;
     }
 
-    public void setDateDePlanification(DateFR dateDePlanification) {
+    public void setDateDePlanification(Date dateDePlanification) {
         this.dateDePlanification = dateDePlanification;
     }
 
@@ -232,6 +238,10 @@ public class Lot {
     @Override
     public String toString() {
         return "Lot{" + "numLot=" + numLot + '}';
+    }
+
+    public void setVire(Boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

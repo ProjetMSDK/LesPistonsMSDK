@@ -29,7 +29,7 @@ public class RenduStockPlanif implements TableCellRenderer{
         }
         else
         {
-            lab.setBackground(Color.YELLOW);
+            lab.setBackground(Color.ORANGE);
         }
         return lab;
     }

@@ -5,7 +5,7 @@
  */
 package modeles;
 
-import dao.ManagerPlanification;
+import dao.ManagerLot;
 import entite.Lot;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -16,8 +16,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModeleTableProdPlanif extends AbstractTableModel{
     
-    ArrayList<Lot> liste = ManagerPlanification.listeProdPlanif();
-    ArrayList<String> listeColonne = ManagerPlanification.ListeColonnesProdPlanif();
+    ArrayList<Lot> liste = ManagerLot.listeProdPlanif();
+    ArrayList<String> listeColonne = ManagerLot.ListeColonnesProdPlanif();
 
     @Override
     public int getRowCount() {
@@ -33,14 +33,22 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex)
         {
-            case 0: return liste.get(rowIndex).getNumLot();
-            case 1: return liste.get(rowIndex).getModele();
-            case 2: return liste.get(rowIndex).getNbPiecesDemandees();
-            case 3: return liste.get(rowIndex).getTypeNumPresse();
-            case 4: return liste.get(rowIndex).getDateDePlanification();
-            case 5: return liste.get(rowIndex).getDateDeFabric();                   
-            default: return liste.get(rowIndex).getEtatDuLot();                 
+            case 0: return affich(liste.get(rowIndex).getNumLot());
+            case 1: return affich(liste.get(rowIndex).getModele());
+            case 2: return affich(liste.get(rowIndex).getNbPiecesDemandees());
+            case 3: return affich(liste.get(rowIndex).getTypeNumPresse());
+            case 4: return affich(liste.get(rowIndex).getDateDePlanification());
+            case 5: return affich(liste.get(rowIndex).getDateDeFabric());                   
+            default: return affich(liste.get(rowIndex).getEtatDuLot());                 
            
     }
+    } 
+    
+    private Object affich(Object o)
+    {
+        if (o==null)
+            return "";
+        else
+            return o;
     }
 }

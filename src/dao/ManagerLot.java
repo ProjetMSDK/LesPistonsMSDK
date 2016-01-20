@@ -83,6 +83,87 @@ public class ManagerLot {
             return null;
         }
     }
+    public static ArrayList<Lot> listeProdPlanif()
+    {
+        try
+        {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt " );
+            ArrayList<Lot> liste = new ArrayList();
+            while (rs.next())
+            {
+                liste.add(new Lot(rs.getInt(1), rs.getInt(2),rs.getDate(3) ,rs.getDate(4),rs.getString(5),rs.getInt(6), rs.getString(7)));
+            }
+            return liste;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+        
+    }
+    public static ArrayList<String> ListeColonnesProdPlanif()
+    {
+        try
+        {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt ");
+            ArrayList<String> liste = new ArrayList<>();
+            ResultSetMetaData md = rs.getMetaData();
+            int i = 1;
+            while(i <= md.getColumnCount())
+            {
+                liste.add(md.getColumnName(i));
+                i++;
+            }
+            return liste;
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public static String planifierLot( String modele , int quantite)
+    {
+        String mess=null;
+    
+        try
+    {
+        //PreparedStatement ps = Connexion.getInstance().getConn().prepareCall("{?=call entreeCaisse(?,?,?)}");
+    CallableStatement cs =Connexion.getInstance().getConn().prepareCall ("{?=call planifierLot(?,?,?)}");
+     //   ps.setInt(1, etat);
+     //   ps.setString(2,modele);
+     //   ps.setString(3, taille);
+     //   ps.setInt(4, quantite);
+    
+    cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+    cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+    
+    cs.setString(2,modele);//@modele TypeNom
+    cs.setInt(3,quantite);//@quantite TypeQuantite
+    
+        
+    cs.execute();
+    
+    
+    int code = cs.getInt(1);
+        
+        
+    mess = cs.getString(4);
+        
+        cs.close();
+        Connexion.getInstance().close();        
+        
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+    return mess;
+    }
+    
     
    
 }
