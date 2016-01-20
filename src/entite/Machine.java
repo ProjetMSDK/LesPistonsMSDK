@@ -12,9 +12,35 @@ package entite;
 public class Machine {
     private int numPresse;
     private String libelle;
+    private String prodPrec;
+    private String etat;
 
-   
+    public Machine(String libelle, String prodPrec, String etat) {
+        this.libelle = libelle;
+        this.prodPrec = prodPrec;
+        this.etat = etat;
+    }
+
+    public String getProdPrec() {
+        return prodPrec;
+    }
+
+    public void setProdPrec(String prodPrec) {
+        this.prodPrec = prodPrec;
+    }
+
+    public String getEtat() {
+        return etat;
+    }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
     
+
+            
+            
+            
     public Machine(int mNumPresse , String mLibelle)
            
     {
