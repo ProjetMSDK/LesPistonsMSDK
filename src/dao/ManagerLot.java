@@ -108,22 +108,35 @@ public class ManagerLot {
         
     }
     
-    public static void changerEtatLot()
+    public static String changerEtatLot(int numLot)
     {
+        String mess=null;
         try
         {
-            CallableStatement st = Connexion.getInstance().getConn().prepareCall("{call changerEtatLot (?)}");
+            CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{?=call changerEtatLot(?,?)}");           
             
-            st.setInt(1, 1);
-            st.registerOutParameter(1, java.sql.Types.VARCHAR);
+            cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+            cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
             
-            st.close();
+             cs.setInt(2,numLot);//@numLot TypeNumLot
+            
+             cs.execute();
+    
+    
+            int code = cs.getInt(1);
+        
+        
+             mess = cs.getString(3);
+        
+            cs.close();
+            Connexion.getInstance().close();     
             
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+        return mess;
     }
     
     
@@ -138,10 +151,7 @@ public class ManagerLot {
     {
         //PreparedStatement ps = Connexion.getInstance().getConn().prepareCall("{?=call entreeCaisse(?,?,?)}");
     CallableStatement cs =Connexion.getInstance().getConn().prepareCall ("{?=call planifierLot(?,?,?)}");
-     //   ps.setInt(1, etat);
-     //   ps.setString(2,modele);
-     //   ps.setString(3, taille);
-     //   ps.setInt(4, quantite);
+     
     
     cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
     cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message

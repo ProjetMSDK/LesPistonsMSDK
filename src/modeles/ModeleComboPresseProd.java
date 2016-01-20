@@ -6,7 +6,6 @@
 package modeles;
 
 import dao.ManagerMachine;
-import entite.Lot;
 import entite.Machine;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
@@ -19,7 +18,7 @@ import javax.swing.ComboBoxModel;
 public class ModeleComboPresseProd extends AbstractListModel<Machine> implements ComboBoxModel<Machine>
 {
     private final ArrayList<Machine> liste;
-    private Lot selection = null;
+    private Machine selection = null;
     
     public ModeleComboPresseProd()
     {
@@ -29,7 +28,7 @@ public class ModeleComboPresseProd extends AbstractListModel<Machine> implements
     @Override
     public void setSelectedItem(Object anItem)
     {
-        selection = (Lot) anItem ; //to select and register an item from the pull-down
+        selection = (Machine) anItem ; //to select and register an item from the pull-down
         //list
     }
         

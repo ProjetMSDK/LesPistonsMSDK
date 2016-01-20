@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import modeles.ModeleTablePresse;
 import dao.*;
 import entite.Lot;
+import entite.Machine;
 import entite.Modele;
 import modeles.*;
 import rendus.*;
@@ -48,9 +49,9 @@ public class Production1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButtonActualiserProd = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableprod = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        statusBar = new javax.swing.JLabel();
         jButtonQuitter = new javax.swing.JButton();
         jButtonStock = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -61,6 +62,7 @@ public class Production1 extends javax.swing.JFrame {
         jLabelLot = new javax.swing.JLabel();
         jComboBoxPresse = new javax.swing.JComboBox();
         jLabelPresse = new javax.swing.JLabel();
+        jButtonRedemarrer = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -113,10 +115,15 @@ public class Production1 extends javax.swing.JFrame {
 
         jButtonActualiserProd.setText("Actualiser");
         jButtonActualiserProd.setPreferredSize(new java.awt.Dimension(80, 25));
+        jButtonActualiserProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualiserProdActionPerformed(evt);
+            }
+        });
 
-        jScrollPane2.setViewportView(jTable2);
-        jTable2.setModel(new ModeleTableProdPlanif());
-        jTable2.setDefaultRenderer(Object.class, new RenduTableProdPlanif());
+        jScrollPane2.setViewportView(jTableprod);
+        jTableprod.setModel(new ModeleTableProdPlanif());
+        jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -148,8 +155,8 @@ public class Production1 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setText("Status Bar");
-        jLabel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        statusBar.setText("Status Bar");
+        statusBar.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jButtonQuitter.setText("Quitter");
 
@@ -161,6 +168,11 @@ public class Production1 extends javax.swing.JFrame {
         });
 
         jToggleButtonSuspendre.setText("Suspendre");
+        jToggleButtonSuspendre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonSuspendreActionPerformed(evt);
+            }
+        });
 
         jButtonValider.setText("Valider");
         jButtonValider.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -190,6 +202,13 @@ public class Production1 extends javax.swing.JFrame {
         jLabelPresse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelPresse.setText("PRESSE");
 
+        jButtonRedemarrer.setText("Redémarrer");
+        jButtonRedemarrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRedemarrerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -198,6 +217,7 @@ public class Production1 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRedemarrer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelLot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBoxLot, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jToggleButtonSuspendre, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
@@ -224,9 +244,11 @@ public class Production1 extends javax.swing.JFrame {
                     .addComponent(jComboBoxLot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxPresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToggleButtonSuspendre)
-                    .addComponent(jButtonValider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jToggleButtonSuspendre)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonValider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRedemarrer))
                 .addGap(37, 37, 37))
         );
 
@@ -248,7 +270,7 @@ public class Production1 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(statusBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -287,7 +309,7 @@ public class Production1 extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jButtonQuitter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2))
+                .addComponent(statusBar))
         );
 
         pack();
@@ -306,12 +328,27 @@ public class Production1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxPresseActionPerformed
 
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
-        Integer.parseInt(lot)=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
-        
-        String mess= dao.ManagerLot.planifierLot(modele, quantite);
-        tQuantite.setText("");
-        barStatusLot.setText(mess);
+        int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
+        String presse= ((Machine)jComboBoxPresse.getSelectedItem()).getLibelle();
+        String mess= dao.ManagerLot.demarrerLot(lot, presse);        
+        statusBar.setText(mess);
     }//GEN-LAST:event_jButtonValiderActionPerformed
+
+    private void jToggleButtonSuspendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonSuspendreActionPerformed
+        int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
+        String mess=dao.ManagerLot.suspendreLot(lot);
+        statusBar.setText(mess);
+    }//GEN-LAST:event_jToggleButtonSuspendreActionPerformed
+
+    private void jButtonRedemarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRedemarrerActionPerformed
+        int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
+        String mess=dao.ManagerLot.changerEtatLot(lot);
+        statusBar.setText(mess);
+    }//GEN-LAST:event_jButtonRedemarrerActionPerformed
+
+    private void jButtonActualiserProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualiserProdActionPerformed
+        jTableprod.setModel(new ModeleTableProdPlanif());
+    }//GEN-LAST:event_jButtonActualiserProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,12 +390,12 @@ public class Production1 extends javax.swing.JFrame {
     private javax.swing.JButton BactualiserPresse;
     private javax.swing.JButton jButtonActualiserProd;
     private javax.swing.JButton jButtonQuitter;
+    private javax.swing.JButton jButtonRedemarrer;
     private javax.swing.JButton jButtonStock;
     private javax.swing.JButton jButtonValider;
     private javax.swing.JComboBox jComboBoxLot;
     private javax.swing.JComboBox jComboBoxPresse;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -372,7 +409,8 @@ public class Production1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableprod;
     private javax.swing.JToggleButton jToggleButtonSuspendre;
+    private javax.swing.JLabel statusBar;
     // End of variables declaration//GEN-END:variables
 }

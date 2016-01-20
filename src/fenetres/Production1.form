@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+          <Component id="statusBar" alignment="1" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -69,7 +69,7 @@
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="jButtonQuitter" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="statusBar" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -199,6 +199,9 @@
               <Dimension value="[80, 25]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonActualiserProdActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -207,9 +210,9 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable2">
+            <Component class="javax.swing.JTable" name="jTableprod">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTable2.setModel(new ModeleTableProdPlanif());&#xa;jTable2.setDefaultRenderer(Object.class, new RenduTableProdPlanif());"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTableprod.setModel(new ModeleTableProdPlanif());&#xa;jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -225,7 +228,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="statusBar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Status Bar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -257,6 +260,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonRedemarrer" max="32767" attributes="0"/>
                       <Component id="jLabelLot" max="32767" attributes="0"/>
                       <Component id="jComboBoxLot" max="32767" attributes="0"/>
                       <Component id="jToggleButtonSuspendre" linkSize="3" pref="96" max="32767" attributes="0"/>
@@ -286,9 +290,11 @@
                       <Component id="jComboBoxPresse" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jToggleButtonSuspendre" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonValider" min="-2" max="-2" attributes="0"/>
+                  <Component id="jToggleButtonSuspendre" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonValider" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonRedemarrer" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
@@ -300,6 +306,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Suspendre"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonSuspendreActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonValider">
           <Properties>
@@ -351,6 +360,14 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="PRESSE"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonRedemarrer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Red&#xe9;marrer"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRedemarrerActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
