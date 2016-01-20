@@ -46,8 +46,8 @@ public class ModelTableStatsCumul extends AbstractTableModel{
         Statistique stat = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return stat.getCategorie();
-            case 1 : return stat.getQuantite();
+            case 0 : return affich(stat.getCategorie());
+            case 1 : return affich(stat.getQuantite());
             
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return "";
@@ -59,5 +59,13 @@ public class ModelTableStatsCumul extends AbstractTableModel{
     {
 
         return listeColonne.get(column);
+    }
+    
+    private Object affich(Object o)
+    {
+        if (o==null)
+            return "";
+        else
+            return o;
     }
 }

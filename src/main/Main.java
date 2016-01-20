@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args)
     {
      //   new Controle();
-    new StatistiquesReduites();
+    new Controle();
     }
     
 }

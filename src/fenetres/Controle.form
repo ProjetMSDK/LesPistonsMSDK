@@ -108,12 +108,12 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="labelDiametreBT" min="-2" max="-2" attributes="0"/>
                               <Component id="labelDiametreBL" min="-2" max="-2" attributes="0"/>
                               <Component id="labelDiametreHT" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDiametreHL" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelIdPiece" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDiametreHL" max="32767" attributes="0"/>
+                              <Component id="labelIdPiece" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="23" max="32767" attributes="0"/>
                       </Group>
@@ -373,9 +373,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texteDiametreBT">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="                  "/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texteDiametreHL">
               <Properties>
@@ -448,7 +445,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelNumLot" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="comboLots" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="comboLots" min="-2" pref="130" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

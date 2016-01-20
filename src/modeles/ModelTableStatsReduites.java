@@ -44,13 +44,14 @@ public class ModelTableStatsReduites extends AbstractTableModel{
         Statistique stat = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return stat.getTypeStat();
-            case 1 : return stat.getDiametreHL();
-            case 2 : return stat.getDiametreHT();
-            case 3 : return stat.getDiametreBL();
-            case 4 : return stat.getDiametreBT();
+            case 0 : return affich(stat.getTypeStat());
+            case 1 : return affich(stat.getDiametreHL());
+            case 2 : return affich(stat.getDiametreHT());
+            case 3 : return affich(stat.getDiametreBL());
+            case 4 : return affich(stat.getDiametreBT());
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return "";
+                              
         }
     }
 
@@ -59,5 +60,13 @@ public class ModelTableStatsReduites extends AbstractTableModel{
     {
 
         return listeColonne.get(column);
+    }
+    
+    private Object affich(Object o)
+    {
+        if (o==null)
+            return "";
+        else
+            return o;
     }
 }

@@ -23,6 +23,14 @@ public class ManagerPiece {
             String message = "";
             String nomCateg = "";
             int codeRetour;
+            /*
+            CREATE PROC enregistrerPiece @lot TypeNumLot, 
+					 @hl TypeCote, @ht TypeCote , @bl TypeCote, @bt TypeCote, 
+                                         @categorie TypeNom OUTPUT, 
+                                         @numpiece TypeNumPiece OUTPUT, 
+					 @commentaireRebut TypeNom, 
+					 @message varchar(100) OUTPUT
+            */
             CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{? = call enregistrerPiece (?, ?, ?,?, ?, ?, ?, ?, ?)}");
             
             //configuration des paramètres en sortie
@@ -47,8 +55,7 @@ public class ManagerPiece {
             codeRetour = cs.getInt(1);
             pieceCourante.setNomCategorie(cs.getString(7));
             
-            pieceCourante.setNumLot(cs.getInt(8));
-            System.out.println(""+pieceCourante.getNumLot());
+            pieceCourante.setNumPiece(cs.getInt(8));
             
             pieceCourante.setBilanEnregistrement(cs.getString(10));
             
