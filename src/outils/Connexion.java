@@ -10,7 +10,7 @@ public class Connexion
 	
 	private Connexion() {
             
-            conn = creer("serveur-sql2012\\server2012","ProjetD","mayer","developpeur");
+            conn = creer("serveur-sql2012\\server2012","LesPistonsMSDK","mayer","developpeur");
             
         }
 	
