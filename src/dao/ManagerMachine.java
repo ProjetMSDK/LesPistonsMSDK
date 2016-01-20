@@ -7,6 +7,7 @@ package dao;
 
 import entite.Machine;
 import entite.Stock;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -58,6 +59,120 @@ public class ManagerMachine {
         }
     }
     
-    
-    
+    /* ----------------------------------------------------------------------------------------------------------------------*/
+          public static String supprimerMachine(String machine )
+    {       
+        int code;
+        String messa= null;
+        try
+        {
+            CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call supprimerMachine(?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, machine); //nom de la machine
+            
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             messa = cs.getString(3);
+             //fermeture de la connection
+             cs.close();
+             Connexion.getInstance().close();
+           
+       }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+       return messa;
+    }
+      /*---------------------------------------------------------------------------------------------------------------*/
+     public static String ajouterMachine( String nouvelle)
+     {
+         int code;
+         String mess= null;
+         try
+         {
+             CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call ajouterMachine(?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, nouvelle); //nom de la machine
+            
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             mess= cs.getString(3);
+             //fermeture de la connection
+             cs.close();
+             Connexion.getInstance().close();
+           
+         }
+         catch(Exception e)
+                 {
+                     e.printStackTrace();
+   
+                  }
+         return mess;
+     }
+       public static ArrayList<Machine> listePresse()
+    {
+       try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from presse");
+            ArrayList<Machine> liste = new ArrayList<>();
+             
+            while ( rs.next())
+            {
+                    liste.add(new Machine(rs.getString(1),rs.getString(2), rs.getString(3)));
+                   
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
+    public static ArrayList<String> ListeColonnesPresse()
+    {
+         try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select * from presse");
+            ArrayList<String> liste = new ArrayList<>();
+             ResultSetMetaData md = rs.getMetaData();
+             int i = 1;
+            while ( i <= md.getColumnCount())
+            {
+                    liste.add(md.getColumnName(i));
+                    i++;
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+    }
 }
+    
+    
+
