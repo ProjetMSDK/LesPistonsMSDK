@@ -45,13 +45,13 @@ public class StatistiquesReduites extends javax.swing.JFrame {
         labelSBar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         comboLots = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableStatsReduites = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCumuls = new javax.swing.JTable();
         labelNumeroLot = new javax.swing.JLabel();
         bActualiser = new javax.swing.JButton();
         bImpression = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableStatsReduites = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,12 +85,9 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             }
         });
 
-        tableStatsReduites.setModel(new ModelTableStatsReduites(1));
-        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
-        jScrollPane1.setViewportView(tableStatsReduites);
-
+        tableCumuls.setModel(new ModelTableStatsCumul(1));
         jScrollPane2.setViewportView(tableCumuls);
-        tableStatsReduites.setModel(new ModelTableStatsCumul(1));
+        //tableStatsReduites.setModel(new ModelTableStatsCumul(1));
         tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsCumul());
 
         labelNumeroLot.setText("Numéro de Lot:");
@@ -104,6 +101,10 @@ public class StatistiquesReduites extends javax.swing.JFrame {
 
         bImpression.setText("Impression");
 
+        tableStatsReduites.setModel(new ModelTableStatsReduites(1));
+        jScrollPane3.setViewportView(tableStatsReduites);
+        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,17 +112,17 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(bImpression)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bActualiser))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(labelNumeroLot)
                         .addGap(18, 18, 18)
                         .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bImpression)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bActualiser)))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -131,8 +132,8 @@ public class StatistiquesReduites extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumeroLot)
                     .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -236,8 +237,8 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelNumeroLot;
     private javax.swing.JLabel labelSBar;
     private javax.swing.JTable tableCumuls;
