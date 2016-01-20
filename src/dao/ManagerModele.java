@@ -89,10 +89,10 @@ public class ManagerModele {
         }
    }
     /* ----------------------------------------------------------------------------------------------------------------------*/
-          public static void supprimerModele(String modele, String messa)
+          public static String supprimerModele(String modele)
     {       
         int code;
-        
+        String messa= null;
         try
         {
             CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call supprModele(?,?)}");
@@ -123,11 +123,12 @@ public class ManagerModele {
         {
             e.printStackTrace();
         }
-        
+        return messa;
     }
       /*---------------------------------------------------------------------------------------------------------------*/
-     public static void ajouterModele( String nouveau, float taille, String mess)
+     public static  String  ajouterModele( String nouveau, float taille)
      {
+         String mess = null;
          int code;
          try
          {
@@ -160,5 +161,6 @@ public class ManagerModele {
                      e.printStackTrace();
    
                   }
+         return mess;
      }
 }
