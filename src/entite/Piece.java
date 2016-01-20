@@ -56,7 +56,7 @@ public Piece(int pNumLot ,
     /**
      * @param numPiece the numPiece to set
      */
-    private void setNumPiece(int numPiece) {
+    public void setNumPiece(int numPiece) {
         this.numPiece = numPiece;
     }
 
