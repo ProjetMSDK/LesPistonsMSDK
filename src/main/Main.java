@@ -20,7 +20,7 @@ public class Main {
     } catch (Exception ex ) {
         ex.printStackTrace();
     }
-    new GestionBis();
+    new Accueil();
     }
     
 }
