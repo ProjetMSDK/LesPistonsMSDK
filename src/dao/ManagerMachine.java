@@ -47,10 +47,11 @@ public class ManagerMachine {
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
             
-            
-                    liste.add(md.getColumnName(1));
-                    
-            
+            while(rs.next())
+            {
+                    liste.add(md.getColumnName(i));
+                    i++;
+            }
             return liste;
         } catch (Exception ex) {
            ex.printStackTrace();

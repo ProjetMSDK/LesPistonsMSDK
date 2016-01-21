@@ -22,7 +22,7 @@ public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxMo
     
     public ModelComboLots()
     {
-        liste = ManagerLot.listeLotControle();
+        liste = ManagerLot.listeLots();
     }
     
     @Override

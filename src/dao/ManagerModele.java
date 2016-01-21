@@ -163,4 +163,40 @@ public class ManagerModele {
                   }
          return mess;
      }
+     
+     public static String modifierSeuil(String modele , int quantite)
+    {
+        String mess=null;
+    
+        try
+    {
+    //procedure modifierSeuil @modele TypeNom, @SeuilMini TypeQuantite , @message varchar(255) Output
+    CallableStatement cs =Connexion.getInstance().getConn().prepareCall ("{?=call modifierSeuil(?,?,?)}");
+     
+    
+    cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+    cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+    
+    cs.setString(2,modele);//@modele TypeNom
+    cs.setInt(3,quantite);//@quantite TypeQuantite
+    
+        
+    cs.execute();
+    
+    
+    int code = cs.getInt(1);
+        
+        
+    mess = cs.getString(4);
+        
+        cs.close();
+        //Connexion.getInstance().close();        
+        
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+    return mess;
+    }
 }

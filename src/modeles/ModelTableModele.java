@@ -44,9 +44,9 @@ public class ModelTableModele extends AbstractTableModel{
         switch (columnIndex)
         {
             case 0 : return mod.getModele();       
-            
+          
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
-            default : return "";
+            default : return mod.getSeuilMini();
         }
     }
 

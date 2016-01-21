@@ -15,13 +15,13 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author bouyadel
  */
-public class RenduTableStock implements TableCellRenderer{
+public class RenduTable implements TableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
          JLabel lab = new JLabel(value.toString());
         lab.setOpaque(true);
-        if ( (row + column) % 2 == 0)
+        if ( (row ) % 2 == 0)
         {
             lab.setBackground(Color.LIGHT_GRAY);
         }

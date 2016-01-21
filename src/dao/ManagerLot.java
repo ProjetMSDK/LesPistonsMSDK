@@ -15,7 +15,7 @@ import outils.Connexion;
  */
 public class ManagerLot {
     /**
-     * Constructeur en privÃ© pour interdire l'instanciation
+     * Constructeur en privé pour interdire l'instanciation
      */
     private ManagerLot() {}
     
@@ -271,7 +271,6 @@ public class ManagerLot {
     }
     return mess;
     }
-    
     
     public static void suspendreLot(Lot lotCourant)
     {
