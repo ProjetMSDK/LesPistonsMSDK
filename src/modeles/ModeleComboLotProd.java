@@ -5,7 +5,7 @@
  */
 package modeles;
 
-import dao.*;
+import dao.ManagerLot;
 import entite.Lot;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
@@ -13,16 +13,16 @@ import javax.swing.ComboBoxModel;
 
 /**
  *
- * @author mayer
+ * @author bouyadel
  */
-public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxModel<Lot>
+public class ModeleComboLotProd extends AbstractListModel<Lot> implements ComboBoxModel<Lot>
 {
     private final ArrayList<Lot> liste;
     private Lot selection = null;
     
-    public ModelComboLots()
+    public ModeleComboLotProd()
     {
-        liste = ManagerLot.listeLotControle();
+        liste = ManagerLot.listeLotProd();
     }
     
     @Override
@@ -51,3 +51,6 @@ public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxMo
         return liste.get(index);
     }  
 }
+
+    
+

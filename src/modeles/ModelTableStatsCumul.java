@@ -24,7 +24,7 @@ public class ModelTableStatsCumul extends AbstractTableModel{
 
     public ModelTableStatsCumul(int numeroLot) {
         
-        this.listeModeles = ManagerStats.ListeStatsCumul(new Lot(numeroLot));;
+        this.listeModeles = ManagerStats.ListeStatsCumul(new Lot(numeroLot));
         
         listeColonne = new ArrayList();
         listeColonne.add("Catégorie");

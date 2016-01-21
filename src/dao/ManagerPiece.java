@@ -60,7 +60,6 @@ public class ManagerPiece {
             pieceCourante.setBilanEnregistrement(cs.getString(10));
             
             cs.close();
-            Connexion.getInstance().close();
             
             
         }

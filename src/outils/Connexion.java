@@ -2,33 +2,33 @@ package outils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Connexion
 {
 	private static Connexion instance;
-	private static Connection conn;
+        private static String _url ;
+        private static String _user;
+        private static String _password;
+	private Connection conn;
 	
-	private Connexion() {
+	private Connexion(String user , String pass) throws Exception
+        {
             
-            conn = creer("serveur-sql2012\\server2012","LesPistonsMSDK","mayer","developpeur");
+            _url = "serveur-sql2012\\server2012";
+            _user = user;
+            _password = pass;
+            
+            
+           
+             creer(_url ,"LesPistonsMSDK",_user ,_password);
+         
             
         }
-	
-	public static synchronized Connexion getInstance()
-	{
-		try
-		{
-			if (instance == null || conn.isClosed())
-				instance = new Connexion();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-			instance = null;
-		}
-		return instance;
-	}
-	
+        
+       
 	private Connection creer(String serveur, String db, String login, String pswd)
 	{
 		String url = "jdbc:sqlserver://" + serveur + "; databaseName = " + db + ";";
@@ -42,10 +42,57 @@ public class Connexion
 		}
 		return conn;
 	}
-	public Connection getConn()
+        
+
+    public static String getUser() {
+        return _user;
+    }
+
+    public static void setUser(String _user) {
+        Connexion._user = _user;
+    }
+        
+        public static Connexion getInstance(String user , String password)
+                
+        {
+            if (instance == null)
+        {
+            try
+            {
+                instance = new Connexion(user,password);
+            }
+            catch(Exception e)
+            {
+            e.printStackTrace();
+            }
+            
+            }
+            return instance;
+        }   
+        public static Connexion getInstance()
+                
+        {
+            if (instance == null)
+        {
+            try
+            {
+                instance = new Connexion("benosmane","developpeur");
+            }
+            catch(Exception e)
+            {
+            e.printStackTrace();
+            }
+            
+            }
+            return instance;
+        }
+      
+        public Connection getConn()
         {
             return conn;
         }
+        
+        
 	public void close()
 	{
 		try

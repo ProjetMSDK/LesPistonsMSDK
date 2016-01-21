@@ -21,7 +21,7 @@ public class RenduTableModele implements TableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
          JLabel lab = new JLabel(value.toString());
         lab.setOpaque(true);
-        if ((row + column) % 2 == 0)
+        if ( (row + column) % 2 == 0)
         {
             lab.setBackground(Color.LIGHT_GRAY);
         }

@@ -5,7 +5,7 @@
  */
 package rendus;
 
-import entite.Modele;
+import entite.Lot;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
@@ -14,26 +14,21 @@ import javax.swing.ListCellRenderer;
 
 /**
  *
- * @author benosmane
+ * @author mayer
  */
-public class RenduComboModeleMagasin implements ListCellRenderer<Modele> {
-    
-
-
-
- 
+public class RenduComboLotControle implements ListCellRenderer<Lot> {
     
     
     @Override
-    public Component getListCellRendererComponent(JList<? extends Modele> list, Modele value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends Lot> list, Lot value, int index, boolean isSelected, boolean cellHasFocus) {
         if ( value != null)
         {    
-            JLabel lab = new JLabel("" + value.getModele());
+            JLabel lab = new JLabel("" + value.getNumLot());
             lab.setOpaque(true);
         if ( index % 2 == 0)
             lab.setBackground(Color.LIGHT_GRAY);
         else
-            lab.setBackground(Color.LIGHT_GRAY);
+            lab.setBackground(Color.ORANGE);
         return lab;
         }
         else

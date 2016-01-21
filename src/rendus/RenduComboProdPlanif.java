@@ -14,14 +14,9 @@ import javax.swing.ListCellRenderer;
 
 /**
  *
- * @author benosmane
+ * @author bouyadel
  */
-public class RenduComboModeleMagasin implements ListCellRenderer<Modele> {
-    
-
-
-
- 
+public class RenduComboProdPlanif implements ListCellRenderer<Modele> {
     
     
     @Override
@@ -33,12 +28,10 @@ public class RenduComboModeleMagasin implements ListCellRenderer<Modele> {
         if ( index % 2 == 0)
             lab.setBackground(Color.LIGHT_GRAY);
         else
-            lab.setBackground(Color.LIGHT_GRAY);
+            lab.setBackground(Color.ORANGE);
         return lab;
         }
         else
             return new JLabel("");
     }
-    
-    
 }

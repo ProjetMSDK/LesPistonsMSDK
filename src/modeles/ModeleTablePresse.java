@@ -5,9 +5,8 @@
  */
 package modeles;
 
-
-import dao.ManagerStock;
-import entite.Stock;
+import dao.ManagerMachine;
+import entite.Machine;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,17 +14,15 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author bouyadel
  */
-public class ModeleStockPlanif extends AbstractTableModel{    
-
-    
-    ArrayList<Stock> liste = ManagerStock.listeStockPlanif();
-    ArrayList<String> listeColonne = ManagerStock.ListeColonnesStockPlanif();
+public class ModeleTablePresse extends AbstractTableModel{
     
     
+    ArrayList<Machine> liste = ManagerMachine.listePresse();
+    ArrayList<String> listeColonne = ManagerMachine.ListeColonnesPresse();
 
     @Override
     public int getRowCount() {
-        return liste.size();        
+        return liste.size();
     }
 
     @Override
@@ -37,9 +34,10 @@ public class ModeleStockPlanif extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex)
         {
-            case 0: return liste.get(rowIndex).getModele();
-            case 1: return liste.get(rowIndex).getQuantite();
-            default: return liste.get(rowIndex).getSeuil();
+            case 0: return liste.get(rowIndex).getNumPresse();
+            case 1: return liste.get(rowIndex).getLibelle(); 
+            case 2: return liste.get(rowIndex).getEtatPresse();
+            default: return liste.get(rowIndex).getProdPrec();    
         }
     }
     
@@ -47,4 +45,5 @@ public class ModeleStockPlanif extends AbstractTableModel{
     public String getColumnName(int column) {
         return listeColonne.get(column); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

@@ -5,6 +5,7 @@
  */
 package main;
 import fenetres.*;
+import javax.swing.UIManager;
 /**
  *
  * @author mayer
@@ -13,7 +14,12 @@ public class Main {
     
     public static void main(String[] args)
     {
-     //   new Controle();
+    try
+    {
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+    } catch (Exception ex ) {
+        ex.printStackTrace();
+    }
     new Controle();
     }
     

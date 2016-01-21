@@ -49,10 +49,10 @@ public class FenetreModeles extends javax.swing.JFrame  {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        texte1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         boutonAjouter = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        text2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,11 +97,11 @@ public class FenetreModeles extends javax.swing.JFrame  {
 
         jLabel4.setText("Ajouter un modèle");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("R12");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        texte1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        texte1.setText("R12");
+        texte1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                texte1ActionPerformed(evt);
             }
         });
 
@@ -115,11 +115,11 @@ public class FenetreModeles extends javax.swing.JFrame  {
             }
         });
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setText("30.00");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        text2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        text2.setText("30.00");
+        text2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                text2ActionPerformed(evt);
             }
         });
 
@@ -139,8 +139,8 @@ public class FenetreModeles extends javax.swing.JFrame  {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(text2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(texte1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(115, 115, 115))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -153,12 +153,12 @@ public class FenetreModeles extends javax.swing.JFrame  {
                 .addComponent(jLabel4)
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texte1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(text2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(boutonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -233,24 +233,33 @@ public class FenetreModeles extends javax.swing.JFrame  {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void texte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texte1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_texte1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text2ActionPerformed
+     // TODO add your handling code here:
+    }//GEN-LAST:event_text2ActionPerformed
 
     private void boutonActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserActionPerformed
         jTable1.setModel(new ModelTableModele());
+        jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
     }//GEN-LAST:event_boutonActualiserActionPerformed
 
     private void boutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerActionPerformed
-        // TODO add your handling code here:
+       String nom= texte1.getText(); 
+       String message =ManagerModele.supprimerModele(nom);
+       
+       System.out.println(message);
+       statusBar.setText(message);
     }//GEN-LAST:event_boutonSupprimerActionPerformed
 
     private void boutonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterActionPerformed
-          // TODO add your handling code here:
+        String nom= texte1.getText(); 
+        float taille = Float.parseFloat(text2.getText());
+        String message =  ManagerModele.ajouterModele(nom,taille);
+        System.out.println(message);
+        statusBar.setText(message);
         
     }//GEN-LAST:event_boutonAjouterActionPerformed
 
@@ -312,9 +321,9 @@ public class FenetreModeles extends javax.swing.JFrame  {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel statusBar;
+    private javax.swing.JTextField text2;
+    private javax.swing.JTextField texte1;
     // End of variables declaration//GEN-END:variables
 
     

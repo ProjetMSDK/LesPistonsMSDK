@@ -7,6 +7,7 @@ package dao;
 
 
 import entite.Modele;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -87,4 +88,79 @@ public class ManagerModele {
             return null;
         }
    }
+    /* ----------------------------------------------------------------------------------------------------------------------*/
+          public static String supprimerModele(String modele)
+    {       
+        int code;
+        String messa= null;
+        try
+        {
+            CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call supprModele(?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(3, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, modele); //nom du modele
+            
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             messa = cs.getString(3);
+             //fermeture de la connection
+             cs.close();
+             //Connexion.getInstance().close();
+           
+       }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return messa;
+    }
+      /*---------------------------------------------------------------------------------------------------------------*/
+     public static  String  ajouterModele( String nouveau, float taille)
+     {
+         String mess = null;
+         int code;
+         try
+         {
+             CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call ajoutModele(?,?,?)}");
+             
+             //configuration des paramètres en sortie
+             cs.registerOutParameter(1, java.sql.Types.INTEGER); //code retour
+             cs.registerOutParameter(4, java.sql.Types.VARCHAR); // message
+             
+              //configuration des paramètres en entrée
+             cs.setString(2, nouveau); //nom du modele
+             cs.setFloat(3,taille);// taille du modele
+            
+             
+             // execute la mise a jour
+             int ret = cs.executeUpdate();
+             
+             
+             
+             //recuperation du code retour
+             code =cs.getInt(1);
+             mess= cs.getString(4);
+             //fermeture de la connection
+             cs.close();
+             //Connexion.getInstance().close();
+           
+         }
+         catch(Exception e)
+                 {
+                     e.printStackTrace();
+   
+                  }
+         return mess;
+     }
 }

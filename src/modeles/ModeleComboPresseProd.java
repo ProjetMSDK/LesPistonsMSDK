@@ -5,30 +5,30 @@
  */
 package modeles;
 
-import dao.*;
-import entite.Lot;
+import dao.ManagerMachine;
+import entite.Machine;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 /**
  *
- * @author mayer
+ * @author bouyadel
  */
-public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxModel<Lot>
+public class ModeleComboPresseProd extends AbstractListModel<Machine> implements ComboBoxModel<Machine>
 {
-    private final ArrayList<Lot> liste;
-    private Lot selection = null;
+    private final ArrayList<Machine> liste;
+    private Machine selection = null;
     
-    public ModelComboLots()
+    public ModeleComboPresseProd()
     {
-        liste = ManagerLot.listeLotControle();
+        liste = ManagerMachine.listeMachine();
     }
     
     @Override
     public void setSelectedItem(Object anItem)
     {
-        selection = (Lot) anItem ; //to select and register an item from the pull-down
+        selection = (Machine) anItem ; //to select and register an item from the pull-down
         //list
     }
         
@@ -46,8 +46,12 @@ public class ModelComboLots extends AbstractListModel<Lot> implements ComboBoxMo
     }
     
     @Override
-    public Lot getElementAt(int index)
+    public Machine getElementAt(int index)
     {
         return liste.get(index);
     }  
+
+    
 }
+    
+

@@ -54,7 +54,7 @@ public class ManagerStats {
             lotStat.setMessage(cs.getString(2));
             rs.close();
             cs.close();
-            Connexion.getInstance().getConn().close();
+            //Connexion.getInstance().getConn().close();
             return liste;
         }
         catch (Exception ex) {
@@ -91,7 +91,7 @@ public class ManagerStats {
             
             rs.close();
             cs.close();
-            Connexion.getInstance().getConn().close();
+            //Connexion.getInstance().getConn().close();
             return liste;
             
         } catch (Exception ex) {
@@ -128,7 +128,7 @@ public class ManagerStats {
             lotStat.setMessage(cs.getString(2));
             rs.close();
             cs.close();
-            Connexion.getInstance().getConn().close();
+            //Connexion.getInstance().getConn().close();
             return liste;
         }
         catch (Exception ex) {
