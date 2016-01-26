@@ -14,8 +14,6 @@ package modeles;
 
 import dao.ManagerMachine;
 import entite.Machine;
-import entite.Modele;
-import fenetres.Machines;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -28,8 +26,8 @@ public class ModelTableMachines extends AbstractTableModel{
  */
  
  
-    private final ArrayList<Machine> listeMachines;
-    private final ArrayList<String> listeColonne;
+    private ArrayList<Machine> listeMachines;
+    private ArrayList<String> listeColonne;
 
     public ModelTableMachines()
     {
@@ -54,7 +52,9 @@ public class ModelTableMachines extends AbstractTableModel{
         Machine mac = listeMachines.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return mac.getLibelle();       
+            case 0 : return mac.getNumPresse(); 
+            case 1 : return mac.getLibelle();
+            case 2 : return mac.getEtatPresse();  
             
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return "";

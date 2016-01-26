@@ -7,10 +7,9 @@ package fenetres;
 import dao.*;
 import entite.Lot;
 import entite.Piece;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import modeles.*;
-import rendus.*;
+import javax.swing.JOptionPane;
+import outils.OutilsAlpha;
 
 /**
  *
@@ -22,12 +21,13 @@ public class Controle extends javax.swing.JFrame {
      * Creates new form Controle
      */
     
-    Piece pieceCourante;
+    private Piece pieceCourante;
+    private int nbPiecesRestantes;
     public Controle() {
         initComponents();
         
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initChampsSaisie();
         
@@ -43,7 +43,6 @@ public class Controle extends javax.swing.JFrame {
     private void initComponents() {
 
         labelTitre = new javax.swing.JLabel();
-        bQuitter = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         labelPieceCourante = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -80,7 +79,12 @@ public class Controle extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         labelNumLot = new javax.swing.JLabel();
         comboLots = new javax.swing.JComboBox();
+        labelNbPieces = new javax.swing.JLabel();
+        labelNbPR = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        bQuitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,17 +93,13 @@ public class Controle extends javax.swing.JFrame {
         labelTitre.setText("CONTROLE");
         labelTitre.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        bQuitter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        bQuitter.setText("Quitter");
-        bQuitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bQuitterActionPerformed(evt);
-            }
-        });
-
+        jPanel3.setBackground(new java.awt.Color(202, 217, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         labelPieceCourante.setText("Dernier Enregistrement");
+
+        jPanel2.setBackground(new java.awt.Color(202, 217, 230));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         LabelPieceNum.setText("Pièce n.");
 
@@ -107,6 +107,7 @@ public class Controle extends javax.swing.JFrame {
 
         labelIdPiece.setText("00");
 
+        labelNomCategorie.setBackground(new java.awt.Color(202, 217, 230));
         labelNomCategorie.setText("         ");
 
         labelHT.setText("HT");
@@ -203,7 +204,10 @@ public class Controle extends javax.swing.JFrame {
         labelSBar.setText("Status Bar");
         labelSBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jPanel6.setBackground(new java.awt.Color(202, 217, 230));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jPanel1.setBackground(new java.awt.Color(202, 217, 230));
 
         bValider.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         bValider.setText("Valider");
@@ -238,6 +242,8 @@ public class Controle extends javax.swing.JFrame {
                 bSuspendreActionPerformed(evt);
             }
         });
+
+        jPanel5.setBackground(new java.awt.Color(202, 217, 230));
 
         texteDiametreHL.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         texteDiametreHL.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
@@ -380,6 +386,8 @@ public class Controle extends javax.swing.JFrame {
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bArreter, bSuspendre, bValider});
 
+        jPanel4.setBackground(new java.awt.Color(202, 217, 230));
+
         labelNumLot.setText("Numéro du lot");
 
         comboLots.setModel(new modeles.ModelComboLots());
@@ -395,6 +403,10 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        labelNbPieces.setText("Nombre de Pièces restantes ");
+
+        labelNbPR.setText("0");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -403,8 +415,12 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelNumLot, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
-                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPieces)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,7 +428,9 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumLot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboLots, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                    .addComponent(comboLots, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(labelNbPieces)
+                    .addComponent(labelNbPR))
                 .addContainerGap())
         );
 
@@ -436,30 +454,68 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel16.setBackground(new java.awt.Color(202, 217, 230));
+        jLabel16.setFont(new java.awt.Font("Arabic Typesetting", 3, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Bretagne Ouest Unité Moteurs");
+        jLabel16.setOpaque(true);
+
+        bQuitter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bQuitter.setText("Quitter");
+        bQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bQuitterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(labelTitre, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelSBar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 857, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelSBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labelTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelSBar))
+                .addComponent(labelSBar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -475,6 +531,20 @@ public class Controle extends javax.swing.JFrame {
         texteDiametreHL.setText("");
         texteDiametreHT.setText("");
         texteCommRebut.setText("");
+        
+        nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+    }
+    /**
+     * Cette fonction retourne vrai si tous les champs des côtes sont valides
+     * @return 
+     */
+    private boolean verifChamps()
+    {
+        return OutilsAlpha.estDecimal(texteDiametreBL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreBT.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHT.getText().trim());
     }
     /**
      * Cette fonction retourne true si au moins un des champs de saisie des côtes
@@ -492,6 +562,10 @@ public class Controle extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_texteCommRebutActionPerformed
 
+    /**
+     * Action associée au bouton Suspendre
+     * @param evt 
+     */
     private void bSuspendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSuspendreActionPerformed
         
         if(comboLots.getSelectedItem() != null)
@@ -503,27 +577,51 @@ public class Controle extends javax.swing.JFrame {
         }
         else
         {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
             labelSBar.setText("Aucun lot sélectionné");
         }    
     }//GEN-LAST:event_bSuspendreActionPerformed
 
+    /**
+     * Action associée au bouton Valider
+     * @param evt 
+     */
     private void bValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bValiderActionPerformed
         
+        //test de la sélection du jComboBox
         if (comboLots.getSelectedItem() == null)
-            
+            //si aucun choix effectué
         {
+            //mise à jour de la barre d'état
             labelSBar.setText("Numéro de Lot absent !");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
         }
+        //appel de la méthode champManquant pour vérifier les champs
         else if (champManquant())
         {
+            //mise à jour de la barre d'état
             labelSBar.setText("Côtes manquantes");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Veuillez entrer toutes les côtes", "Champ Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!verifChamps())
+        {
+            //mise à jour de la barre d'état
+            labelSBar.setText("Format Champ Incorrect");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Format Côtes incorrect", "Format Champ Incorrect", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            
+            //Création d'un nouvel objet Pièce pour l'appel de la procédure stockée 
+            //"enregistrerPiece via la Classe ManagerPiece
             pieceCourante = new Piece(((Lot)comboLots.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
                                     Float.parseFloat(texteDiametreHT.getText()), Float.parseFloat(texteDiametreBL.getText()), 
                                     Float.parseFloat(texteDiametreBT.getText()), texteCommRebut.getText());
+            //appel de la méthode
             ManagerPiece.enregistrerPiece(pieceCourante);
+            //Récupération des valeurs renvoyées et modifications des composants
+            //concernés
             labelSBar.setText(pieceCourante.getBilanEnregistrement());
             labelIdPiece.setText(""+pieceCourante.getNumPiece());
             labelDiametreHL.setText(""+pieceCourante.getDiamHL());
@@ -531,10 +629,22 @@ public class Controle extends javax.swing.JFrame {
             labelDiametreBL.setText(""+pieceCourante.getDiamBL());
             labelDiametreBT.setText(""+pieceCourante.getDiamBT());
             labelNomCategorie.setText("" + pieceCourante.getNomCategorie());
+            //réinitialisation des JTexts pour faciliter la prochaine saisie
             initChampsSaisie();
-            //mise à jour de la comboBox
-            comboLots.setModel(new modeles.ModelComboLots());
-            }
+            
+            //actualise la valeur du nombre de Pieces restantes
+            nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
+            //mise à jour de la comboBox si fin de lot
+            if (nbPiecesRestantes == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Lot terminé", "Lot Terminé", JOptionPane.INFORMATION_MESSAGE);
+                comboLots.setModel(new modeles.ModelComboLots());
+            }   
+            
+        }
+                
                 
     }//GEN-LAST:event_bValiderActionPerformed
 
@@ -550,7 +660,9 @@ public class Controle extends javax.swing.JFrame {
     }//GEN-LAST:event_texteDiametreHLActionPerformed
 
     private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
-        
+           nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
     }//GEN-LAST:event_comboLotsItemStateChanged
 
     private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
@@ -562,7 +674,13 @@ public class Controle extends javax.swing.JFrame {
     }//GEN-LAST:event_texteDiametreHTActionPerformed
 
     private void bQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bQuitterActionPerformed
-        System.exit(0);
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            dispose();
+        }
     }//GEN-LAST:event_bQuitterActionPerformed
 
     private void bArreterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bArreterActionPerformed
@@ -576,6 +694,7 @@ public class Controle extends javax.swing.JFrame {
         }
         else
         {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
             labelSBar.setText("Aucun lot sélectionné");
         }
     }//GEN-LAST:event_bArreterActionPerformed
@@ -589,6 +708,7 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JButton bSuspendre;
     private javax.swing.JButton bValider;
     private javax.swing.JComboBox comboLots;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -599,6 +719,7 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel labelBL;
@@ -611,6 +732,8 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JLabel labelHL;
     private javax.swing.JLabel labelHT;
     private javax.swing.JLabel labelIdPiece;
+    private javax.swing.JLabel labelNbPR;
+    private javax.swing.JLabel labelNbPieces;
     private javax.swing.JLabel labelNomCategorie;
     private javax.swing.JLabel labelNumLot;
     private javax.swing.JLabel labelPieceCourante;

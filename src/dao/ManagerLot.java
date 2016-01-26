@@ -1,6 +1,7 @@
 package dao;
 
 import entite.Lot;
+import entite.MessageStatut;
 import entite.Piece;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -19,10 +20,6 @@ public class ManagerLot {
      */
     private ManagerLot() {}
     
-    /**
-     * Cette fonction donne la liste des pilotes de la table PILOTE
-     * @return Cette fonction retourne un ArrayList contenant tous les pilotes
-     */
     public static ArrayList<Lot> listeLotControle()
     {
         try
@@ -49,7 +46,7 @@ public class ManagerLot {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM LOT WHERE etatDuLot = 'Démarré' OR etatDuLot = 'Libéré' OR etatDuLot = 'Suspendu' OR etatDuLot = 'Arrêté'" );
+            ResultSet rs = st.executeQuery("SELECT * FROM LOT WHERE etatDuLot = 'Démarré' OR etatDuLot = 'Libéré' OR etatDuLot = 'Suspendu'" );
             ArrayList<Lot> liste = new ArrayList();
             while (rs.next())
             {
@@ -70,7 +67,8 @@ public class ManagerLot {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt ");
+            //ResultSet rs = st.executeQuery("select numLot as [NUMERO LOT],modele as 'MODELE', nbPiecesDemandees as 'QUANTITE',dateDePlanification as 'DATE DE PLANIFICATION',etatDuLot as 'ETAT DU LOT',numPresse as 'NUMERO PRESSE',dateDeFabrication as 'DATE DE FABRICATION' from LOt");
+            ResultSet rs = st.executeQuery("SELECT * FROM production");
             ArrayList<String> liste = new ArrayList<>();
             ResultSetMetaData md = rs.getMetaData();
             int i = 1;
@@ -92,11 +90,12 @@ public class ManagerLot {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select numLot, nbPiecesDemandees,dateDePlanification,dateDeFabrication,etatDuLot,numPresse,modele from LOt " );
+            ResultSet rs = st.executeQuery("SELECT * FROM production");
             ArrayList<Lot> liste = new ArrayList();
             while (rs.next())
             {
-                liste.add(new Lot(rs.getInt(1), rs.getInt(2),rs.getDate(3) ,rs.getDate(4),rs.getString(5),rs.getInt(6), rs.getString(7)));
+                liste.add(new Lot(rs.getInt(1), rs.getString(2), rs.getInt(3),
+                        rs.getDate(4) ,rs.getString(5), rs.getInt(6) , rs.getDate(7)));
             }
             return liste;
         }
@@ -129,9 +128,9 @@ public class ManagerLot {
         
     }
     
-    public static String changerEtatLot(int numLot)
+    public static MessageStatut changerEtatLot(int numLot)
     {
-        String mess=null;
+        MessageStatut mess = new MessageStatut("");
         try
         {
             CallableStatement cs = Connexion.getInstance().getConn().prepareCall("{?=call changerEtatLot(?,?)}");           
@@ -147,7 +146,7 @@ public class ManagerLot {
             int code = cs.getInt(1);
         
         
-             mess = cs.getString(3);
+             mess = new MessageStatut(cs.getString(3));
         
             cs.close();
             //Connexion.getInstance().close();     
@@ -164,9 +163,9 @@ public class ManagerLot {
     
     
     
-    public static String planifierLot( String modele , int quantite)
+    public static MessageStatut planifierLot( String modele , int quantite)
     {
-        String mess=null;
+        MessageStatut mess = new MessageStatut("");
     
         try
     {
@@ -187,7 +186,7 @@ public class ManagerLot {
     int code = cs.getInt(1);
         
         
-    mess = cs.getString(4);
+    mess = new MessageStatut(cs.getString(4));
         
         cs.close();
         //Connexion.getInstance().close();        
@@ -200,9 +199,9 @@ public class ManagerLot {
     return mess;
     }
     
-    public static String demarrerLot( int numLot, String presse)
+    public static MessageStatut demarrerLot( int numLot, String presse)
     {
-        String mess=null;
+        MessageStatut mess = new MessageStatut("");
     
         try
     {
@@ -223,7 +222,7 @@ public class ManagerLot {
     int code = cs.getInt(1);
         
         
-    mess = cs.getString(4);
+    mess = new MessageStatut(cs.getString(4));
         
         cs.close();
         //Connexion.getInstance().close();        
@@ -236,9 +235,9 @@ public class ManagerLot {
     return mess;
     }
    
-    public static String suspendreLot( int numLot)
+    public static MessageStatut suspendreLot( int numLot)
     {
-        String mess=null;
+        MessageStatut mess = new MessageStatut("");
     
         try
     {
@@ -259,7 +258,7 @@ public class ManagerLot {
     int code = cs.getInt(1);
         
         
-    mess = cs.getString(3);
+    mess = new MessageStatut(cs.getString(3));
         
         cs.close();
         //Connexion.getInstance().close();        
@@ -338,5 +337,36 @@ public class ManagerLot {
     {
         e.printStackTrace();
     }
+    }
+    
+    /**
+     * Cette fonction donne le nombre de pièces restantes pour la fabrication d'un
+     * lot donné
+     * @param numeroLot numéro du lot à traiter
+     * @return 
+     */
+    public static int nombrePiecesRestantes(int numeroLot)
+    {
+        try
+        {
+            //FUNCTION [dbo].nbPiecesRestantes(@numLot TypeNumLot)
+            CallableStatement cs =Connexion.getInstance().getConn().prepareCall (
+                "{? = call [dbo].nbPiecesRestantes (?)}");
+            
+            cs.registerOutParameter(1, java.sql.Types.INTEGER);
+            
+            cs.setInt(2,numeroLot);//numero lot
+            
+            cs.execute();
+            
+            return cs.getInt(1);
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+        
     }
 }

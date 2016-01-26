@@ -6,6 +6,7 @@
 package dao;
 
 import entite.Machine;
+import entite.MessageStatut;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -23,7 +24,7 @@ public class ManagerMachine {
     {
        try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from MACHINE");
+            ResultSet rs = st.executeQuery("select numPresse as 'NUMERO PRESSE' , libelle as  'PRESSE' , etatPresse as 'ETAT' from MACHINE");
             ArrayList<Machine> liste = new ArrayList<>();
              
             while ( rs.next())
@@ -42,12 +43,12 @@ public class ManagerMachine {
     {
          try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from MACHINE");
+            ResultSet rs = st.executeQuery("select numPresse as 'NUMERO PRESSE' , libelle as  'PRESSE' , etatPresse as 'ETAT' from MACHINE");
             ArrayList<String> liste = new ArrayList<>();
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
             
-            while(rs.next())
+            while ( i <= md.getColumnCount())
             {
                     liste.add(md.getColumnName(i));
                     i++;
@@ -68,7 +69,7 @@ public class ManagerMachine {
              
             while ( rs.next())
             {
-                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(4), rs.getString(4)));
+                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4)));
                    
             }
             return liste;
@@ -78,6 +79,12 @@ public class ManagerMachine {
         }
         
     }
+    /**
+     * Cette fonction est appelée par le modèle du tableau de presse, fenêtre 
+     * production
+     * 4 Colonnes : Numéro Presse, Nom Presse, Etat, Prod précédente
+     * @return 
+     */
     public static ArrayList<String> ListeColonnesPresse()
     {
          try {
@@ -135,10 +142,10 @@ public class ManagerMachine {
        return messa;
     }
       /*---------------------------------------------------------------------------------------------------------------*/
-     public static String ajouterMachine( String nouvelle)
+     public static MessageStatut ajouterMachine( String nouvelle)
      {
          int code;
-         String mess= null;
+         MessageStatut mess= null;
          try
          {
              CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call ajouterMachine(?,?)}");
@@ -159,7 +166,7 @@ public class ManagerMachine {
              
              //recuperation du code retour
              code =cs.getInt(1);
-             mess= cs.getString(3);
+             mess= new MessageStatut(cs.getString(3));
              //fermeture de la connection
              cs.close();
              //Connexion.getInstance().close();

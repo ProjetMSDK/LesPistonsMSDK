@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import modeles.*;
 import rendus.*;
 import dao.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -165,7 +166,14 @@ public class Stocks extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        
-        setVisible(false);
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            setVisible(false);
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

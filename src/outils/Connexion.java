@@ -2,8 +2,6 @@ package outils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class Connexion
@@ -76,7 +74,7 @@ public class Connexion
         {
             try
             {
-                instance = new Connexion("benosmane","developpeur");
+                instance = new Connexion("mayer","developpeur");
             }
             catch(Exception e)
             {

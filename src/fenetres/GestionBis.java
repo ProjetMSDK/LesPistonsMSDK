@@ -7,8 +7,13 @@ package fenetres;
 
 import dao.ManagerMachine;
 import dao.ManagerModele;
+import entite.Machine;
+import entite.MessageStatut;
 import entite.Modele;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import modeles.*;
+import outils.OutilsAlpha;
 import rendus.*;
 
 /**
@@ -17,12 +22,20 @@ import rendus.*;
  */
 public class GestionBis extends javax.swing.JFrame {
 
+    /*
+    fonction effacer machine ne fonctionne pas
+    
+    
+    */
     /**
      * Creates new form GestionBis
      */
+    
+    private MessageStatut statut;
     public GestionBis() {
         initComponents();
         setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
     }
 
@@ -44,33 +57,34 @@ public class GestionBis extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         texte1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        bAjouter = new javax.swing.JButton();
         text2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        bSupprimer = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jButtonModifier = new javax.swing.JButton();
+        bModifier = new javax.swing.JButton();
         seuil = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         comboModele = new javax.swing.JComboBox();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        jTableModele = new javax.swing.JTable();
+        bActualiserModele = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtableMachine = new javax.swing.JTable();
-        boutonActualiser = new javax.swing.JButton();
+        boutonActualiserMachine = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
-        texte2 = new javax.swing.JTextField();
+        texteMachine = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        bouttonAjouter = new javax.swing.JButton();
-        bouttonSupprimer = new javax.swing.JButton();
+        boutonAjouterMachine = new javax.swing.JButton();
+        boutonSupprimerMachine = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        comboMachine = new javax.swing.JComboBox();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -112,12 +126,12 @@ public class GestionBis extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("MODELE");
 
-        jButton3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton3.setText("Ajouter");
-        jButton3.setPreferredSize(new java.awt.Dimension(81, 23));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bAjouter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bAjouter.setText("Ajouter");
+        bAjouter.setPreferredSize(new java.awt.Dimension(81, 23));
+        bAjouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bAjouterActionPerformed(evt);
             }
         });
 
@@ -131,11 +145,11 @@ public class GestionBis extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("DIAMETRE");
 
-        jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton2.setText("Supprimer");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bSupprimer.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bSupprimer.setText("Supprimer");
+        bSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bSupprimerActionPerformed(evt);
             }
         });
 
@@ -143,11 +157,11 @@ public class GestionBis extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("MODIFIER SEUIL ALERTE");
 
-        jButtonModifier.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButtonModifier.setText("Modifier");
-        jButtonModifier.addActionListener(new java.awt.event.ActionListener() {
+        bModifier.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bModifier.setText("Modifier");
+        bModifier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonModifierActionPerformed(evt);
+                bModifierActionPerformed(evt);
             }
         });
 
@@ -192,12 +206,12 @@ public class GestionBis extends javax.swing.JFrame {
                                         .addComponent(texte1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(bAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(243, 243, 243)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModifier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bModifier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +225,7 @@ public class GestionBis extends javax.swing.JFrame {
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {text2, texte1});
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {comboModele, jButtonModifier});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bModifier, comboModele});
 
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,25 +253,25 @@ public class GestionBis extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {comboModele, jButtonModifier});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bModifier, comboModele});
 
         jPanel6.setBackground(new java.awt.Color(202, 217, 230));
 
-        jTable1.setModel(new ModelTableModele());
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.setDefaultRenderer(Object.class, new RenduTable());
+        jTableModele.setModel(new ModelTableModele());
+        jScrollPane1.setViewportView(jTableModele);
+        jTableModele.setDefaultRenderer(Object.class, new RenduTable());
 
-        jButton4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jButton4.setText("Actualiser");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        bActualiserModele.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bActualiserModele.setText("Actualiser");
+        bActualiserModele.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                bActualiserModeleActionPerformed(evt);
             }
         });
 
@@ -271,16 +285,16 @@ public class GestionBis extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(bActualiserModele, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bActualiserModele, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -343,9 +357,9 @@ public class GestionBis extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(5, 5, 5))
         );
 
         jTabbedPane2.addTab("MODELE", jPanel1);
@@ -360,22 +374,22 @@ public class GestionBis extends javax.swing.JFrame {
         jtableMachine.setModel(new ModelTableMachines());
         jtableMachine.setDefaultRenderer(Object.class, new RenduTable());
 
-        boutonActualiser.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        boutonActualiser.setText("Actualiser");
-        boutonActualiser.setPreferredSize(new java.awt.Dimension(81, 23));
-        boutonActualiser.addActionListener(new java.awt.event.ActionListener() {
+        boutonActualiserMachine.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        boutonActualiserMachine.setText("Actualiser");
+        boutonActualiserMachine.setPreferredSize(new java.awt.Dimension(81, 23));
+        boutonActualiserMachine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonActualiserActionPerformed(evt);
+                boutonActualiserMachineActionPerformed(evt);
             }
         });
 
         jPanel10.setBackground(new java.awt.Color(202, 217, 230));
         jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        texte2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        texte2.addActionListener(new java.awt.event.ActionListener() {
+        texteMachine.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        texteMachine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texte2ActionPerformed(evt);
+                texteMachineActionPerformed(evt);
             }
         });
 
@@ -383,61 +397,75 @@ public class GestionBis extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("MACHINE");
 
-        bouttonAjouter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        bouttonAjouter.setText("Ajouter");
-        bouttonAjouter.setPreferredSize(new java.awt.Dimension(81, 23));
-        bouttonAjouter.addActionListener(new java.awt.event.ActionListener() {
+        boutonAjouterMachine.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        boutonAjouterMachine.setText("Ajouter");
+        boutonAjouterMachine.setPreferredSize(new java.awt.Dimension(81, 23));
+        boutonAjouterMachine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bouttonAjouterActionPerformed(evt);
+                boutonAjouterMachineActionPerformed(evt);
             }
         });
 
-        bouttonSupprimer.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        bouttonSupprimer.setText("Supprimer");
-        bouttonSupprimer.addActionListener(new java.awt.event.ActionListener() {
+        boutonSupprimerMachine.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        boutonSupprimerMachine.setText("Supprimer");
+        boutonSupprimerMachine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bouttonSupprimerActionPerformed(evt);
+                boutonSupprimerMachineActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("GESTION MODELE");
+        jLabel3.setText("GESTION MACHINE");
+
+        comboMachine.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        comboMachine.setModel(new ModeleComboPresseProd());
+        comboMachine.setRenderer(new RenduComboPresseProd());
+        comboMachine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboMachineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+            .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(texte2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(boutonAjouterMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(texteMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bouttonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bouttonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                    .addComponent(boutonSupprimerMachine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMachine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(24, 24, 24)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(texte2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bouttonSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(bouttonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteMachine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boutonAjouterMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutonSupprimerMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
         jLabel17.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("MODELE");
+        jLabel17.setText("MACHINE");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -450,7 +478,7 @@ public class GestionBis extends javax.swing.JFrame {
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boutonActualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boutonActualiserMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addComponent(jSeparator3)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -464,7 +492,7 @@ public class GestionBis extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(boutonActualiser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boutonActualiserMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -497,7 +525,7 @@ public class GestionBis extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
@@ -551,8 +579,8 @@ public class GestionBis extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBar))
@@ -562,73 +590,132 @@ public class GestionBis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         System.exit(0);
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            dispose();
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void bouttonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonSupprimerActionPerformed
-        String nom= texte1.getText();
+    private void boutonSupprimerMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSupprimerMachineActionPerformed
+        if(comboMachine.getSelectedItem() == null)
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner la machine", "Nom Machine Absent", JOptionPane.ERROR_MESSAGE);
+        else
+        {
+        String nom = ((Machine) comboMachine.getSelectedItem()).getLibelle();
         String message =ManagerMachine.supprimerMachine(nom);
 
         System.out.println(message);
+        statusBar.setForeground(statut.getCouleur());
         statusBar.setText(message); // TODO add your handling code here:
-    }//GEN-LAST:event_bouttonSupprimerActionPerformed
+        jtableMachine.setModel(new ModelTableMachines());
+        }
+    }//GEN-LAST:event_boutonSupprimerMachineActionPerformed
 
-    private void bouttonAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouttonAjouterActionPerformed
-        String nom= texte1.getText();
-        String message =  ManagerMachine.ajouterMachine(nom);
-        System.out.println(message);
-        statusBar.setText(message);   // TODO add your handling code here:
-    }//GEN-LAST:event_bouttonAjouterActionPerformed
+    private void boutonAjouterMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterMachineActionPerformed
+        if(texteMachine.getText().trim().isEmpty())
+            JOptionPane.showMessageDialog(null, "Veuillez informer le nom de la machine", "Nom Machine Absent", JOptionPane.ERROR_MESSAGE);
+        else
+        {
+        String nom = texteMachine.getText();
+        statut =  ManagerMachine.ajouterMachine(nom);
+        statusBar.setForeground(statut.getCouleur());
+        statusBar.setText(statut.toString());   // TODO add your handling code here:
+        
+        jtableMachine.setModel(new ModelTableMachines());
+        comboMachine.setModel(new ModeleComboPresseProd());
+        }
+    }//GEN-LAST:event_boutonAjouterMachineActionPerformed
 
-    private void texte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texte2ActionPerformed
+    private void texteMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texteMachineActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_texte2ActionPerformed
+    }//GEN-LAST:event_texteMachineActionPerformed
 
-    private void boutonActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserActionPerformed
-        jtableMachine.setModel(new ModelTableModele());   // TODO add your handling code here:
-    }//GEN-LAST:event_boutonActualiserActionPerformed
+    private void boutonActualiserMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonActualiserMachineActionPerformed
+        jtableMachine.setModel(new ModelTableMachines());   // TODO add your handling code here:
+    }//GEN-LAST:event_boutonActualiserMachineActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        jTable1.setModel(new ModelTableModele());
-        jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void bActualiserModeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualiserModeleActionPerformed
+        jTableModele.setModel(new ModelTableModele());
+        //jTable1.setDefaultRenderer(Object.class, new RenduTableModele());
+    }//GEN-LAST:event_bActualiserModeleActionPerformed
 
     private void seuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seuilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_seuilActionPerformed
 
-    private void jButtonModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModifierActionPerformed
+    private void bModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModifierActionPerformed
         
-        String nom= ((Modele)comboModele.getSelectedItem() ).getModele();
-        int seuilalerte= (int)Integer.parseInt(seuil.getText());        
-        String message =  ManagerModele.modifierSeuil(nom ,seuilalerte);
-        System.out.println(message);
-        statusBar.setText(message);
-    }//GEN-LAST:event_jButtonModifierActionPerformed
+        if(comboModele.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un modèle", "Modèle non sélectionné", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!OutilsAlpha.estEntierNonNul(text2.getText().trim()))
+            JOptionPane.showMessageDialog(null, "Valeur Taille invalide", "Valeur Taille Invalide", JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            String nom= ((Modele)comboModele.getSelectedItem() ).getModele();
+            int seuilalerte= (int)Integer.parseInt(seuil.getText());        
+            String message =  ManagerModele.modifierSeuil(nom ,seuilalerte);
+            statusBar.setForeground(statut.getCouleur());
+            statusBar.setText(message);
+            jTableModele.setModel(new ModelTableModele());
+        }
+    }//GEN-LAST:event_bModifierActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nom= texte1.getText();
-        String message =ManagerModele.supprimerModele(nom);
-
-        System.out.println(message);
-        statusBar.setText(message);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void bSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSupprimerActionPerformed
+        if (texte1.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez indiquer le nom du modèle", "Champ Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+           String nom= texte1.getText(); 
+           
+           statut =  ManagerModele.supprimerModele(nom);
+           statusBar.setForeground(statut.getCouleur());
+            statusBar.setText(statut.toString());   // TODO add your handling code here:
+            jtableMachine.setModel(new ModelTableMachines());
+            comboMachine.setModel(new ModeleComboPresseProd());
+        }
+    }//GEN-LAST:event_bSupprimerActionPerformed
 
     private void text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String nom= texte1.getText();
-        float taille = Float.parseFloat(text2.getText());
-        String message =  ManagerModele.ajouterModele(nom,taille);
-        System.out.println(message);
-        statusBar.setText(message);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void bAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAjouterActionPerformed
+        if (texte1.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez indiquer le nom du modèle", "Champ Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(text2.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez indiquer la taille du modèle", "Champ Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!OutilsAlpha.estDecimalNonNul(text2.getText().trim()))
+            JOptionPane.showMessageDialog(null, "Valeur Taille invalide", "Valeur Taille Invalide", JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            String nom= texte1.getText(); 
+            float taille = Float.parseFloat(text2.getText());
+            statut =  ManagerModele.ajouterModele(nom, taille);
+            statusBar.setForeground(statut.getCouleur());
+            statusBar.setText(statut.toString());
+            jTableModele.setModel(new ModelTableModele());
+            comboModele.setModel(new ModelComboModeleMagasin());
+        }
+    }//GEN-LAST:event_bAjouterActionPerformed
 
     private void texte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texte1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_texte1ActionPerformed
+
+    private void comboMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMachineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboMachineActionPerformed
 
     /**
      * @param args the command line arguments
@@ -666,15 +753,16 @@ public class GestionBis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton boutonActualiser;
-    private javax.swing.JButton bouttonAjouter;
-    private javax.swing.JButton bouttonSupprimer;
+    private javax.swing.JButton bActualiserModele;
+    private javax.swing.JButton bAjouter;
+    private javax.swing.JButton bModifier;
+    private javax.swing.JButton bSupprimer;
+    private javax.swing.JButton boutonActualiserMachine;
+    private javax.swing.JButton boutonAjouterMachine;
+    private javax.swing.JButton boutonSupprimerMachine;
+    private javax.swing.JComboBox comboMachine;
     private javax.swing.JComboBox comboModele;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButtonModifier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -701,12 +789,12 @@ public class GestionBis extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableModele;
     private javax.swing.JTable jtableMachine;
     private javax.swing.JTextField seuil;
     private javax.swing.JLabel statusBar;
     private javax.swing.JTextField text2;
     private javax.swing.JTextField texte1;
-    private javax.swing.JTextField texte2;
+    private javax.swing.JTextField texteMachine;
     // End of variables declaration//GEN-END:variables
 }

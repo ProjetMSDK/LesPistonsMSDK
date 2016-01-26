@@ -6,9 +6,11 @@
 package dao;
 
 
+import entite.MessageStatut;
 import entite.Modele;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import outils.Connexion;
@@ -30,7 +32,7 @@ public class ManagerModele {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs= st.executeQuery("Select Modele From Lot");
+            ResultSet rs= st.executeQuery("Select * from MODELE");
             ArrayList<Modele> liste = new ArrayList();
             while (rs.next())
             {
@@ -50,11 +52,11 @@ public class ManagerModele {
         try
         {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("SELECT modele FROM MODELE ");
+            ResultSet rs = st.executeQuery("select modele as MODELE, diametre as 'DIAMETRE', seuilMini as 'SEUIL' from MODELE");
             ArrayList<Modele> liste = new ArrayList();
             while (rs.next())
             {
-                liste.add(new Modele(rs.getString(1)));
+                liste.add(new Modele(rs.getString(1),rs.getFloat(2),rs.getInt(3)));
             }
             return liste;
         }
@@ -73,12 +75,17 @@ public class ManagerModele {
        {
 
            Statement st = Connexion.getInstance().getConn().createStatement();
-           ResultSet rs = st.executeQuery("select * from MODELE");
+           ResultSet rs = st.executeQuery("select modele as MODELE, diametre as 'DIAMETRE', seuilMini as 'SEUIL' from MODELE");
            ArrayList<String> listMod = new ArrayList<>();
+           ResultSetMetaData md = rs.getMetaData();
            int i = 1;
+          while (i <= md.getColumnCount())
+          {
           
-          
-               listMod.add(rs.getMetaData().getColumnName(1));
+               listMod.add(rs.getMetaData().getColumnName(i));
+               i++;
+               
+          }
                
                    
            return listMod;
@@ -89,10 +96,10 @@ public class ManagerModele {
         }
    }
     /* ----------------------------------------------------------------------------------------------------------------------*/
-          public static String supprimerModele(String modele)
+          public static MessageStatut supprimerModele(String modele)
     {       
         int code;
-        String messa= null;
+        MessageStatut mess= null;
         try
         {
             CallableStatement cs= Connexion.getInstance().getConn().prepareCall("{?=call supprModele(?,?)}");
@@ -113,7 +120,7 @@ public class ManagerModele {
              
              //recuperation du code retour
              code =cs.getInt(1);
-             messa = cs.getString(3);
+             mess= new MessageStatut(cs.getString(3));
              //fermeture de la connection
              cs.close();
              //Connexion.getInstance().close();
@@ -123,12 +130,12 @@ public class ManagerModele {
         {
             e.printStackTrace();
         }
-        return messa;
+        return mess;
     }
       /*---------------------------------------------------------------------------------------------------------------*/
-     public static  String  ajouterModele( String nouveau, float taille)
+     public static  MessageStatut  ajouterModele( String nouveau, float taille)
      {
-         String mess = null;
+         MessageStatut mess = null;
          int code;
          try
          {
@@ -150,7 +157,7 @@ public class ManagerModele {
              
              //recuperation du code retour
              code =cs.getInt(1);
-             mess= cs.getString(4);
+             mess= new MessageStatut(cs.getString(4));
              //fermeture de la connection
              cs.close();
              //Connexion.getInstance().close();

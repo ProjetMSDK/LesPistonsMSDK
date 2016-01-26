@@ -21,7 +21,7 @@ public class ManagerStock {
     {
        try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from STOCK");
+            ResultSet rs = st.executeQuery("SELECT * FROM STOCK");
             ArrayList<Stock> liste = new ArrayList<>();
              
             while ( rs.next())
@@ -40,7 +40,7 @@ public class ManagerStock {
     {
          try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from STOCK");
+            ResultSet rs = st.executeQuery("SELECT * FROM STOCK");
             ArrayList<String> liste = new ArrayList<>();
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
@@ -67,7 +67,7 @@ public class ManagerStock {
     {
        try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from stockPlanif");
+            ResultSet rs = st.executeQuery("SELECT * FROM stockPlanif");
             ArrayList<Stock> liste = new ArrayList<>();
              
             while ( rs.next())
@@ -86,7 +86,7 @@ public class ManagerStock {
     {
          try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from stockPlanif");
+            ResultSet rs = st.executeQuery("SELECT * FROM stockPlanif");
             ArrayList<String> liste = new ArrayList<>();
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;

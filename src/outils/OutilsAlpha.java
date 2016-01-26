@@ -32,12 +32,22 @@ public class OutilsAlpha
         
         public static boolean estEntierNonNul(String s)
 	{
-		return s != null && s.matches("[1-9]+");
+		return s != null && s.matches("[0-9]+")&& !s.matches("[0]+");
 	}
 	
 	public static boolean estEntier5(String s)
 	{
 		return s != null && s.matches("^[0-9]{5}$");
+	}
+        
+        public static boolean estDecimal(String s)
+	{
+		return s != null && s.matches("[0-9.]+");
+	}
+        
+        public static boolean estDecimalNonNul(String s)
+	{
+		return s != null && s.matches("[0-9.]+") && !s.matches("[0]+");
 	}
 	
 	public static int convertir(String s)

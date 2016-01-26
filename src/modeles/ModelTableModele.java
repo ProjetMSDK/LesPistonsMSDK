@@ -43,8 +43,10 @@ public class ModelTableModele extends AbstractTableModel{
         Modele mod = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return mod.getModele();       
-          
+            case 0 : return mod.getModele(); 
+                     
+            case 1 : return mod.getDiametre();       
+              
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
             default : return mod.getSeuilMini();
         }

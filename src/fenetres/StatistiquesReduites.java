@@ -8,6 +8,7 @@ package fenetres;
 import entite.Lot;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import modeles.ModelTableStatsCumul;
 import modeles.ModelTableStatsReduites;
 import rendus.RenduTableStatsCumul;
@@ -28,7 +29,7 @@ public class StatistiquesReduites extends javax.swing.JFrame {
         
         setVisible(true);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -67,9 +68,10 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             }
         });
 
-        labelSBar.setText("Status Bar");
+        labelSBar.setText(" ");
         labelSBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jPanel1.setBackground(new java.awt.Color(202, 217, 230));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         comboLots.setModel(new modeles.ModelComboLots());
@@ -132,15 +134,15 @@ public class StatistiquesReduites extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumeroLot)
                     .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bImpression)
                     .addComponent(bActualiser))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,7 +177,14 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            new fenetres.Accueil();
+            setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed

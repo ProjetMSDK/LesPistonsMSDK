@@ -49,7 +49,7 @@ public class Lot {
         this.modele = modele;
     }
 
-    public Lot(int numLot, int nbPiecesDemandees, Date dateDePlanification, Date dateDeFabric, String etatDuLot, int TypeNumPresse, String modele) {
+    public Lot(int numLot, String modele, int nbPiecesDemandees, Date dateDePlanification, String etatDuLot, int TypeNumPresse, Date dateDeFabric) {
         this.numLot = numLot;
         this.nbPiecesDemandees = nbPiecesDemandees;
         this.dateDePlanification = dateDePlanification;

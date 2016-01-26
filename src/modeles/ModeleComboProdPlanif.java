@@ -18,12 +18,14 @@ import javax.swing.ComboBoxModel;
 public class ModeleComboProdPlanif extends AbstractListModel<Modele> implements ComboBoxModel<Modele>
 {
 
-    private final ArrayList<Modele> liste;
-    private Modele selection=null;
+    private ArrayList<Modele> liste;
+    private ArrayList<String> listeColonne;
+    private Modele selection;
     
     public ModeleComboProdPlanif()
     {
         liste=ManagerModele.listeModeleMagasin();
+        listeColonne = ManagerModele.columnModeles();
     }
     
     @Override
@@ -38,7 +40,7 @@ public class ModeleComboProdPlanif extends AbstractListModel<Modele> implements 
 
     @Override
     public void setSelectedItem(Object anItem) {
-        selection=(Modele)anItem;
+        selection = (Modele)anItem ;
     }
 
     @Override
