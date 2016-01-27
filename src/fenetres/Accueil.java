@@ -7,6 +7,7 @@ package fenetres;
 
 
 import entite.MessageStatut;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
@@ -266,50 +267,12 @@ go
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        if(JOptionPane.showConfirmDialog(this,
-             "Quitter?", 
-             "Confirmation",
-             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
-        {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if(jtLogUser.getText().trim().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Veuillez entrer un nom d'utilisateur", "Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
-            statut = new MessageStatut("Erreur : Champ nom utilisateur vide");
-            barStatusLogin.setForeground(statut.getCouleur());
-            barStatusLogin.setText(statut.toString());
-            
-        }
-        else if (jtPassword.getText().trim().isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Veuillez entrer votre mot de passe", "Mot de passe", JOptionPane.ERROR_MESSAGE);
-            statut = new MessageStatut("Erreur : Champ mot de passe vide");
-            barStatusLogin.setForeground(statut.getCouleur());
-            barStatusLogin.setText(statut.toString());
-        }
-        else if(!OutilsAlpha.estAlphaNum(jtLogUser.getText().trim()))
-        {
-            JOptionPane.showMessageDialog(null, "Format nom utilisateur non valide", "Erreur Format Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
-            statut = new MessageStatut("Erreur : Format nom utilisateur non valide");
-            barStatusLogin.setForeground(statut.getCouleur());
-            barStatusLogin.setText(statut.toString());
-        }
-        else
-        {
-             String login = jtLogUser.getText();
-             String password = jtPassword.getText();//TODO revoir le getText en getPassword.toString();
-            try
+    private void connecter(String login, String pass)
+    {
+        try
             {
-                if(Connexion.getInstance(login, password).getConn().isValid(5))
+                if(Connexion.getInstance(login, pass).getConn().isValid(5))
                 {
-                    //String role = ManagerConnexion.trouverRole(login);
 
                     //Thread.sleep(500);
                     statut = new MessageStatut("Connexion réussie");
@@ -366,18 +329,66 @@ go
                     barStatusLogin.setForeground(statut.getCouleur());  
                     barStatusLogin.setText(statut.toString());
                 }
+        }
+        catch(Exception e)
+        {
 
-            }
-            catch(Exception e)
-            {
+            JOptionPane.showMessageDialog(null, "Échec de l'ouverture de session de l'utilisateur " + login +
+                    ". \nVeuillez vérifier vos identifiants.", "Echec de Connexion", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Echec de Connexion");
+            barStatusLogin.setForeground(statut.getCouleur());  
+            barStatusLogin.setText(statut.toString());
 
-                JOptionPane.showMessageDialog(null, "Échec de l'ouverture de session de l'utilisateur " + login +
-                        ". \nVeuillez vérifier vos identifiants.", "Echec de Connexion", JOptionPane.ERROR_MESSAGE);
-                statut = new MessageStatut("Erreur : Echec de Connexion");
-                barStatusLogin.setForeground(statut.getCouleur());  
-                barStatusLogin.setText(statut.toString());
+        }
+    }
+    private boolean verifierChamps()
+    {
+        boolean champsOk = false;
+        if(jtLogUser.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez entrer un nom d'utilisateur", "Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Champ nom utilisateur vide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
+            
+        }
+        else if (jtPassword.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez entrer votre mot de passe", "Mot de passe", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Champ mot de passe vide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
+        }
+        else if(!OutilsAlpha.estAlphaNum(jtLogUser.getText().trim()))
+        {
+            JOptionPane.showMessageDialog(null, "Format nom utilisateur non valide", "Erreur Format Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Format nom utilisateur non valide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
+        }
+        else champsOk = true;
+        
+        return champsOk;
+    
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-            }
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        if (verifierChamps())
+        
+        {
+            connecter(jtLogUser.getText(), jtPassword.getText());
+             
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -390,7 +401,12 @@ go
     }//GEN-LAST:event_jtPasswordActionPerformed
 
     private void jtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPasswordKeyTyped
-        // TODO add your handling code here:
+       if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+       {
+           if (verifierChamps())
+           connecter(jtLogUser.getText(), jtPassword.getText());
+       }
+           
     }//GEN-LAST:event_jtPasswordKeyTyped
 
     /**
