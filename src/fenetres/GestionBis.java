@@ -617,8 +617,10 @@ public class GestionBis extends javax.swing.JFrame {
     private void boutonAjouterMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonAjouterMachineActionPerformed
         if(texteMachine.getText().trim().isEmpty())
             JOptionPane.showMessageDialog(null, "Veuillez informer le nom de la machine", "Nom Machine Absent", JOptionPane.ERROR_MESSAGE);
-        else
+        else if (outils.OutilsAlpha.estAlphaNumS(texteMachine.getText().trim()))
         {
+            JOptionPane.showMessageDialog(null, "Format nom de machine incorrect", "Format nom de machine incorrect", JOptionPane.ERROR_MESSAGE);
+            
         String nom = texteMachine.getText();
         statut =  ManagerMachine.ajouterMachine(nom);
         statusBar.setForeground(statut.getCouleur());
