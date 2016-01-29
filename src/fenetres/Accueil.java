@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import outils.Connexion;
 import outils.OutilsAlpha;
-import javax.;
 
 /**
  *
