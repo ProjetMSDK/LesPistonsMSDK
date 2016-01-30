@@ -74,15 +74,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel16" alignment="2" max="32767" attributes="0"/>
+              <Group type="103" alignment="2" groupAlignment="2" attributes="0">
+                  <Component id="jLabel16" alignment="2" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
               <Component id="jLabel4" alignment="2" pref="499" max="32767" attributes="0"/>
               <Component id="barStatusLogin" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel2" alignment="2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="412" max="32767" attributes="0"/>
+                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -92,9 +92,9 @@
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel16" min="-2" pref="44" max="-2" attributes="0"/>
-                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="barStatusLogin" min="-2" max="-2" attributes="0"/>
@@ -214,6 +214,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jtLogUser">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="JavaUser1"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtLogUserActionPerformed"/>
               </Events>

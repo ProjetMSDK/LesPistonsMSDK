@@ -129,7 +129,7 @@ public class ManagerMachine {
              
              //recuperation du code retour
              code =cs.getInt(1);
-             messa.setStatut(cs.getString(3));
+             messa = new MessageStatut(cs.getString(3));
              //fermeture de la connection
              cs.close();
              //Connexion.getInstance().close();

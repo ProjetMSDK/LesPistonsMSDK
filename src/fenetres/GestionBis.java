@@ -619,7 +619,10 @@ public class GestionBis extends javax.swing.JFrame {
         else if (!outils.OutilsAlpha.estAlphaNumS(texteMachine.getText().trim()))
         {
             JOptionPane.showMessageDialog(null, "Format nom de machine incorrect", "Format nom de machine incorrect", JOptionPane.ERROR_MESSAGE);
-            
+        }
+        else
+        {
+              
         String nom = texteMachine.getText();
         statut =  ManagerMachine.ajouterMachine(nom);
         statusBar.setForeground(statut.getCouleur());

@@ -75,7 +75,7 @@ public class Connexion
         {
             try
             {
-                instance = new Connexion("_user","_password");
+                instance = new Connexion(_user,_password);
             }
             catch(Exception e)
             {
