@@ -31,9 +31,9 @@ public class RenduComboModeleMagasin implements ListCellRenderer<Modele> {
             JLabel lab = new JLabel("" + value.getModele());
             lab.setOpaque(true);
         if ( index % 2 == 0)
-            lab.setBackground(Color.RED);
+            lab.setBackground(Color.LIGHT_GRAY);
         else
-            lab.setBackground(Color.GREEN);
+            lab.setBackground(Color.ORANGE);
         return lab;
         }
         else

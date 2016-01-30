@@ -68,7 +68,7 @@ public class Modele {
     /**
      * @param seuilMini the seuilMini to set
      */
-    private void setSeuilMini(int seuilMini) {
+    public void setSeuilMini(int seuilMini) {
         this.seuilMini = seuilMini;
     }
     

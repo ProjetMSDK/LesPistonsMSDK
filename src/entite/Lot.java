@@ -5,7 +5,9 @@
  */
 package entite;
 
-import outils.DateFR;
+import java.util.Date;
+
+
 
 /**
  *
@@ -15,7 +17,8 @@ public class Lot {
     
     private int numLot;
     private int nbPiecesDemandees;
-    private DateFR dateDeFabric;
+    private Date dateDePlanification;
+    private Date dateDeFabric;
     private String etatDuLot; 
     private int TypeNumPresse; 
     private String modele;
@@ -36,6 +39,9 @@ public class Lot {
     private double ecartTypeBL;
     private double ecartTypeBT;
 
+    private String message;
+    
+    
     public Lot(int numLot, int nbPiecesDemandees, String etatDuLot, String modele) {
         this.numLot = numLot;
         this.nbPiecesDemandees = nbPiecesDemandees;
@@ -43,6 +49,34 @@ public class Lot {
         this.modele = modele;
     }
 
+    public Lot(int numLot, String modele, int nbPiecesDemandees, Date dateDePlanification, String etatDuLot, int TypeNumPresse, Date dateDeFabric) {
+        this.numLot = numLot;
+        this.nbPiecesDemandees = nbPiecesDemandees;
+        this.dateDePlanification = dateDePlanification;
+        this.dateDeFabric = dateDeFabric;
+        this.etatDuLot = etatDuLot;
+        this.TypeNumPresse = TypeNumPresse;
+        this.modele = modele;
+    }
+    
+    
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * Constructeur pour gestion des statistiques
+     */
+    public Lot(int numeroLot)
+    {
+        numLot = numeroLot;
+        
+    }
     
     
     
@@ -70,7 +104,7 @@ public class Lot {
     /**
      * @return the dateDeFabric
      */
-    public DateFR getDateDeFabric() {
+    public Date getDateDeFabric() {
         return dateDeFabric;
     }
 
@@ -95,6 +129,10 @@ public class Lot {
         return modele;
     }
 
+    
+    public void setModele(String modele) {
+        this.modele = modele;
+    }
     /**
      * @return the moyenneHL
      */
@@ -205,11 +243,25 @@ public class Lot {
      */
     public double getEcartTypeBT() {
         return ecartTypeBT;
+        
     }
 
+    public Date getDateDePlanification() {
+        return dateDePlanification;
+    }
+
+    public void setDateDePlanification(Date dateDePlanification) {
+        this.dateDePlanification = dateDePlanification;
+    }
+
+    
     @Override
     public String toString() {
         return "Lot{" + "numLot=" + numLot + '}';
+    }
+
+    public void setVire(Boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -19,6 +19,11 @@ public class ModelComboModeleMagasin extends AbstractListModel<Modele> implement
     public ModelComboModeleMagasin()
     {
         liste = ManagerModele.listeModeleMagasin();
+        /*System.out.println("test ModelComboModeleMagasin");
+        for(Modele m : liste)
+        {
+            System.out.println(m);
+        }*/
     }
 
     @Override

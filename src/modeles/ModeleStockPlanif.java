@@ -5,7 +5,7 @@
  */
 package modeles;
 
-import dao.ManagerPlanification;
+
 import dao.ManagerStock;
 import entite.Stock;
 import java.util.ArrayList;
@@ -18,13 +18,14 @@ import javax.swing.table.AbstractTableModel;
 public class ModeleStockPlanif extends AbstractTableModel{    
 
     
-    ArrayList<Stock> liste = ManagerPlanification.listeStockPlanif();
-    ArrayList<String> listeColonne = ManagerPlanification.ListeColonnesStockPlanif();
+    ArrayList<Stock> liste = ManagerStock.listeStockPlanif();
+    ArrayList<String> listeColonne = ManagerStock.ListeColonnesStockPlanif();
+    
     
 
     @Override
     public int getRowCount() {
-        return liste.size();
+        return liste.size();        
     }
 
     @Override

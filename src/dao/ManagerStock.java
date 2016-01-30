@@ -21,7 +21,7 @@ public class ManagerStock {
     {
        try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from STOCK");
+            ResultSet rs = st.executeQuery("SELECT * FROM STOCK");
             ArrayList<Stock> liste = new ArrayList<>();
              
             while ( rs.next())
@@ -40,7 +40,7 @@ public class ManagerStock {
     {
          try {
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select * from STOCK");
+            ResultSet rs = st.executeQuery("SELECT * FROM STOCK");
             ArrayList<String> liste = new ArrayList<>();
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
@@ -56,4 +56,54 @@ public class ManagerStock {
         }
     }
     
+    
+/**
+ *
+ * @author bouyadel
+ */
+
+    
+    public static ArrayList<Stock> listeStockPlanif()
+    {
+       try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM stockPlanif");
+            ArrayList<Stock> liste = new ArrayList<>();
+             
+            while ( rs.next())
+            {
+                    liste.add(new Stock(rs.getString(1),rs.getInt(2), rs.getInt(3)));
+                   
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+        
+    }
+    public static ArrayList<String> ListeColonnesStockPlanif()
+    {
+         try {
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM stockPlanif");
+            ArrayList<String> liste = new ArrayList<>();
+             ResultSetMetaData md = rs.getMetaData();
+             int i = 1;
+            while ( i <= md.getColumnCount())
+            {
+                    liste.add(md.getColumnName(i));
+                    i++;
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        }
+    }
+    
+    
+    
 }
+    
+

@@ -43,10 +43,12 @@ public class ModelTableModele extends AbstractTableModel{
         Modele mod = listeModeles.get(rowIndex);
         switch (columnIndex)
         {
-            case 0 : return mod.getModele();       
-            
+            case 0 : return mod.getModele(); 
+                     
+            case 1 : return mod.getDiametre();       
+              
             //Ne doit pas être nul car on ne peut pas ajouter un objet null
-            default : return "";
+            default : return mod.getSeuilMini();
         }
     }
 
@@ -57,5 +59,14 @@ public class ModelTableModele extends AbstractTableModel{
         return listeColonne.get(column);
     }
 
+    public boolean isCellEditable(int row, int col) {
+        //Note that the data/cell address is constant,
+        //no matter where the cell appears onscreen.
+        if (col < 2) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     
 }

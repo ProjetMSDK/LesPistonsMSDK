@@ -13,23 +13,23 @@ public class Stock {
     
     private String modele;
     private String nomCategorie;
-    private double quantite;
-    private double seuil;
+    private int quantite;
+    private int seuil;
 
-    public Stock(String modele, String nomCategorie, double quantite) {
+    public Stock(String modele, String nomCategorie, int quantite) {
         this.modele = modele;
         this.nomCategorie = nomCategorie;
         this.quantite = quantite;
     }
 
-    public Stock(String modele, double quantite, double seuil) {
+    public Stock(String modele, int quantite, int seuil) {
         this.modele = modele;
         this.quantite = quantite;
         this.seuil = seuil;
     }
 
     
-    public double getSeuil() {
+    public int getSeuil() {
         return seuil;
     }
 
@@ -49,11 +49,11 @@ public class Stock {
         this.nomCategorie = nomCategorie;
     }
 
-    public double getQuantite() {
+    public int getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(double quantite) {
+    public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
     

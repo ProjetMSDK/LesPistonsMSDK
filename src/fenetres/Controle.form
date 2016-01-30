@@ -23,22 +23,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="labelSBar" alignment="1" max="32767" attributes="0"/>
-          <Component id="labelTitre" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="43" max="32767" attributes="0"/>
-                      <Component id="bQuitter" min="-2" pref="88" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+          <Component id="labelTitre" alignment="2" max="32767" attributes="0"/>
+          <Component id="jLabel16" alignment="2" max="32767" attributes="0"/>
+          <Component id="labelSBar" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,15 +43,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="labelTitre" min="-2" pref="30" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLabel16" min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace type="separate" pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="bQuitter" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="labelSBar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelSBar" min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,6 +61,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelTitre">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Aharoni" size="18" style="1"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="CONTROLE"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -71,13 +73,11 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="bQuitter">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Quitter"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanel3">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e6" green="d9" red="ca" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
@@ -88,33 +88,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LabelPieceNum" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelHL" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelHT" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelBL" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelBT" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelCateg" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="2" attributes="0">
+                      <Component id="labelPieceCourante" alignment="2" max="32767" attributes="0"/>
+                      <Component id="jPanel2" alignment="2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelNomCategorie" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelDiametreBT" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDiametreBL" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDiametreHT" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDiametreHL" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelIdPiece" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="23" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,101 +102,164 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="LabelPieceNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelIdPiece" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="labelPieceCourante" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelHL" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDiametreHL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelHT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDiametreHT" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelBL" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDiametreBL" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelBT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelDiametreBT" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelCateg" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNomCategorie" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="labelCateg">
+        <Component class="javax.swing.JLabel" name="labelPieceCourante">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cat&#xe9;gorie"/>
+            <Property name="text" type="java.lang.String" value="Dernier Enregistrement"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNomCategorie">
+        <Container class="javax.swing.JPanel" name="jPanel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="         "/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e6" green="d9" red="ca" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+            </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="LabelPieceNum">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pi&#xe8;ce n."/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelIdPiece">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="00"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelHL">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="HL"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelDiametreHL">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="        "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelHT">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="HT"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelDiametreHT">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="       "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelBL">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="BL"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelDiametreBL">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="       "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelBT">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="BT"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelDiametreBT">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="       "/>
-          </Properties>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelHL" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelHT" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBL" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelBT" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCateg" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelPieceNum" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelNomCategorie" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="labelDiametreBT" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDiametreBL" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDiametreHT" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDiametreHL" max="32767" attributes="0"/>
+                              <Component id="labelIdPiece" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LabelPieceNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelIdPiece" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelHL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDiametreHL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelHT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDiametreHT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDiametreBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelBT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDiametreBT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelCateg" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNomCategorie" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="LabelPieceNum">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pi&#xe8;ce n."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelDiametreBL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="       "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelIdPiece">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="00"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNomCategorie">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e6" green="d9" red="ca" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="         "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="HT"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelDiametreBT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="       "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelCateg">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cat&#xe9;gorie"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelBT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="BT"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelBL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="BL"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelDiametreHL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="        "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelHL">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="HL"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelDiametreHT">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="       "/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="labelSBar">
@@ -231,6 +274,9 @@
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel6">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e6" green="d9" red="ca" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
             <BevelBorder/>
@@ -241,15 +287,9 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <Component id="jPanel4" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
-              </Group>
               <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+              <Component id="jPanel4" alignment="2" max="32767" attributes="0"/>
+              <Component id="jPanel1" alignment="2" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -260,93 +300,61 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e6" green="d9" red="ca" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jSeparator3" min="-2" pref="272" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="texteDiametreBL" linkSize="2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="texteDiametreHL" linkSize="2" min="-2" pref="81" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="texteDiametreHT" linkSize="2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="texteDiametreBT" linkSize="2" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="bDefautVisuel" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="texteCommRebut" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="bSuspendre" linkSize="1" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="bValider" linkSize="1" min="-2" pref="111" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="bSuspendre" linkSize="1" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="bArreter" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="bValider" linkSize="1" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jSeparator3" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="bDefautVisuel" min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="texteCommRebut" min="-2" pref="170" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bDefautVisuel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="texteCommRebut" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bDefautVisuel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="texteCommRebut" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                       <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="texteDiametreHL" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="texteDiametreHT" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="texteDiametreBL" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="texteDiametreBT" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bValider" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bSuspendre" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="bSuspendre" linkSize="14" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="bValider" linkSize="14" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="bArreter" linkSize="14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -354,50 +362,11 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="BT"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="texteDiametreHT">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texteDiametreHTActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="HL"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="texteDiametreBT">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="                  "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="texteDiametreHL">
-              <Properties>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[60, 20]"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texteDiametreHLActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JTextField" name="texteDiametreBL">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="HT"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="BL"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="bValider">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Valider"/>
               </Properties>
               <Events>
@@ -406,6 +375,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="bDefautVisuel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="D&#xe9;faut Visuel"/>
                 <Property name="actionCommand" type="java.lang.String" value="Defaut"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -418,6 +390,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="texteCommRebut">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="14" style="0"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
               </Properties>
               <Events>
@@ -428,37 +403,202 @@
             </Component>
             <Component class="javax.swing.JButton" name="bSuspendre">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Suspendre"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSuspendreActionPerformed"/>
               </Events>
             </Component>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e6" green="d9" red="ca" type="rgb"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" linkSize="11" min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="jLabel7" linkSize="11" min="-2" pref="64" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="texteDiametreBL" max="32767" attributes="0"/>
+                              <Component id="texteDiametreHL" pref="100" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jLabel5" linkSize="11" min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="jLabel6" linkSize="11" min="-2" pref="76" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="texteDiametreHT" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="texteDiametreBT" min="-2" pref="98" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" linkSize="12" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="texteDiametreHL" linkSize="13" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jLabel5" linkSize="12" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="texteDiametreHT" linkSize="13" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="124" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="texteDiametreBL" linkSize="13" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" linkSize="12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="texteDiametreBT" linkSize="13" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jLabel6" linkSize="12" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JTextField" name="texteDiametreHL">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[80, 25]"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[80, 25]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texteDiametreHLActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel4">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="HL"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="BL"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="texteDiametreBL">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel5">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="HT"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="texteDiametreHT">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texteDiametreHTActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="BT"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="texteDiametreBT">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="11"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="bArreter">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Calibri" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Arreter"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bArreterActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel4">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e6" green="d9" red="ca" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelNumLot" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="comboLotControle" min="-2" pref="156" max="-2" attributes="0"/>
+                      <Component id="labelNumLot" min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="comboLots" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelNbPieces" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelNbPR" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNumLot" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="comboLotControle" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNumLot" alignment="3" max="32767" attributes="0"/>
+                          <Component id="comboLots" alignment="3" pref="22" max="32767" attributes="0"/>
+                          <Component id="labelNbPieces" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNbPR" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -469,23 +609,82 @@
                 <Property name="text" type="java.lang.String" value="Num&#xe9;ro du lot"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="comboLotControle">
+            <Component class="javax.swing.JComboBox" name="comboLots">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new ModelComboLotControle()" type="code"/>
+                  <Connection code="new modeles.ModelComboLots()" type="code"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboLotControleItemStateChanged"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboLotControleActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboLotsItemStateChanged"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboLotsActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboLotControle.setRenderer(new RenduComboLotControle());"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboLots.setRenderer(new rendus.RenduComboLots());"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNbPieces">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre de Pi&#xe8;ces restantes "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNbPR">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel16">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e6" green="d9" red="ca" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arabic Typesetting" size="24" style="3"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Bretagne Ouest Unit&#xe9; Moteurs"/>
+        <Property name="opaque" type="boolean" value="true"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanel7">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bQuitter" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bQuitter" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="bQuitter">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Calibri" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Quitter"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bQuitterActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

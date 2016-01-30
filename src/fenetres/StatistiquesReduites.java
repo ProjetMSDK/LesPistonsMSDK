@@ -5,6 +5,16 @@
  */
 package fenetres;
 
+import entite.Lot;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import modeles.ModelTableStatsCumul;
+import modeles.ModelTableStatsReduites;
+import rendus.RenduTableStatsCumul;
+import rendus.RenduTableStatsReduites;
+
+
 /**
  *
  * @author benosmane
@@ -16,6 +26,10 @@ public class StatistiquesReduites extends javax.swing.JFrame {
      */
     public StatistiquesReduites() {
         initComponents();
+        
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -29,16 +43,16 @@ public class StatistiquesReduites extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        labelSBar = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        comboLots = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        tableCumuls = new javax.swing.JTable();
+        labelNumeroLot = new javax.swing.JLabel();
+        bActualiser = new javax.swing.JButton();
+        bImpression = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableStatsReduites = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,42 +62,50 @@ public class StatistiquesReduites extends javax.swing.JFrame {
         jLabel1.setPreferredSize(new java.awt.Dimension(128, 30));
 
         jButton1.setText("Quitter");
-
-        jLabel4.setText("Status Bar");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"moyenne", null, null, null, null},
-                {"max", null, null, null, null},
-                {"min", null, null, null, null},
-                {"ecart type", null, null, null, null}
-            },
-            new String [] {
-                "Calcul", "HL", "HT", "BL", "BT"
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Rebut", "Petit", "Moyen", "Gros", "Total"
+        labelSBar.setText(" ");
+        labelSBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel1.setBackground(new java.awt.Color(202, 217, 230));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        comboLots.setModel(new modeles.ModelComboLotsStats());
+        comboLots.setRenderer(new rendus.RenduComboLots());
+        comboLots.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboLotsItemStateChanged(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        });
+        comboLots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLotsActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Numéro de Lot:");
+        tableCumuls.setModel(new ModelTableStatsCumul(1));
+        jScrollPane2.setViewportView(tableCumuls);
+        //tableStatsReduites.setModel(new ModelTableStatsCumul(1));
+        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsCumul());
 
-        jButton2.setText("Actualiser");
+        labelNumeroLot.setText("Numéro de Lot:");
 
-        jButton3.setText("Impression");
+        bActualiser.setText("Actualiser");
+        bActualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualiserActionPerformed(evt);
+            }
+        });
+
+        bImpression.setText("Impression");
+
+        tableStatsReduites.setModel(new ModelTableStatsReduites(1));
+        jScrollPane3.setViewportView(tableStatsReduites);
+        tableStatsReduites.setDefaultRenderer(Object.class, new RenduTableStatsReduites());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,19 +114,17 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(bImpression)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bActualiser))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNumeroLot)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -112,28 +132,24 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNumeroLot)
+                    .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton3)
-                        .addContainerGap(22, Short.MAX_VALUE))))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bImpression)
+                    .addComponent(bActualiser))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelSBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -150,15 +166,42 @@ public class StatistiquesReduites extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4))
+                .addComponent(labelSBar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
+        
+    }//GEN-LAST:event_comboLotsActionPerformed
+
+    private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
+        int numLot = ((Lot)(evt.getItem())).getNumLot();
+        tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
+        tableCumuls.setModel(new ModelTableStatsCumul(numLot));
+    }//GEN-LAST:event_comboLotsItemStateChanged
+
+    private void bActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualiserActionPerformed
+        
+        int numLot = ((Lot)comboLots.getSelectedItem()).getNumLot();
+        tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
+        tableCumuls.setModel(new ModelTableStatsCumul(numLot));
+    }//GEN-LAST:event_bActualiserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,17 +239,17 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bActualiser;
+    private javax.swing.JButton bImpression;
+    private javax.swing.JComboBox comboLots;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelNumeroLot;
+    private javax.swing.JLabel labelSBar;
+    private javax.swing.JTable tableCumuls;
+    private javax.swing.JTable tableStatsReduites;
     // End of variables declaration//GEN-END:variables
 }

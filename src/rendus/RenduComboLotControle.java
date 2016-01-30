@@ -26,9 +26,9 @@ public class RenduComboLotControle implements ListCellRenderer<Lot> {
             JLabel lab = new JLabel("" + value.getNumLot());
             lab.setOpaque(true);
         if ( index % 2 == 0)
-            lab.setBackground(Color.GRAY);
+            lab.setBackground(Color.LIGHT_GRAY);
         else
-            lab.setBackground(Color.YELLOW);
+            lab.setBackground(Color.ORANGE);
         return lab;
         }
         else

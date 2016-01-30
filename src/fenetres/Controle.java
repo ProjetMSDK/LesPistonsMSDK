@@ -7,10 +7,9 @@ package fenetres;
 import dao.*;
 import entite.Lot;
 import entite.Piece;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import modeles.*;
-import rendus.*;
+import javax.swing.JOptionPane;
+import outils.OutilsAlpha;
 
 /**
  *
@@ -22,13 +21,15 @@ public class Controle extends javax.swing.JFrame {
      * Creates new form Controle
      */
     
-    Piece pieceCourante;
+    private Piece pieceCourante;
+    private int nbPiecesRestantes;
     public Controle() {
         initComponents();
         
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        initChampsSaisie();
         
     }
 
@@ -42,160 +43,173 @@ public class Controle extends javax.swing.JFrame {
     private void initComponents() {
 
         labelTitre = new javax.swing.JLabel();
-        bQuitter = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        labelCateg = new javax.swing.JLabel();
-        labelNomCategorie = new javax.swing.JLabel();
+        labelPieceCourante = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         LabelPieceNum = new javax.swing.JLabel();
-        labelIdPiece = new javax.swing.JLabel();
-        labelHL = new javax.swing.JLabel();
-        labelDiametreHL = new javax.swing.JLabel();
-        labelHT = new javax.swing.JLabel();
-        labelDiametreHT = new javax.swing.JLabel();
-        labelBL = new javax.swing.JLabel();
         labelDiametreBL = new javax.swing.JLabel();
-        labelBT = new javax.swing.JLabel();
+        labelIdPiece = new javax.swing.JLabel();
+        labelNomCategorie = new javax.swing.JLabel();
+        labelHT = new javax.swing.JLabel();
         labelDiametreBT = new javax.swing.JLabel();
+        labelCateg = new javax.swing.JLabel();
+        labelBT = new javax.swing.JLabel();
+        labelBL = new javax.swing.JLabel();
+        labelDiametreHL = new javax.swing.JLabel();
+        labelHL = new javax.swing.JLabel();
+        labelDiametreHT = new javax.swing.JLabel();
         labelSBar = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        texteDiametreHT = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        texteDiametreBT = new javax.swing.JTextField();
-        texteDiametreHL = new javax.swing.JTextField();
-        texteDiametreBL = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         bValider = new javax.swing.JButton();
         bDefautVisuel = new javax.swing.JButton();
         texteCommRebut = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         bSuspendre = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        texteDiametreHL = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        texteDiametreBL = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        texteDiametreHT = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        texteDiametreBT = new javax.swing.JTextField();
+        bArreter = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         labelNumLot = new javax.swing.JLabel();
-        comboLotControle = new javax.swing.JComboBox();
+        comboLots = new javax.swing.JComboBox();
+        labelNbPieces = new javax.swing.JLabel();
+        labelNbPR = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        bQuitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        labelTitre.setFont(new java.awt.Font("Aharoni", 1, 18)); // NOI18N
         labelTitre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitre.setText("CONTROLE");
         labelTitre.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        bQuitter.setText("Quitter");
-
+        jPanel3.setBackground(new java.awt.Color(202, 217, 230));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        labelCateg.setText("Catégorie");
+        labelPieceCourante.setText("Dernier Enregistrement");
 
-        labelNomCategorie.setText("         ");
+        jPanel2.setBackground(new java.awt.Color(202, 217, 230));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         LabelPieceNum.setText("Pièce n.");
 
+        labelDiametreBL.setText("       ");
+
         labelIdPiece.setText("00");
 
-        labelHL.setText("HL");
-
-        labelDiametreHL.setText("        ");
+        labelNomCategorie.setBackground(new java.awt.Color(202, 217, 230));
+        labelNomCategorie.setText("         ");
 
         labelHT.setText("HT");
 
-        labelDiametreHT.setText("       ");
+        labelDiametreBT.setText("       ");
 
-        labelBL.setText("BL");
-
-        labelDiametreBL.setText("       ");
+        labelCateg.setText("Catégorie");
 
         labelBT.setText("BT");
 
-        labelDiametreBT.setText("       ");
+        labelBL.setText("BL");
+
+        labelDiametreHL.setText("        ");
+
+        labelHL.setText("HL");
+
+        labelDiametreHT.setText("       ");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelHL)
+                    .addComponent(labelHT)
+                    .addComponent(labelBL)
+                    .addComponent(labelBT)
+                    .addComponent(labelCateg)
+                    .addComponent(LabelPieceNum))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNomCategorie)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelDiametreBT)
+                        .addComponent(labelDiametreBL)
+                        .addComponent(labelDiametreHT)
+                        .addComponent(labelDiametreHL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelIdPiece, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelPieceNum)
+                    .addComponent(labelIdPiece))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelHL)
+                    .addComponent(labelDiametreHL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelHT)
+                    .addComponent(labelDiametreHT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelBL)
+                    .addComponent(labelDiametreBL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelBT)
+                    .addComponent(labelDiametreBT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCateg)
+                    .addComponent(labelNomCategorie))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelPieceNum)
-                    .addComponent(labelHL)
-                    .addComponent(labelHT)
-                    .addComponent(labelBL)
-                    .addComponent(labelBT)
-                    .addComponent(labelCateg))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(labelNomCategorie)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDiametreBT)
-                            .addComponent(labelDiametreBL)
-                            .addComponent(labelDiametreHT)
-                            .addComponent(labelDiametreHL)
-                            .addComponent(labelIdPiece))
-                        .addContainerGap(23, Short.MAX_VALUE))))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(labelPieceCourante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LabelPieceNum)
-                    .addComponent(labelIdPiece))
+                .addComponent(labelPieceCourante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHL)
-                    .addComponent(labelDiametreHL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHT)
-                    .addComponent(labelDiametreHT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBL)
-                    .addComponent(labelDiametreBL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBT)
-                    .addComponent(labelDiametreBT))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCateg)
-                    .addComponent(labelNomCategorie))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         labelSBar.setText("Status Bar");
         labelSBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jPanel6.setBackground(new java.awt.Color(202, 217, 230));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel6.setText("BT");
+        jPanel1.setBackground(new java.awt.Color(202, 217, 230));
 
-        texteDiametreHT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texteDiametreHTActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("HL");
-
-        texteDiametreBT.setText("                  ");
-
-        texteDiametreHL.setMinimumSize(new java.awt.Dimension(60, 20));
-        texteDiametreHL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texteDiametreHLActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("HT");
-
-        jLabel7.setText("BL");
-
+        bValider.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         bValider.setText("Valider");
         bValider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,6 +217,7 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        bDefautVisuel.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         bDefautVisuel.setText("Défaut Visuel");
         bDefautVisuel.setActionCommand("Defaut");
         bDefautVisuel.setPreferredSize(new java.awt.Dimension(69, 23));
@@ -212,6 +227,7 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        texteCommRebut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         texteCommRebut.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         texteCommRebut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +235,7 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        bSuspendre.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         bSuspendre.setText("Suspendre");
         bSuspendre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,96 +243,169 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        jPanel5.setBackground(new java.awt.Color(202, 217, 230));
+
+        texteDiametreHL.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        texteDiametreHL.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        texteDiametreHL.setMinimumSize(new java.awt.Dimension(80, 25));
+        texteDiametreHL.setPreferredSize(new java.awt.Dimension(80, 25));
+        texteDiametreHL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texteDiametreHLActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("HL");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("BL");
+
+        texteDiametreBL.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        texteDiametreBL.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("HT");
+
+        texteDiametreHT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        texteDiametreHT.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        texteDiametreHT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texteDiametreHTActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("BT");
+
+        texteDiametreBT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        texteDiametreBT.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(texteDiametreBL)
+                    .addComponent(texteDiametreHL, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(texteDiametreHT, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteDiametreBT, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+        );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel4, jLabel5, jLabel6, jLabel7});
+
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteDiametreHL, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteDiametreHT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(texteDiametreBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteDiametreBT, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
+        );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel4, jLabel5, jLabel6, jLabel7});
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {texteDiametreBL, texteDiametreBT, texteDiametreHL, texteDiametreHT});
+
+        bArreter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bArreter.setText("Arreter");
+        bArreter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bArreterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(texteDiametreBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(texteDiametreHL, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(51, 51, 51)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(texteDiametreHT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(texteDiametreBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bDefautVisuel, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(texteCommRebut))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(bSuspendre, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bValider, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(bSuspendre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(bArreter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bValider, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(bDefautVisuel, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(texteCommRebut, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bSuspendre, bValider});
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {texteDiametreBL, texteDiametreBT, texteDiametreHL, texteDiametreHT});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bArreter, bSuspendre, bValider});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bDefautVisuel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texteCommRebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(bDefautVisuel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texteCommRebut))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(texteDiametreHL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texteDiametreHT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(texteDiametreBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(texteDiametreBT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bValider)
-                    .addComponent(bSuspendre))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bSuspendre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bValider, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bArreter)))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {texteDiametreBL, texteDiametreBT, texteDiametreHL, texteDiametreHT});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bArreter, bSuspendre, bValider});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {bSuspendre, bValider});
+        jPanel4.setBackground(new java.awt.Color(202, 217, 230));
 
         labelNumLot.setText("Numéro du lot");
 
-        comboLotControle.setModel(new ModelComboLotControle());
-        comboLotControle.setRenderer(new RenduComboLotControle());
-        comboLotControle.addItemListener(new java.awt.event.ItemListener() {
+        comboLots.setModel(new modeles.ModelComboLots());
+        comboLots.setRenderer(new rendus.RenduComboLots());
+        comboLots.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboLotControleItemStateChanged(evt);
+                comboLotsItemStateChanged(evt);
             }
         });
-        comboLotControle.addActionListener(new java.awt.event.ActionListener() {
+        comboLots.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLotControleActionPerformed(evt);
+                comboLotsActionPerformed(evt);
             }
         });
+
+        labelNbPieces.setText("Nombre de Pièces restantes ");
+
+        labelNbPR.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -323,32 +413,34 @@ public class Controle extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelNumLot)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(comboLotControle, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelNumLot, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPieces)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNumLot)
-                    .addComponent(comboLotControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(labelNumLot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboLots, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(labelNbPieces)
+                    .addComponent(labelNbPR))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
             .addComponent(jSeparator1)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,66 +450,202 @@ public class Controle extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jLabel16.setBackground(new java.awt.Color(202, 217, 230));
+        jLabel16.setFont(new java.awt.Font("Arabic Typesetting", 3, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Bretagne Ouest Unité Moteurs");
+        jLabel16.setOpaque(true);
+
+        bQuitter.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        bQuitter.setText("Quitter");
+        bQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bQuitterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelSBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelTitre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(labelTitre, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelSBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labelTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bQuitter)
-                .addGap(8, 8, 8)
-                .addComponent(labelSBar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelSBar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Cette méthode initialise les champs de saisie de la fenêtre à vide.
+     */
+    private void initChampsSaisie()
+    {
+        texteDiametreBL.setText("");
+        texteDiametreBT.setText("");
+        texteDiametreHL.setText("");
+        texteDiametreHT.setText("");
+        texteCommRebut.setText("");
+        
+        nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+    }
+    /**
+     * Cette fonction retourne vrai si tous les champs des côtes sont valides
+     * @return 
+     */
+    private boolean verifChamps()
+    {
+        return OutilsAlpha.estDecimal(texteDiametreBL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreBT.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHT.getText().trim());
+    }
+    /**
+     * Cette fonction retourne true si au moins un des champs de saisie des côtes
+     * est vide.
+     * @return true si au moins un des champs de saisie est vide
+     */
+    private boolean champManquant()
+    {
+        return (texteDiametreBL.getText().trim().isEmpty()
+                || texteDiametreBT.getText().trim().isEmpty()
+                    || texteDiametreHL.getText().trim().isEmpty()
+                        || texteDiametreHT.getText().trim().isEmpty());
+    }
     private void texteCommRebutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texteCommRebutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_texteCommRebutActionPerformed
 
+    /**
+     * Action associée au bouton Suspendre
+     * @param evt 
+     */
     private void bSuspendreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSuspendreActionPerformed
-        // TODO add your handling code here:
+        
+        if(comboLots.getSelectedItem() != null)
+        {
+            ManagerLot.suspendreLot((Lot)comboLots.getSelectedItem());
+            initChampsSaisie();
+            labelSBar.setText(((Lot)comboLots.getSelectedItem()).getMessage());
+            comboLots.setModel(new modeles.ModelComboLots());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
+            labelSBar.setText("Aucun lot sélectionné");
+        }    
     }//GEN-LAST:event_bSuspendreActionPerformed
 
+    /**
+     * Action associée au bouton Valider
+     * @param evt 
+     */
     private void bValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bValiderActionPerformed
-        pieceCourante = new Piece(((Lot)comboLotControle.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
-                                Float.parseFloat(texteDiametreHT.getText()), Float.parseFloat(texteDiametreBL.getText()), 
-                                Float.parseFloat(texteDiametreBT.getText()), texteCommRebut.getText());
-        ManagerPiece.enregistrerPiece(pieceCourante);
-        labelSBar.setText(pieceCourante.getBilanEnregistrement());
-        labelIdPiece.setText(""+pieceCourante.getNumPiece());
-        labelDiametreHL.setText(""+pieceCourante.getDiamHL());
-        labelDiametreHT.setText(""+pieceCourante.getDiamHT());
-        labelDiametreBL.setText(""+pieceCourante.getDiamBL());
-        labelDiametreBT.setText(""+pieceCourante.getDiamBT());
-        labelNomCategorie.setText("" + pieceCourante.getNomCategorie());
         
+        //test de la sélection du jComboBox
+        if (comboLots.getSelectedItem() == null)
+            //si aucun choix effectué
+        {
+            //mise à jour de la barre d'état
+            labelSBar.setText("Numéro de Lot absent !");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        //appel de la méthode champManquant pour vérifier les champs
+        else if (champManquant())
+        {
+            //mise à jour de la barre d'état
+            labelSBar.setText("Côtes manquantes");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Veuillez entrer toutes les côtes", "Champ Absent", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (!verifChamps())
+        {
+            //mise à jour de la barre d'état
+            labelSBar.setText("Format Champ Incorrect");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Format Côtes incorrect", "Format Champ Incorrect", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            //Création d'un nouvel objet Pièce pour l'appel de la procédure stockée 
+            //"enregistrerPiece via la Classe ManagerPiece
+            pieceCourante = new Piece(((Lot)comboLots.getSelectedItem()).getNumLot(), Float.parseFloat(texteDiametreHL.getText()), 
+                                    Float.parseFloat(texteDiametreHT.getText()), Float.parseFloat(texteDiametreBL.getText()), 
+                                    Float.parseFloat(texteDiametreBT.getText()), texteCommRebut.getText());
+            //appel de la méthode
+            ManagerPiece.enregistrerPiece(pieceCourante);
+            //Récupération des valeurs renvoyées et modifications des composants
+            //concernés
+            labelSBar.setText(pieceCourante.getBilanEnregistrement());
+            labelIdPiece.setText(""+pieceCourante.getNumPiece());
+            labelDiametreHL.setText(""+pieceCourante.getDiamHL());
+            labelDiametreHT.setText(""+pieceCourante.getDiamHT());
+            labelDiametreBL.setText(""+pieceCourante.getDiamBL());
+            labelDiametreBT.setText(""+pieceCourante.getDiamBT());
+            labelNomCategorie.setText("" + pieceCourante.getNomCategorie());
+            //réinitialisation des JTexts pour faciliter la prochaine saisie
+            initChampsSaisie();
+            
+            //actualise la valeur du nombre de Pieces restantes
+            nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
+            //mise à jour de la comboBox si fin de lot
+            if (nbPiecesRestantes == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Lot terminé", "Lot Terminé", JOptionPane.INFORMATION_MESSAGE);
+                comboLots.setModel(new modeles.ModelComboLots());
+            }   
+            
+        }
+                
+                
     }//GEN-LAST:event_bValiderActionPerformed
 
     private void bDefautVisuelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDefautVisuelActionPerformed
@@ -431,34 +659,67 @@ public class Controle extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_texteDiametreHLActionPerformed
 
-    private void comboLotControleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotControleItemStateChanged
-        
-    }//GEN-LAST:event_comboLotControleItemStateChanged
+    private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
+           nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
+    }//GEN-LAST:event_comboLotsItemStateChanged
 
-    private void comboLotControleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotControleActionPerformed
+    private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
         //((JComboBox) evt.getSource()).
-    }//GEN-LAST:event_comboLotControleActionPerformed
+    }//GEN-LAST:event_comboLotsActionPerformed
 
     private void texteDiametreHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texteDiametreHTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_texteDiametreHTActionPerformed
 
+    private void bQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bQuitterActionPerformed
+        if(JOptionPane.showConfirmDialog(this,
+             "Quitter?", 
+             "Confirmation",
+             JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_bQuitterActionPerformed
+
+    private void bArreterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bArreterActionPerformed
+        
+        if(comboLots.getSelectedItem() != null)
+        {
+            ManagerLot.arreterLot((Lot)comboLots.getSelectedItem());
+            initChampsSaisie();
+            labelSBar.setText(((Lot)comboLots.getSelectedItem()).getMessage());
+            comboLots.setModel(new modeles.ModelComboLots());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner un lot", "Lot Absent", JOptionPane.ERROR_MESSAGE);
+            labelSBar.setText("Aucun lot sélectionné");
+        }
+    }//GEN-LAST:event_bArreterActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelPieceNum;
+    private javax.swing.JButton bArreter;
     private javax.swing.JButton bDefautVisuel;
     private javax.swing.JButton bQuitter;
     private javax.swing.JButton bSuspendre;
     private javax.swing.JButton bValider;
-    private javax.swing.JComboBox comboLotControle;
+    private javax.swing.JComboBox comboLots;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel labelBL;
@@ -471,8 +732,11 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JLabel labelHL;
     private javax.swing.JLabel labelHT;
     private javax.swing.JLabel labelIdPiece;
+    private javax.swing.JLabel labelNbPR;
+    private javax.swing.JLabel labelNbPieces;
     private javax.swing.JLabel labelNomCategorie;
     private javax.swing.JLabel labelNumLot;
+    private javax.swing.JLabel labelPieceCourante;
     private javax.swing.JLabel labelSBar;
     private javax.swing.JLabel labelTitre;
     private javax.swing.JTextField texteCommRebut;
