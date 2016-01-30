@@ -199,6 +199,7 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     private void bActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualiserActionPerformed
         
         int numLot = ((Lot)comboLots.getSelectedItem()).getNumLot();
+        comboLots.setModel(new modeles.ModelComboLotsStats());
         tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
         tableCumuls.setModel(new ModelTableStatsCumul(numLot));
     }//GEN-LAST:event_bActualiserActionPerformed

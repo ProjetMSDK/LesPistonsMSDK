@@ -98,6 +98,7 @@ public class ManagerLot {
                 liste.add(md.getColumnName(i));
                 i++;
             }
+            
             return liste;
         }catch (Exception e)
         {

@@ -31,6 +31,10 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        
+        for(String s : listeColonne)
+                System.out.println(s);
+            
         switch(columnIndex)
         {
             case 0: return affich(liste.get(rowIndex).getNumLot());
@@ -43,6 +47,13 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
            
     }
     } 
+
+    @Override
+    public String getColumnName(int column) {
+        return listeColonne.get(column); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
     private Object affich(Object o)
     {
