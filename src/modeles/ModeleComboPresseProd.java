@@ -22,7 +22,7 @@ public class ModeleComboPresseProd extends AbstractListModel<Machine> implements
     
     public ModeleComboPresseProd()
     {
-        liste = ManagerMachine.listeMachine();
+        liste = ManagerMachine.listeMachineDispo();
     }
     
     @Override

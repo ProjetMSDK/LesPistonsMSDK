@@ -24,6 +24,7 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     /**
      * Creates new form StatistiquesReduites
      */
+    private int numLot = 1; //numéro du lot courant
     public StatistiquesReduites() {
         initComponents();
         
@@ -137,8 +138,8 @@ public class StatistiquesReduites extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bImpression)
                     .addComponent(bActualiser))
@@ -191,14 +192,14 @@ public class StatistiquesReduites extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLotsActionPerformed
 
     private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
-        int numLot = ((Lot)(evt.getItem())).getNumLot();
+        numLot = ((Lot)(evt.getItem())).getNumLot();
         tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
         tableCumuls.setModel(new ModelTableStatsCumul(numLot));
     }//GEN-LAST:event_comboLotsItemStateChanged
 
     private void bActualiserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualiserActionPerformed
         
-        int numLot = ((Lot)comboLots.getSelectedItem()).getNumLot();
+        //int numLot = ((Lot)comboLots.getSelectedItem()).getNumLot();
         comboLots.setModel(new modeles.ModelComboLotsStats());
         tableStatsReduites.setModel(new ModelTableStatsReduites(numLot));
         tableCumuls.setModel(new ModelTableStatsCumul(numLot));

@@ -395,7 +395,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTableprod.setDefaultRenderer(Object.class, new RenduTable());"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

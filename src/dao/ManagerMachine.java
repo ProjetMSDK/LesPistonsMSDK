@@ -39,6 +39,26 @@ public class ManagerMachine {
         }
         
     }
+    
+    public static ArrayList<Machine> listeMachineDispo()
+    {
+        try{
+            Statement st = Connexion.getInstance().getConn().createStatement();
+            ResultSet rs = st.executeQuery("select libelle AS 'PRESSE' from MACHINE WHERE etatPresse = 'Libre'");
+            ArrayList<Machine> liste = new ArrayList<>();
+             
+            while ( rs.next())
+            {
+                    liste.add(new Machine(rs.getString(1)));
+                   
+            }
+            return liste;
+        } catch (Exception ex) {
+           ex.printStackTrace();
+           return null;
+        
+        }
+    }
     public static ArrayList<String> ListeColonnesMachine()
     {
          try {

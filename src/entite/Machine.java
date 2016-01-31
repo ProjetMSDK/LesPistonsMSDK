@@ -16,6 +16,11 @@ public class Machine {
     private String prodPrec;
     
    
+    public Machine(String mLibelle)
+           
+    {
+        setLibelle(mLibelle);
+    }
     
     public Machine(int mNumPresse , String mLibelle)
            

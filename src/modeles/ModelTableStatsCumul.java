@@ -28,7 +28,7 @@ public class ModelTableStatsCumul extends AbstractTableModel{
         
         listeColonne = new ArrayList();
         listeColonne.add("Catégorie");
-        listeColonne.add("Quantités");
+        listeColonne.add("Quantité");
     }
 
     @Override

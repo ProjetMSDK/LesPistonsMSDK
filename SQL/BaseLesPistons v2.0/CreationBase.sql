@@ -2161,10 +2161,13 @@ GO
 
 CREATE view production
 AS
-select numLot as [NUMERO LOT],modele as 'MODELE', nbPiecesDemandees as 'QUANTITE',
-						dateDePlanification as 'DATE DE PLANIFICATION',etatDuLot as 'ETAT DU LOT',
-								numPresse as 'NUMERO PRESSE',dateDeFabrication as 'DATE DE FABRICATION' 
-	from LOt
+select numLot as 'LOT',modele as 'MODELE', nbPiecesDemandees as 'QT',
+						dateDePlanification as 'DATE DE PLANIF.',etatDuLot as 'ETAT DU LOT',
+								(SELECT libelle
+									FROM MACHINE m JOIN LOT l ON  m.numPresse = l.numPresse
+									WHERE l.numLot = lo.numLot)
+									as 'PRESSE',dateDeFabrication as 'DATE DE FABRIC.' 
+	from Lot lo
 GO
 
 CREATE view presse

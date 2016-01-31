@@ -21,6 +21,7 @@ public class Lot {
     private Date dateDeFabric;
     private String etatDuLot; 
     private int TypeNumPresse; 
+    private String libelle;
     private String modele;
     private double moyenneHL; 
     private double moyenneHT; 
@@ -57,6 +58,20 @@ public class Lot {
         this.etatDuLot = etatDuLot;
         this.TypeNumPresse = TypeNumPresse;
         this.modele = modele;
+    }
+    
+    public Lot(int numLot, String modele, int nbPiecesDemandees, Date dateDePlanification, String etatDuLot, String libelle, Date dateDeFabric) {
+        this.numLot = numLot;
+        this.nbPiecesDemandees = nbPiecesDemandees;
+        this.dateDePlanification = dateDePlanification;
+        this.dateDeFabric = dateDeFabric;
+        this.etatDuLot = etatDuLot;
+        this.libelle = libelle;
+        this.modele = modele;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
     
     

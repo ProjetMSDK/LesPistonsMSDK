@@ -8,6 +8,8 @@ package modeles;
 import dao.ManagerLot;
 import entite.Lot;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -32,9 +34,6 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         
-        for(String s : listeColonne)
-                System.out.println(s);
-            
         switch(columnIndex)
         {
             case 0: return affich(liste.get(rowIndex).getNumLot());
@@ -42,7 +41,7 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
             case 2: return affich(liste.get(rowIndex).getNbPiecesDemandees());
             case 3: return affich(liste.get(rowIndex).getDateDePlanification());
             case 4: return affich(liste.get(rowIndex).getEtatDuLot());   
-            case 5: return affich(liste.get(rowIndex).getTypeNumPresse());
+            case 5: return affich(liste.get(rowIndex).getLibelle());
             default: return affich(liste.get(rowIndex).getDateDeFabric());                 
            
     }
@@ -51,6 +50,16 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
     @Override
     public String getColumnName(int column) {
         return listeColonne.get(column); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addTableModelListener(TableModelListener l) {
+        super.addTableModelListener(l); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex == 5 && ((String)getValueAt(rowIndex, 4)).startsWith("Lancé");
     }
     
     

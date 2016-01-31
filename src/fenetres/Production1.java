@@ -206,7 +206,7 @@ public class Production1 extends javax.swing.JFrame {
         jLabel4.setText("PRODUCTION");
 
         jTableprod.setModel(new ModeleTableProdPlanif());
-        jTableprod.setDefaultRenderer(Object.class, new RenduTable());
+        jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());
         jScrollPane3.setViewportView(jTableprod);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
