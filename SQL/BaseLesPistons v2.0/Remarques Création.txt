@@ -1,0 +1,28 @@
+ajoutModele : faut t il verrouiller la table Stock (trigger)?
+
+supprmodele : suppression du delete sur le stock en doublon avec le trigger
+
+planifierLot
+changement du mode de récupération du numéro de lot créé : utilisation du max et non simplement
+le modèle et la quantité (risque d'erreur provenant de doublon)
+
+TRIGGER addModeleStock pas de vérif sur les doublons?
+
+procedure demarrerLot
+
+l.956 : EtatPresse écrit 'En Production '
+
+rajout du test sur le coderet après appel de changerEtatLot (l.965)
+
+enregistrerPiece : appel de arreterLot au lieu de changerEtatLot et test sur le code retour avant le commit
+
+entreeCaisse
+probleme de verification du nom du modèle : '[A-Za-z]%' au lieu de '[a-zA-Z0-9]%'
+idem pour sortieCaisse
++ : IF @nbCaisse > @qtStock doit etre apres le tablockx
+
+
+suspendreLot :  --l'état du lot Démarré'=> 'Suspendu'
+			 IF @etatLot='Démarré'
+				BEGIN
+		ne peut suspendre qu'un lot démarré => et suspendre dans contrôle (cf Dossier Résultat)?
