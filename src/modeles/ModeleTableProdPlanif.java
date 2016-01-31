@@ -8,7 +8,6 @@ package modeles;
 import dao.ManagerLot;
 import entite.Lot;
 import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
@@ -60,6 +59,20 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 5 && ((String)getValueAt(rowIndex, 4)).startsWith("Lancé");
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        
+        if(aValue instanceof String && columnIndex == 5)
+        {
+            //on récupère le lot correspondant à la ligne
+            Lot lotProd = liste.get(rowIndex);
+            //on actualise son champ libellé sur la base du choix sélectionné
+            //dans la comboBox de la colonne Presse
+            lotProd.setLibelle((String) aValue);
+        }
+        
     }
     
     

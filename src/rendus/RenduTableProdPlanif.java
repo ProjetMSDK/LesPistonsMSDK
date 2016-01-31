@@ -25,32 +25,53 @@ public class RenduTableProdPlanif implements TableCellRenderer{
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         
-        ModeleTableProdPlanif mod = (ModeleTableProdPlanif) table.getModel();
-        if(column == 5 && ((String)mod.getValueAt(row, 4)).startsWith("Lancé"))
-        {
-            JComboBox comboTabPresse = new JComboBox();
-            comboTabPresse.setModel(new ModeleComboPresseProd());
-            comboTabPresse.setRenderer(new RenduComboPresseProd());
-            ((JComboBox<String>)comboTabPresse).setSelectedItem(value);
-            table.getColumn("PRESSE").setCellEditor(new DefaultCellEditor((JComboBox) comboTabPresse));
-            
-            return comboTabPresse;
-        }
-        else
-        {
-        JLabel lab = new JLabel(value.toString());
-        lab.setOpaque(true);
-        if ( (row + column) % 2 == 0)
-        {
-            lab.setBackground(Color.LIGHT_GRAY);
-        }
-        else
-        {
-            lab.setBackground(Color.ORANGE);
-        } 
+        Component comp;
         
-       return lab;
+        switch(column)
+        {
+            case 5 : // colonne des presses
+                
+                ModeleTableProdPlanif mod = (ModeleTableProdPlanif) table.getModel();
+                if(((String)mod.getValueAt(row, 4)).startsWith("Lancé"))
+                {
+                    comp = new JComboBox();
+                    ((JComboBox)comp).setModel(new ModeleComboPresseProd());
+                    ((JComboBox)comp).setRenderer(new RenduComboPresseProd());
+                    ((JComboBox)comp).setSelectedItem(value);
+                    table.getColumn("PRESSE").setCellEditor(
+                            new DefaultCellEditor((JComboBox) comp));
+                }
+                else
+                {
+                    comp = new JLabel(value.toString());
+                    ((JLabel)comp).setOpaque(true);
+                    
+                    if ( (row) % 2 == 0)
+                    {
+                        ((JLabel)comp).setBackground(Color.LIGHT_GRAY);
+                    }
+                    else
+                    {
+                        ((JLabel)comp).setBackground(Color.ORANGE);
+                    } 
+                }
+                break;
+            
+            default : 
+                comp = new JLabel(value.toString());
+                    ((JLabel)comp).setOpaque(true);
+                    
+                    if ( (row) % 2 == 0)
+                    {
+                        ((JLabel)comp).setBackground(Color.LIGHT_GRAY);
+                    }
+                    else
+                    {
+                        ((JLabel)comp).setBackground(Color.ORANGE);
+                    } 
+                break;
          }
+        return comp;
+        
     }
-    
 }

@@ -40,16 +40,16 @@ public class ManagerMachine {
         
     }
     
-    public static ArrayList<Machine> listeMachineDispo()
+    public static ArrayList<String> listeMachineDispo()
     {
         try{
             Statement st = Connexion.getInstance().getConn().createStatement();
-            ResultSet rs = st.executeQuery("select libelle AS 'PRESSE' from MACHINE WHERE etatPresse = 'Libre'");
-            ArrayList<Machine> liste = new ArrayList<>();
+            ResultSet rs = st.executeQuery("select libelle from MACHINE WHERE etatPresse = 'Libre'");
+            ArrayList<String> liste = new ArrayList<>();
              
             while ( rs.next())
             {
-                    liste.add(new Machine(rs.getString(1)));
+                    liste.add(rs.getString(1));
                    
             }
             return liste;

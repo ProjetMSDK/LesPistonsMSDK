@@ -12,13 +12,16 @@ import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
 /**
- *
+ * Ce modèle de comboBox est utilisé dans le tableau des lots de la fenêtre
+ * Production. Les machines sont ici identifiées par leur libellé, 
+ * contenus sous forme de String.
+ * 
  * @author bouyadel
  */
-public class ModeleComboPresseProd extends AbstractListModel<Machine> implements ComboBoxModel<Machine>
+public class ModeleComboPresseProd extends AbstractListModel<String> implements ComboBoxModel<String>
 {
-    private final ArrayList<Machine> liste;
-    private Machine selection = null;
+    private final ArrayList<String> liste;
+    private String selection = null;
     
     public ModeleComboPresseProd()
     {
@@ -28,7 +31,7 @@ public class ModeleComboPresseProd extends AbstractListModel<Machine> implements
     @Override
     public void setSelectedItem(Object anItem)
     {
-        selection = (Machine) anItem ; //to select and register an item from the pull-down
+        selection = (String) anItem ; 
         //list
     }
         
@@ -46,7 +49,7 @@ public class ModeleComboPresseProd extends AbstractListModel<Machine> implements
     }
     
     @Override
-    public Machine getElementAt(int index)
+    public String getElementAt(int index)
     {
         return liste.get(index);
     }  

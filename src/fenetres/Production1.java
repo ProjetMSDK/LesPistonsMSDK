@@ -427,7 +427,7 @@ public class Production1 extends javax.swing.JFrame {
         else
         {
         int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
-        String presse= ((Machine)jComboBoxPresse.getSelectedItem()).getLibelle();
+        String presse= (String) (jComboBoxPresse.getSelectedItem());
         mess = dao.ManagerLot.demarrerLot(lot, presse);        
         
         statusBar.setForeground(mess.getCouleur());
