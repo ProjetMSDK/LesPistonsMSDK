@@ -98,6 +98,8 @@ public class ManagerLot {
                 liste.add(md.getColumnName(i));
                 i++;
             }
+            //rajout de la colonne de boutons d'action
+            liste.add("ACTION");
             
             return liste;
         }catch (Exception e)
@@ -221,7 +223,7 @@ public class ManagerLot {
     return mess;
     }
     
-    public static MessageStatut demarrerLot( int numLot, String presse)
+    public static MessageStatut demarrerLot(int numLot, String presse)
     {
         MessageStatut mess = new MessageStatut("");
     

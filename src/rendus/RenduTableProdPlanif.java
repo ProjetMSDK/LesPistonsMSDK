@@ -8,6 +8,7 @@ package rendus;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import javax.swing.JLabel;
@@ -26,12 +27,24 @@ public class RenduTableProdPlanif implements TableCellRenderer{
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         
         Component comp;
+        ModeleTableProdPlanif mod = (ModeleTableProdPlanif) table.getModel();
+        // par défaut les cellules sont de simples JLabels :
+        comp = new JLabel(value.toString());
+                    ((JLabel)comp).setOpaque(true);
+                    
+                    if ( (row) % 2 == 0)
+                    {
+                        ((JLabel)comp).setBackground(Color.LIGHT_GRAY);
+                    }
+                    else
+                    {
+                        ((JLabel)comp).setBackground(Color.ORANGE);
+                    } 
         
         switch(column)
         {
             case 5 : // colonne des presses
                 
-                ModeleTableProdPlanif mod = (ModeleTableProdPlanif) table.getModel();
                 if(((String)mod.getValueAt(row, 4)).startsWith("Lancé"))
                 {
                     comp = new JComboBox();
@@ -41,34 +54,26 @@ public class RenduTableProdPlanif implements TableCellRenderer{
                     table.getColumn("PRESSE").setCellEditor(
                             new DefaultCellEditor((JComboBox) comp));
                 }
-                else
-                {
-                    comp = new JLabel(value.toString());
-                    ((JLabel)comp).setOpaque(true);
-                    
-                    if ( (row) % 2 == 0)
-                    {
-                        ((JLabel)comp).setBackground(Color.LIGHT_GRAY);
-                    }
-                    else
-                    {
-                        ((JLabel)comp).setBackground(Color.ORANGE);
-                    } 
-                }
+                
                 break;
             
+            case 7 : //colonne des boutons action
+                if(((String)mod.getValueAt(row, 4)).startsWith("Lancé"))
+                {
+                    comp = new JButton("VALIDER");
+                }
+                else if (((String)mod.getValueAt(row, 4)).startsWith("Démarré"))
+                {
+                    comp = new JButton("SUSPENDRE");
+                }
+                else  if (((String)mod.getValueAt(row, 4)).startsWith("Suspendu"))
+                {
+                    comp = new JButton("REDEMARRER");
+                }
+                break;
+                
             default : 
-                comp = new JLabel(value.toString());
-                    ((JLabel)comp).setOpaque(true);
-                    
-                    if ( (row) % 2 == 0)
-                    {
-                        ((JLabel)comp).setBackground(Color.LIGHT_GRAY);
-                    }
-                    else
-                    {
-                        ((JLabel)comp).setBackground(Color.ORANGE);
-                    } 
+                
                 break;
          }
         return comp;

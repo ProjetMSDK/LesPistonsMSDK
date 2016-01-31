@@ -58,19 +58,38 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 5 && ((String)getValueAt(rowIndex, 4)).startsWith("Lancé");
+        return columnIndex == 5 && ((String)getValueAt(rowIndex, 4)).startsWith("Lancé") ||
+                columnIndex == 7;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         
+        if(columnIndex == 4)
+        {
+            fireTableCellUpdated(rowIndex, columnIndex);
+            fireTableCellUpdated(rowIndex, 5);
+            fireTableCellUpdated(rowIndex, 7);
+        }
+        
+        
         if(aValue instanceof String && columnIndex == 5)
+            //si on a changé la sélection du JcomboBox
         {
             //on récupère le lot correspondant à la ligne
             Lot lotProd = liste.get(rowIndex);
             //on actualise son champ libellé sur la base du choix sélectionné
             //dans la comboBox de la colonne Presse
             lotProd.setLibelle((String) aValue);
+            fireTableCellUpdated(rowIndex, columnIndex);
+            
+        }
+        
+        if(columnIndex == 7)
+        {
+            fireTableCellUpdated(rowIndex, columnIndex);
+            fireTableCellUpdated(rowIndex, 5);
+            fireTableCellUpdated(rowIndex, 7);
         }
         
     }
