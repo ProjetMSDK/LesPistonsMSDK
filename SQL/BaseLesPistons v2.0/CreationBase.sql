@@ -4,7 +4,7 @@ USE LesPistonsMSDK
 
 --Créations des droits
 
-
+/*
 exec sp_adduser JavaUser1, responsablePlanif;
 GO
 exec sp_adduser JavaUser2, responsableProd;
@@ -16,6 +16,20 @@ GO
 exec sp_adduser JavaUser5, responsableGestion
 GO
 exec sp_adduser JavaUser6, responsableMagasin
+GO
+*/
+
+exec sp_adduser mayer, responsablePlanif;
+GO
+exec sp_adduser benosmane, responsableProd;
+GO
+exec sp_adduser bouyadel, responsableControle;
+GO
+exec sp_adduser delecourt, responsableQualite
+GO
+exec sp_adduser addaboudjellal, responsableGestion
+GO
+exec sp_adduser bublex, responsableMagasin
 GO
 
 exec sp_addrolemember 'db_owner', responsablePlanif;
