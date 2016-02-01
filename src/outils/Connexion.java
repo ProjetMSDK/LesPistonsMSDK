@@ -15,8 +15,8 @@ public class Connexion
 	private Connexion(String user , String pass) throws Exception
         {
             
-            //_url = "DESKTOP-AJ19R1G\\SQLEXPRESS";
-            _url = "serveur-sql2012\\server2012";
+            _url = "DESKTOP-AJ19R1G\\SQLEXPRESS";
+            //_url = "serveur-sql2012\\server2012";
             _user = user;
             _password = pass;
             

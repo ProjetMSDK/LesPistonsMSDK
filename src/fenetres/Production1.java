@@ -213,7 +213,7 @@ public class Production1 extends javax.swing.JFrame {
 
         jTableprod.setModel(new ModeleTableProdPlanif());
         jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());
-        jTableprod.setRowHeight(23);
+        jTableprod.setRowHeight(35);
         jTableprod.getColumn("ACTION").setCellEditor(new EditeurBoutonTableProdPlanif(new JCheckBox()));
         jScrollPane3.setViewportView(jTableprod);
 
@@ -296,8 +296,8 @@ public class Production1 extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelLot, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPresse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelLot)
+                    .addComponent(jLabelPresse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -308,7 +308,7 @@ public class Production1 extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxPresse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonSuspendre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(65, 65, 65))
+                .addGap(74, 74, 74))
         );
 
         jComboBoxLot.setModel(new ModeleComboLotProd());
@@ -319,29 +319,30 @@ public class Production1 extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 252, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1005, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -377,7 +378,7 @@ public class Production1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1)
-                        .addContainerGap(1065, Short.MAX_VALUE))
+                        .addContainerGap(1083, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -407,6 +408,15 @@ public class Production1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void actualiserTables()
+    {
+        jTableprod.setModel(new ModeleTableProdPlanif());
+        jTableprod.setDefaultRenderer(Object.class, new RenduTableProdPlanif());
+        jTableprod.setRowHeight(35);
+        jTableprod.getColumn("ACTION").setCellEditor(new EditeurBoutonTableProdPlanif(new JCheckBox()));
+        
+        jTable1.setModel(new ModeleTablePresse());
+    }
     private void BactualiserPresseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BactualiserPresseActionPerformed
        jTable1.setModel(new ModeleTablePresse());
     }//GEN-LAST:event_BactualiserPresseActionPerformed
@@ -460,7 +470,7 @@ public class Production1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRedemarrerActionPerformed
 
     private void jButtonActualiserProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualiserProdActionPerformed
-        jTableprod.setModel(new ModeleTableProdPlanif());
+        actualiserTables();
     }//GEN-LAST:event_jButtonActualiserProdActionPerformed
 
     private void jButtonLibereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLibereActionPerformed
@@ -492,7 +502,7 @@ public class Production1 extends javax.swing.JFrame {
         statusBar.setForeground(mess.getCouleur());
             
         statusBar.setText(mess.toString());
-        jTable1.setModel(new ModeleTablePresse());
+        
         }
     }//GEN-LAST:event_jButtonSuspendreActionPerformed
 
@@ -547,7 +557,7 @@ public class Production1 extends javax.swing.JFrame {
     
     private JButton bouton;
     private final ButtonListener bListener = new ButtonListener();
-    
+    private ModeleTableProdPlanif mt = (ModeleTableProdPlanif) jTableprod.getModel();
     public EditeurBoutonTableProdPlanif(JCheckBox checkBox) {
         
         super(checkBox);
@@ -564,7 +574,18 @@ public class Production1 extends javax.swing.JFrame {
         bListener.setRow(row);
         
         bListener.setTable(table);
-        
+        if(((String)mt.getValueAt(row, 4)).startsWith("Lancé"))
+                {
+                    bouton.setActionCommand("VALIDER");
+                }
+                else if (((String)mt.getValueAt(row, 4)).startsWith("Démarré"))
+                {
+                    bouton.setActionCommand("SUSPENDRE");
+                }
+                else  if (((String)mt.getValueAt(row, 4)).startsWith("Suspendu"))
+                {
+                    bouton.setActionCommand("REDEMARRER");
+                }
         return bouton;
     }
     
@@ -574,9 +595,11 @@ public class Production1 extends javax.swing.JFrame {
     {
         private int row;
         private JTable table;
-             
 
-        public void setRow(int row){this.row = row;}
+        public void setRow(int row){
+            this.row = row;
+            
+        }
         public void setTable(JTable table){this.table = table;}
         
         
@@ -584,19 +607,45 @@ public class Production1 extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             //on récupère le modèle de la table
             ModeleTableProdPlanif mt = (ModeleTableProdPlanif) table.getModel();
-            
+            int lotC;
             //préparation des valeurs des paramètres pour demarrer le lot
-            int lotC = (int) mt.getValueAt(row, 0);
+            lotC = (int) mt.getValueAt(row, 0);
             String presse = (String) mt.getValueAt(row, 5);
-            //démarrage du lot
-            mess = dao.ManagerLot.demarrerLot(lotC, presse);        
-        
-            statusBar.setForeground(mess.getCouleur());
+            if(((String)mt.getValueAt(row, 4)).startsWith("Lancé"))
+            {
+                
+                //démarrage du lot
+                mess = dao.ManagerLot.demarrerLot(lotC, presse);        
+
+                statusBar.setForeground(mess.getCouleur());
+
+                statusBar.setText(mess.toString());
+                actualiserTables();
+                ((JButton)e.getSource()).setActionCommand("SUSPENDRE");
+            }
+            else if (((String)mt.getValueAt(row, 4)).startsWith("Suspendu"))
+            {
+                //démarrage du lot
+                mess = dao.ManagerLot.changerEtatLot(lotC);        
+
+                statusBar.setForeground(mess.getCouleur());
+
+                statusBar.setText(mess.toString());
+                actualiserTables();
+                ((JButton)e.getSource()).setActionCommand("SUSPENDRE");
+            }
             
-            statusBar.setText(mess.toString());
-            jTable1.setModel(new ModeleTablePresse());
+            else if(((String)mt.getValueAt(row, 4)).startsWith("Démarré"))
+                    {
+                        mess=dao.ManagerLot.suspendreLot(lotC);
+                        
+                        statusBar.setForeground(mess.getCouleur());
             
-            ((JButton)e.getSource()).setText("SUSPENDRE");
+                        statusBar.setText(mess.toString());
+                        actualiserTables();
+                        
+                        ((JButton)e.getSource()).setActionCommand("REDEMARRER");
+                    }
             
         }
         

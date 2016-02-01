@@ -74,15 +74,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="103" alignment="2" groupAlignment="2" attributes="0">
-                  <Component id="jLabel16" alignment="2" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="2" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel16" alignment="2" max="32767" attributes="0"/>
               <Component id="jLabel4" alignment="2" pref="499" max="32767" attributes="0"/>
               <Component id="barStatusLogin" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <EmptySpace pref="412" max="32767" attributes="0"/>
-                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel2" alignment="2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -203,7 +203,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="jtPassword">
               <Properties>
-                <Property name="text" type="java.lang.String" value="developpeur"/>
+                <Property name="text" type="java.lang.String" value="123"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtPasswordActionPerformed"/>
@@ -218,7 +218,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jtLogUser">
               <Properties>
-                <Property name="text" type="java.lang.String" value="mayer"/>
+                <Property name="text" type="java.lang.String" value="AdminBJava"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtLogUserActionPerformed"/>

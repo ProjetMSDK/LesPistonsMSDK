@@ -44,7 +44,7 @@ exec sp_addrolemember 'db_owner', responsableGestion;
 go
     */
     
-    /*
+    
     private final String RESPONSABLEAPP = "AdminBJava";
     private final String RESPONSABLEATELIER ="JavaUser2";
     private final String RESPONSABLEGESTION ="JavaUser1";
@@ -52,9 +52,9 @@ go
     private final String RESPONSABLECONTROLE = "JavaUser4";
     private final String RESPONSABLEPROD = "JavaUser3";
     private final String RESPONSABLEQUALITE = "JavaUser6";
-    */
-    private MessageStatut statut;
     
+    private MessageStatut statut;
+    /*
     private final String RESPONSABLEAPP = "mayer";
     private final String RESPONSABLEGESTION ="benosmane";
     private final String RESPONSABLEMAGASIN = "bouyadel";
@@ -62,7 +62,7 @@ go
     private final String RESPONSABLEPROD = "bublex";
     private final String RESPONSABLEQUALITE = "addaboudjellal";
     private final String RESPONSABLEATELIER ="delecourt";
-    
+    */
     
     /*
     private final String roleRespMagasin = "bouyadel";
@@ -143,7 +143,7 @@ go
             }
         });
 
-        jtPassword.setText("developpeur");
+        jtPassword.setText("123");
         jtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtPasswordActionPerformed(evt);
@@ -158,7 +158,7 @@ go
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Login");
 
-        jtLogUser.setText("mayer");
+        jtLogUser.setText("AdminBJava");
         jtLogUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtLogUserActionPerformed(evt);
@@ -231,14 +231,14 @@ go
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
             .addComponent(barStatusLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(412, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

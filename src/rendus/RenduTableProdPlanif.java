@@ -61,14 +61,17 @@ public class RenduTableProdPlanif implements TableCellRenderer{
                 if(((String)mod.getValueAt(row, 4)).startsWith("Lancé"))
                 {
                     comp = new JButton("VALIDER");
+                    ((JButton) comp).setActionCommand("VALIDER");
                 }
                 else if (((String)mod.getValueAt(row, 4)).startsWith("Démarré"))
                 {
                     comp = new JButton("SUSPENDRE");
+                    ((JButton) comp).setActionCommand("SUSPENDRE");
                 }
                 else  if (((String)mod.getValueAt(row, 4)).startsWith("Suspendu"))
                 {
                     comp = new JButton("REDEMARRER");
+                    ((JButton) comp).setActionCommand("REDEMARRER");
                 }
                 break;
                 
